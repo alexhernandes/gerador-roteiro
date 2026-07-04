@@ -1,12 +1,13 @@
 """
 Gera elenco + sinopse + roteiro em JSONs separados.
-Uso: python gerar_roteiro.py
+Uso: python main.py
 """
 
 import json
 import os
 
 from api import chamar_api, extrair_json
+from paths import ROOT_DIR
 from config import MODEL
 from corrigir_dialogos import corrigir_ate_validar
 from dialogo import lock_idioma_texto
@@ -27,7 +28,7 @@ from validar import validar_tudo, imprimir_relatorio, tem_erros_criticos
 
 
 def carregar_prompt():
-    caminho = os.path.join(os.path.dirname(__file__), "prompt.txt")
+    caminho = os.path.join(ROOT_DIR, "prompt.txt")
     with open(caminho, "r", encoding="utf-8") as f:
         return f.read()
 
@@ -251,11 +252,3 @@ def gerar_roteiro():
 
     mostrar_resumo(elenco, sinopse, roteiro)
     print(f"  Tudo em: {sessao}/\n")
-
-
-if __name__ == "__main__":
-    try:
-        gerar_roteiro()
-    except Exception as e:
-        print(f"\nErro: {e}\n")
-    input("Aperte ENTER para sair...")

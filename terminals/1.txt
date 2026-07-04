@@ -18,7 +18,7 @@ print('BEATS:', len(sinopse.get('beats', [])))
 print('ACTS:', bool(sinopse.get('act_1')), bool(sinopse.get('act_2')), bool(sinopse.get('act_3')))
 \"@"
 started_at: 2026-07-04T18:27:34.508Z
-running_for_ms: 700005   
+running_for_ms: 720001   
 ---
   [2/4] Planejando sinopse (história)...
 TITLE: Traição Tropical: A Semente da Discórdia

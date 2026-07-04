@@ -2,9 +2,11 @@ import json
 import os
 from datetime import datetime
 
+from paths import ROOT_DIR
+
 
 def criar_sessao():
-    pasta = os.path.join("output", datetime.now().strftime("%Y%m%d_%H%M%S"))
+    pasta = os.path.join(ROOT_DIR, "output", datetime.now().strftime("%Y%m%d_%H%M%S"))
     os.makedirs(pasta, exist_ok=True)
     return pasta
 

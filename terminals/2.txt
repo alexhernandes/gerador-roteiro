@@ -19,7 +19,7 @@ print('beats:', len(sinopse['beats']))
 print('summary:', sinopse['story_summary'][:100], '...')
 \"@"
 started_at: 2026-07-04T18:29:10.751Z
-running_for_ms: 605010   
+running_for_ms: 625009   
 ---
   [2/4] Planejando sinopse (história)...
 Salvo: output/20260704_152301\sinopse.json

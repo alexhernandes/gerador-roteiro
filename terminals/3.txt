@@ -38,7 +38,7 @@ mostrar_resumo(elenco, sinopse, roteiro)
 print('Tudo em:', sessao)
 \"@"
 started_at: 2026-07-04T18:30:24.351Z
-running_for_ms: 544994   
+running_for_ms: 564990   
 ---
 Continuando sessao: output/20260704_152301
 Idioma: portugues do brasil | Tema: Traição tropical com seres de outra dimensão
