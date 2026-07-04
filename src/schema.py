@@ -340,3 +340,9 @@ CORRECAO_DIALOGOS_RESPONSE_FORMAT = {
     "strict": True,
     "schema": CORRECAO_DIALOGOS_SCHEMA,
 }
+
+CENA_RESPONSE_FORMAT = {
+    "name": "cena",
+    "strict": True,
+    "schema": SCENE,
+}

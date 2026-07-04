@@ -45,7 +45,37 @@ def enriquecer_elenco(elenco, aspect_ratio, idioma):
     return elenco
 
 
+def _resumir_ato(beats, numeros_cena):
+    partes = [
+        beat.get("narrative_beat", "")
+        for beat in beats
+        if beat.get("scene_number") in numeros_cena and beat.get("narrative_beat")
+    ]
+    return " ".join(partes).strip()
+
+
+def _preencher_atos_sinopse(sinopse):
+    beats = sinopse.get("beats", [])
+    if not beats:
+        return sinopse
+
+    atos = {
+        "act_1": ([1, 2], "ATO 1 — INÍCIO"),
+        "act_2": ([3, 4, 5], "ATO 2 — MEIO"),
+        "act_3": ([6, 7], "ATO 3 — FIM"),
+    }
+
+    for campo, (cenas, rotulo) in atos.items():
+        resumo = _resumir_ato(beats, cenas)
+        atual = sinopse.get(campo, "").strip()
+        if len(atual) < 30 and resumo:
+            sinopse[campo] = f"{rotulo}: {resumo}"
+
+    return sinopse
+
+
 def enriquecer_sinopse(sinopse, idioma):
+    sinopse = _preencher_atos_sinopse(sinopse)
     sinopse["ai_instructions"] = {
         "task": (
             "REFERENCE ONLY — AI AGENT: Do NOT generate images, videos or audio from this file. "

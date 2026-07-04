@@ -139,8 +139,14 @@ def validar_sinopse(sinopse):
         resultados.append(_resultado(regra, True, f"Sinopse: {summary[:80]}..."))
 
     for campo in ("act_1", "act_2", "act_3"):
-        if len(sinopse.get(campo, "").strip()) < 8:
-            resultados.append(_resultado(regra, False, f"Sinopse: {campo} incompleto."))
+        texto = sinopse.get(campo, "").strip()
+        if len(texto) < 30:
+            resultados.append(_resultado(
+                regra, False,
+                f"Sinopse: {campo} incompleto ({len(texto)} chars, mínimo 30).",
+            ))
+        else:
+            resultados.append(_resultado(regra, True, f"Sinopse: {campo} OK."))
 
     beats = sinopse.get("beats", [])
     if len(beats) != NUM_CENAS:

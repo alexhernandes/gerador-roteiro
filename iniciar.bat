@@ -57,10 +57,10 @@ if not exist ".env" (
     if exist ".env.example" (
         copy /y ".env.example" ".env" >nul
         echo Criado arquivo .env a partir do .env.example
-        echo Abra .env e coloque sua OPENROUTER_API_KEY antes de gerar roteiros.
+        echo Abra .env e coloque sua XAI_API_KEY antes de gerar roteiros.
         echo.
     ) else (
-        echo AVISO: arquivo .env nao encontrado. Crie um com OPENROUTER_API_KEY=sua_chave
+        echo AVISO: arquivo .env nao encontrado. Crie um com XAI_API_KEY=sua_chave
         echo.
     )
 )

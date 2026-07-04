@@ -7,8 +7,10 @@ import json
 
 from api import chamar_api, extrair_json
 from dialogo import (
+    ajustar_timing_cena,
     ajustar_timing_roteiro,
     analisar_dialogos_roteiro,
+    cenas_com_problemas,
     lock_idioma_texto,
     metas_timing_roteiro,
     normalizar_idioma,
@@ -20,7 +22,13 @@ from dialogo import (
     PAUSA_PADRAO,
 )
 from relatorio import imprimir_problemas
-from schema import CORRECAO_DIALOGOS_RESPONSE_FORMAT, DURACAO_CENA
+from schema import CORRECAO_DIALOGOS_RESPONSE_FORMAT, CORRECAO_SCENE, DURACAO_CENA
+
+CORRECAO_CENA_RESPONSE_FORMAT = {
+    "name": "correcao_cena",
+    "strict": True,
+    "schema": CORRECAO_SCENE,
+}
 
 
 def _exemplo_dialogo(idioma):
@@ -80,6 +88,82 @@ def _extrair_sinopse_dialogos(sinopse):
             for b in sinopse.get("beats", [])
         ],
     }
+
+
+def _problemas_da_cena(problemas, numero):
+    prefixo = f"Cena {numero}"
+    return [p for p in problemas if p.startswith(prefixo)]
+
+
+def _chamar_correcao_api(system, user, schema):
+    ultimo_erro = None
+    for tentativa in range(1, 4):
+        try:
+            resposta = chamar_api(system, user, schema=schema)
+            return extrair_json(resposta)
+        except (ValueError, AttributeError) as erro:
+            ultimo_erro = erro
+            if tentativa < 3:
+                print(f"  !! Resposta inválida ({erro}). Tentativa {tentativa + 1}/3...")
+            continue
+    raise ValueError(f"Falha na correção após 3 tentativas: {ultimo_erro}")
+
+
+def corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas=None):
+    """Corrige diálogos de uma única cena — chamada menor e mais confiável."""
+    codigo = normalizar_idioma(idioma)
+    wps = PALAVRAS_POR_SEGUNDO.get(codigo, 3.2)
+    min_palavras = int(MIN_SEGUNDOS_FALA * wps)
+    max_palavras = int(MAX_SEGUNDOS_FALA * wps)
+    lock = lock_idioma_texto(idioma)
+
+    cenas = roteiro.get("scenes", {})
+    cena = next(
+        (c for c in cenas.values() if c.get("SCENE_NUMBER") == numero),
+        cenas.get(f"SCENE_{numero}"),
+    )
+    if not cena:
+        return roteiro
+
+    beat = next(
+        (b for b in sinopse.get("beats", []) if b.get("scene_number") == numero),
+        {},
+    )
+
+    problemas_txt = ""
+    if problemas:
+        problemas_txt = "PROBLEMAS:\n" + "\n".join(f"- {p}" for p in problemas)
+
+    cena_json = json.dumps(_extrair_dialogos({"scenes": {f"SCENE_{numero}": cena}}), ensure_ascii=False, indent=2)
+
+    system = f"""
+Você reescreve DIALOGUE_LINES de UMA cena de {DURACAO_CENA}s.
+
+IDIOMA: {idioma} — TODO TEXT em {idioma}. LOCK: "{lock}".
+
+LIMITES RÍGIDOS:
+- {MIN_FALAS_POR_CENA}-{MAX_FALAS_POR_CENA} falas (4-12 palavras cada)
+- {min_palavras}-{max_palavras} palavras total (~{MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_FALA}s)
+- Pausa {{"PAUSE": {PAUSA_PADRAO}}} entre falas
+- NUNCA ultrapasse {MAX_SEGUNDOS_FALA}s nem fique abaixo de {MIN_SEGUNDOS_FALA}s
+
+NARRATIVE_BEAT: {cena.get('NARRATIVE_BEAT', '')}
+dialogue_intent: {beat.get('dialogue_intent', '')}
+
+{_exemplo_dialogo(idioma)}
+"""
+
+    user = f"""
+{problemas_txt}
+
+Cena {numero}:
+{cena_json}
+
+Reescreva só os diálogos desta cena em {idioma}.
+"""
+
+    correcao = _chamar_correcao_api(system, user, CORRECAO_CENA_RESPONSE_FORMAT)
+    return _aplicar_correcao(roteiro, {"scenes": {f"SCENE_{numero}": correcao}})
 
 
 def corrigir_dialogos(roteiro, sinopse, idioma, problemas=None):
@@ -142,19 +226,18 @@ Muitas falas curtas (4-12 palavras). Preencha {MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_
 NUNCA ultrapasse {MAX_SEGUNDOS_FALA}s nem fique abaixo de {MIN_SEGUNDOS_FALA}s.
 """
 
-    print("  [4/4] Corrigindo e expandindo diálogos...")
-    ultimo_erro = None
-    for tentativa in range(1, 4):
-        try:
-            resposta = chamar_api(system, user, schema=CORRECAO_DIALOGOS_RESPONSE_FORMAT)
-            correcao = extrair_json(resposta)
-            return _aplicar_correcao(roteiro, correcao)
-        except (ValueError, AttributeError) as erro:
-            ultimo_erro = erro
-            if tentativa < 3:
-                print(f"  !! Resposta inválida da API ({erro}). Tentativa {tentativa + 1}/3...")
-            continue
-    raise ValueError(f"Falha ao corrigir diálogos após 3 tentativas: {ultimo_erro}")
+    numeros = cenas_com_problemas(problemas or [])
+    if numeros:
+        print(f"  [4/4] Corrigindo diálogos ({len(numeros)} cena(s))...")
+        for numero in numeros:
+            print(f"       Cena {numero}...")
+            problemas_cena = _problemas_da_cena(problemas, numero)
+            roteiro = corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas_cena)
+        return roteiro
+
+    print("  [4/4] Corrigindo e expandindo diálogos (lote)...")
+    correcao = _chamar_correcao_api(system, user, CORRECAO_DIALOGOS_RESPONSE_FORMAT)
+    return _aplicar_correcao(roteiro, correcao)
 
 
 def _aplicar_correcao(roteiro, correcao):
@@ -181,6 +264,20 @@ def _aplicar_correcao(roteiro, correcao):
     return roteiro
 
 
+def _ajuste_local_por_cena(roteiro, idioma, problemas):
+    """Tenta corrigir timing localmente antes de chamar a API."""
+    numeros = cenas_com_problemas(problemas)
+    cenas = roteiro.get("scenes", {})
+    for numero in numeros:
+        cena = next(
+            (c for c in cenas.values() if c.get("SCENE_NUMBER") == numero),
+            cenas.get(f"SCENE_{numero}"),
+        )
+        if cena:
+            ajustar_timing_cena(cena, idioma)
+    return roteiro
+
+
 def corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer_fn, max_tentativas=3):
     for tentativa in range(1, max_tentativas + 1):
         problemas = analisar_dialogos_roteiro(roteiro, idioma)
@@ -193,12 +290,20 @@ def corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer_fn, max_tentativas
             problemas,
         )
 
+        roteiro = _ajuste_local_por_cena(roteiro, idioma, problemas)
+        roteiro = enriquecer_fn(roteiro)
+
+        problemas = analisar_dialogos_roteiro(roteiro, idioma)
+        if not problemas:
+            print("  -> Diálogos OK (ajuste local).\n")
+            return roteiro
+
         roteiro = corrigir_dialogos(roteiro, sinopse, idioma, problemas)
         roteiro = enriquecer_fn(roteiro)
 
     problemas = analisar_dialogos_roteiro(roteiro, idioma)
     if problemas:
-        print("  -> Ajuste local de timing nos diálogos...")
+        print("  -> Ajuste local final de timing...")
         roteiro = enriquecer_fn(ajustar_timing_roteiro(roteiro, idioma))
 
     restantes = analisar_dialogos_roteiro(roteiro, idioma)

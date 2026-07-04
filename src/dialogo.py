@@ -275,6 +275,49 @@ def metas_timing_roteiro(roteiro, idioma):
     return "\n".join(linhas)
 
 
+def extrair_falas_de_intent(dialogue_intent):
+    """Extrai textos entre aspas ou após numeração do dialogue_intent da sinopse."""
+    if not dialogue_intent:
+        return []
+
+    falas = re.findall(r"['\"]([^'\"]{3,})['\"]", dialogue_intent)
+    if falas:
+        return [f.strip() for f in falas if f.strip()]
+
+    falas = re.findall(r"\d+\)\s*([^0-9]+?)(?=\s*\d+\)|$)", dialogue_intent, re.S)
+    return [f.strip().strip("'\"") for f in falas if len(f.strip()) >= 3]
+
+
+def dialogos_de_intent(dialogue_intent, speakers, idioma):
+    """Monta DIALOGUE_LINES iniciais a partir do dialogue_intent planejado na sinopse."""
+    falas = extrair_falas_de_intent(dialogue_intent)
+    if not falas or not speakers:
+        return []
+
+    lock = lock_idioma_texto(idioma)
+    linhas = []
+    for indice, texto in enumerate(falas):
+        speaker = speakers[indice % len(speakers)]
+        linhas.append({
+            "SPEAKER": speaker,
+            "VOICE_IDENTITY_LOCK": f"{speaker} voice. {lock}.",
+            "TEXT": texto,
+        })
+        if indice < len(falas) - 1:
+            linhas.append({"PAUSE": PAUSA_PADRAO})
+    return linhas
+
+
+def cenas_com_problemas(problemas):
+    """Extrai números de cena a partir das mensagens de problema."""
+    numeros = set()
+    for problema in problemas:
+        match = re.search(r"Cena\s+(\d+)", problema, re.I)
+        if match:
+            numeros.add(int(match.group(1)))
+    return sorted(numeros)
+
+
 def analisar_dialogos_roteiro(roteiro, idioma):
     """Retorna lista de problemas por cena."""
     problemas = []

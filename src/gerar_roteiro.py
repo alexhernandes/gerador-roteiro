@@ -13,18 +13,31 @@ from corrigir_dialogos import corrigir_ate_validar
 from dialogo import lock_idioma_texto
 from entrada import perguntar
 from enriquecer import enriquecer_elenco, enriquecer_sinopse, enriquecer_roteiro
-from instrucoes_roteiro import bloco_sinopse, bloco_roteiro, bloco_dialogo_denso
+from instrucoes_roteiro import bloco_sinopse, bloco_cena
 from salvar import criar_sessao, salvar
 from schema import (
     ELENCO_RESPONSE_FORMAT,
     SINOPSE_RESPONSE_FORMAT,
-    ROTEIRO_RESPONSE_FORMAT,
+    CENA_RESPONSE_FORMAT,
     RESOLUCAO,
     DURACAO_CENA,
     NUM_CENAS,
     DURACAO_TOTAL,
 )
-from validar import validar_tudo, imprimir_relatorio, tem_erros_criticos
+
+ROLES_POR_CENA = {
+    1: "hook",
+    2: "setup",
+    3: "conflict",
+    4: "twist",
+    5: "escalation",
+    6: "crisis",
+    7: "cliffhanger",
+}
+
+MIN_TAMANHO_ATO = 30
+
+from validar import validar_tudo, imprimir_relatorio
 
 
 def carregar_prompt():
@@ -79,12 +92,14 @@ def _sinopse_valida(sinopse):
         return False
 
     beats = sinopse.get("beats", [])
+    atos_ok = all(
+        len(sinopse.get(campo, "").strip()) >= MIN_TAMANHO_ATO
+        for campo in ("act_1", "act_2", "act_3")
+    )
     return (
         len(sinopse.get("story_summary", "")) > 30
         and len(beats) >= NUM_CENAS
-        and sinopse.get("act_1")
-        and sinopse.get("act_2")
-        and sinopse.get("act_3")
+        and atos_ok
     )
 
 
@@ -95,7 +110,8 @@ def gerar_sinopse(idioma, tema, elenco, tentativa=1):
     if tentativa > 1:
         reforco = """
 CORREÇÃO: a sinopse anterior veio incompleta.
-Preencha OBRIGATORIAMENTE: story_summary, act_1, act_2, act_3 e beats com 7 itens.
+Preencha OBRIGATORIAMENTE: story_summary, act_1, act_2, act_3 (mínimo 2 frases cada) e beats com 7 itens.
+NÃO use rótulos curtos como "início (Cenas 1-2)" — descreva o que acontece em cada ato.
 """
 
     system = PROMPT_BASE + bloco_sinopse(idioma, tema) + f"""
@@ -130,54 +146,79 @@ Começo, meio e fim claros. Reviravoltas. 4-6 falas planejadas por cena no dialo
     return enriquecer_sinopse(sinopse, idioma)
 
 
-def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, reforco=False):
+def juntar_cenas_em_roteiro(cenas, sinopse):
+    """Monta roteiro.json juntando manualmente as cenas das 7 chamadas à API."""
+    titulo = sinopse.get("title", "").replace("Sinopse - ", "").strip() or "Roteiro"
+    return {
+        "title": titulo,
+        "story_summary": sinopse.get("story_summary", ""),
+        "scenes": {f"SCENE_{num}": cena for num, cena in sorted(cenas.items())},
+    }
+
+
+def gerar_cena(idioma, tema, aspect_ratio, elenco, sinopse, beat, cena_anterior=None):
+    num = beat.get("scene_number", 1)
     elenco_json = json.dumps(elenco, ensure_ascii=False, indent=2)
     sinopse_json = json.dumps(sinopse, ensure_ascii=False, indent=2)
 
-    reforco_txt = ""
-    if reforco:
-        reforco_txt = f"""
-CORREÇÃO: diálogos anteriores estavam no idioma errado.
-Reescreva TODOS os TEXT em {idioma}.
-"""
+    system = PROMPT_BASE + _bloco_idioma(idioma) + bloco_cena(beat, cena_anterior, idioma, tema) + f"""
 
-    system = PROMPT_BASE + _bloco_idioma(idioma) + bloco_dialogo_denso(idioma) + bloco_roteiro(idioma, tema) + f"""
-
-FORMATO: {aspect_ratio}, {RESOLUCAO}, {NUM_CENAS} cenas x {DURACAO_CENA}s = {DURACAO_TOTAL}s.
+FORMATO: {aspect_ratio}, {RESOLUCAO}, cena de {DURACAO_CENA}s.
 language = "{idioma}".
 
-SINOPSE APROVADA (siga fielmente, não mude a história):
+SINOPSE COMPLETA (enviada em TODA chamada — siga fielmente, não mude a história):
 {sinopse_json}
 
-ELENCO:
+ELENCO (use nomes exatos em SPEAKER e VISUAL_PROMPT):
 {elenco_json}
 
-Campos obrigatórios por cena:
-- STORY_POSITION: "início", "meio" ou "fim"
-- NARRATIVE_BEAT: o que acontece nesta cena na história
-- CAMERA_DIRECTION: timeline 0-10s com shots, zoom, dolly, pan, ângulos
-- PHYSICAL_MOVEMENT: ações físicas dos personagens
-- ACTION_DIRECTION: direção integrada + lip-sync
-- VISUAL_PROMPT: SET + personagens com outfit completo + iluminação
-- DIALOGUE_LINES > TEXT: falas que contam a história (de dialogue_intent da sinopse)
+Campos obrigatórios desta cena:
+- SCENE_NUMBER: {num}
+- SCENE_NAME: título curto da cena
+- SCENE_ROLE: "{ROLES_POR_CENA.get(num, 'scene')}"
+- STORY_POSITION: "{beat.get('story_position', '')}"
+- NARRATIVE_BEAT, OPENING_HOOK (cena 1), CAMERA_DIRECTION, PHYSICAL_MOVEMENT
+- ACTION_DIRECTION, VISUAL_PROMPT, DIALOGUE_LINES, DELIVERY_STYLE
+- HAS_DIALOGUE: true, AUDIO_SPEAKER, AUDIO_TARGET, AUDIO_TIMING_CONTROLS
+- VOICE_OVERRIDE_METADATA (um entry por SPEAKER)
 
-story_summary no root: copie da sinopse.
-{reforco_txt}
+Retorne APENAS o JSON desta cena — não gere as outras cenas.
 """
 
     user = f"""
-Expanda a sinopse em roteiro completo de {NUM_CENAS} cenas.
+Gere SOMENTE a Cena {num} de {NUM_CENAS}.
 Tema: {tema}. Idioma: {idioma}.
-Cada cena com câmera detalhada e diálogos que avançam a trama.
+Use o beat {num} da sinopse e mantenha continuidade com as cenas anteriores.
 """
 
-    print("  [3/4] Gerando roteiro detalhado...")
-    resposta = chamar_api(system, user, schema=ROTEIRO_RESPONSE_FORMAT)
-    roteiro = extrair_json(resposta)
+    resposta = chamar_api(system, user, schema=CENA_RESPONSE_FORMAT)
+    cena = extrair_json(resposta)
+    cena["SCENE_NUMBER"] = num
+    cena.setdefault("SCENE_ROLE", ROLES_POR_CENA.get(num, "scene"))
+    cena.setdefault("STORY_POSITION", beat.get("story_position", ""))
+    cena.setdefault("NARRATIVE_BEAT", beat.get("narrative_beat", ""))
+    return cena
 
-    if not roteiro.get("story_summary") and sinopse.get("story_summary"):
-        roteiro["story_summary"] = sinopse["story_summary"]
 
+def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=None):
+    beats = sorted(sinopse.get("beats", []), key=lambda b: b.get("scene_number", 0))
+    cenas = {}
+    cena_anterior = None
+
+    print(f"  [3/4] Gerando roteiro — {NUM_CENAS} chamadas à API (1 cena cada)...")
+    for beat in beats:
+        num = beat.get("scene_number", len(cenas) + 1)
+        print(f"       Chamada {num}/{NUM_CENAS} → Cena {num}...")
+        cena = gerar_cena(idioma, tema, aspect_ratio, elenco, sinopse, beat, cena_anterior)
+        cenas[num] = cena
+        cena_anterior = cena
+
+        if sessao:
+            salvar(sessao, f"cena_{num:02d}", cena)
+            print(f"       -> cena_{num:02d}.json salva")
+
+    print("       Juntando as 7 cenas em roteiro.json...")
+    roteiro = juntar_cenas_em_roteiro(cenas, sinopse)
     return enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco)
 
 
@@ -224,7 +265,7 @@ def gerar_roteiro():
     sessao = criar_sessao()
 
     print(f"\nIdioma: {idioma} | Formato: {aspect_ratio} | {DURACAO_TOTAL}s ({NUM_CENAS} cenas)")
-    print(f"Modelo: {MODEL}")
+    print(f"Modelo: {MODEL} (xAI)")
     print(f"Tema: {tema}")
     print(f"Pasta: {sessao}\nGerando... aguarde.\n")
 
@@ -235,7 +276,7 @@ def gerar_roteiro():
         sinopse = gerar_sinopse(idioma, tema, elenco)
         _salvar_passo(sessao, "sinopse", sinopse)
 
-        roteiro = gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse)
+        roteiro = gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=sessao)
         _salvar_passo(sessao, "roteiro", roteiro)
 
         enriquecer = lambda r: enriquecer_roteiro(r, aspect_ratio, idioma, elenco)

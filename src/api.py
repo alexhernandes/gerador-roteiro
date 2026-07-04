@@ -1,19 +1,33 @@
 import json
 import re
+import time
 from openai import OpenAI
-from config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, MODEL
+from config import XAI_API_KEY, XAI_BASE_URL, MODEL, REASONING_EFFORT
+
+MAX_TENTATIVAS_API = 3
+PAUSA_RETRY_SEGUNDOS = 2
+MAX_COMPLETION_TOKENS = 16000
 
 
 def criar_cliente():
-    if not OPENROUTER_API_KEY:
+    if not XAI_API_KEY:
         raise ValueError(
-            "Coloque sua chave no arquivo .env\n"
-            "Exemplo: OPENROUTER_API_KEY=sua_chave_aqui"
+            "Coloque sua chave xAI no arquivo .env\n"
+            "Exemplo: XAI_API_KEY=sua_chave_aqui\n"
+            "Obtenha em: https://console.x.ai/"
         )
-    return OpenAI(base_url=OPENROUTER_BASE_URL, api_key=OPENROUTER_API_KEY)
+    return OpenAI(base_url=XAI_BASE_URL, api_key=XAI_API_KEY)
 
 
-def chamar_api(system_prompt, user_prompt, schema=None):
+def _kwargs_grok(kwargs):
+    """Parâmetros extras para modelos Grok 4.3 na xAI."""
+    if "grok-4.3" in MODEL or "grok-4" in MODEL:
+        kwargs["reasoning_effort"] = REASONING_EFFORT
+    kwargs["max_completion_tokens"] = MAX_COMPLETION_TOKENS
+    return kwargs
+
+
+def chamar_api(system_prompt, user_prompt, schema=None, max_tentativas=MAX_TENTATIVAS_API):
     client = criar_cliente()
 
     kwargs = {
@@ -23,6 +37,7 @@ def chamar_api(system_prompt, user_prompt, schema=None):
             {"role": "user", "content": user_prompt},
         ],
     }
+    kwargs = _kwargs_grok(kwargs)
 
     if schema:
         kwargs["response_format"] = {
@@ -30,8 +45,26 @@ def chamar_api(system_prompt, user_prompt, schema=None):
             "json_schema": schema,
         }
 
-    response = client.chat.completions.create(**kwargs)
-    return response.choices[0].message.content
+    ultimo_erro = None
+    for tentativa in range(1, max_tentativas + 1):
+        try:
+            response = client.chat.completions.create(**kwargs)
+            if not response.choices:
+                raise ValueError("Resposta da API sem choices.")
+
+            content = response.choices[0].message.content
+            if content is None or not str(content).strip():
+                raise ValueError("Resposta vazia da API (content=None).")
+
+            return content
+        except Exception as erro:
+            ultimo_erro = erro
+            if tentativa < max_tentativas:
+                pausa = PAUSA_RETRY_SEGUNDOS * tentativa
+                print(f"  !! API falhou ({erro}). Tentativa {tentativa + 1}/{max_tentativas} em {pausa}s...")
+                time.sleep(pausa)
+                continue
+            raise ValueError(f"API falhou após {max_tentativas} tentativas: {ultimo_erro}") from erro
 
 
 def _limpar_texto(texto):
@@ -114,18 +147,18 @@ def _normalizar(obj):
             "A resposta da API foi descartada pela normalização antiga ou veio incompleta."
         )
 
-    # Sinopse — manter todos os campos (beats, story_summary, etc.)
     if "beats" in obj:
         return obj
 
-    # Elenco — manter todos os campos (cast, ai_instructions, etc.)
     if "cast" in obj and "beats" not in obj:
         tem_cenas_soltas = any(k.startswith("SCENE") for k in obj)
         cenas = obj.get("scenes") or {}
         if not tem_cenas_soltas and not cenas:
             return _limpar_lixo_legado(obj)
 
-    # Roteiro — juntar cenas que vieram soltas no root
+    if obj.get("SCENE_NUMBER") and "scenes" not in obj:
+        return obj
+
     scenes = dict(obj.get("scenes", {}))
     for chave, valor in obj.items():
         if chave.startswith("SCENE") and chave not in scenes:
@@ -145,6 +178,11 @@ def _juntar_objetos(objetos):
 
     for obj in objetos:
         if not isinstance(obj, dict):
+            continue
+
+        if obj.get("SCENE_NUMBER") and "scenes" not in obj:
+            num = obj["SCENE_NUMBER"]
+            resultado["scenes"][f"SCENE_{num}"] = obj
             continue
 
         if obj.get("title"):

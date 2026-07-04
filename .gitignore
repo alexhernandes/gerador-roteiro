@@ -1,1 +1,5 @@
 .env
+__pycache__/
+output/
+terminals/
+src/__pycache__/

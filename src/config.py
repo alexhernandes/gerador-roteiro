@@ -5,6 +5,7 @@ from paths import ROOT_DIR
 
 load_dotenv(os.path.join(ROOT_DIR, ".env"))
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-MODEL = os.getenv("OPENROUTER_MODEL", "deepseek/deepseek-v4-pro")
+XAI_API_KEY = os.getenv("XAI_API_KEY", "")
+XAI_BASE_URL = "https://api.x.ai/v1"
+MODEL = os.getenv("XAI_MODEL", "grok-4.3")
+REASONING_EFFORT = os.getenv("XAI_REASONING_EFFORT", "none")

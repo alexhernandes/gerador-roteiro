@@ -129,6 +129,13 @@ Para cada uma das {NUM_CENAS} cenas, defina:
   • key_action: ação física principal
 
 A story_summary deve contar a história inteira em 3-5 frases (começo, meio, fim).
+
+CAMPOS act_1, act_2, act_3 — OBRIGATÓRIOS e DETALHADOS (mínimo 2 frases cada):
+  • act_1: resumo narrativo das cenas 1-2 (hook + conflito inicial)
+  • act_2: resumo narrativo das cenas 3-5 (tensão, reviravolta, consequências)
+  • act_3: resumo narrativo das cenas 6-7 (clímax + cliffhanger)
+  PROIBIDO usar só rótulos como "início (Cenas 1-2)" — escreva o que ACONTECE.
+
 Os beats devem formar uma cadeia causal — cena N+1 só faz sentido depois da cena N.
 """
 
@@ -159,3 +166,43 @@ CHECKLIST antes de entregar:
   ✓ Cena 7 termina com cliffhanger?
 """
     )
+
+
+def bloco_cena(beat, cena_anterior, idioma, tema):
+    """Instruções focadas para gerar UMA cena por vez."""
+    num = beat.get("scene_number", 1)
+    wps = PALAVRAS_POR_SEGUNDO.get(normalizar_idioma(idioma), 3.2)
+    min_palavras = int(MIN_SEGUNDOS_FALA * wps)
+    max_palavras = int(MAX_SEGUNDOS_FALA * wps)
+    lock = lock_idioma_texto(idioma)
+
+    continuidade = ""
+    if cena_anterior:
+        continuidade = f"""
+CONTINUIDADE — cena anterior terminou assim:
+  NARRATIVE_BEAT: {cena_anterior.get('NARRATIVE_BEAT', '')}
+  Última fala: {cena_anterior.get('DIALOGUE_LINES', [{}])[-2].get('TEXT', '') if cena_anterior.get('DIALOGUE_LINES') else 'N/A'}
+Esta cena (Cena {num}) começa EXATAMENTE onde a anterior parou.
+"""
+
+    return f"""
+═══ GERAR APENAS A CENA {num} DE {NUM_CENAS} ═══
+
+Tema: {tema} | Idioma: {idioma} (LOCK: "{lock}")
+
+BLUEPRINT desta cena (da sinopse — siga fielmente):
+  story_position: {beat.get('story_position', '')}
+  narrative_beat: {beat.get('narrative_beat', '')}
+  dialogue_intent: {beat.get('dialogue_intent', '')}
+  camera_concept: {beat.get('camera_concept', '')}
+  key_action: {beat.get('key_action', '')}
+{continuidade}
+DIÁLOGOS — LIMITES RÍGIDOS para caber em {DURACAO_CENA}s:
+  • {MIN_FALAS_POR_CENA}-{MAX_FALAS_POR_CENA} falas curtas (4-12 palavras cada)
+  • Total: {min_palavras}-{max_palavras} palavras (~{MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_FALA}s de áudio)
+  • Pausa {{"PAUSE": {PAUSA_PADRAO}}} entre cada fala
+  • Transforme dialogue_intent em falas reais — NÃO copie texto em inglês se idioma for {idioma}
+  • PROIBIDO ultrapassar {max_palavras} palavras no total
+
+CÂMERA: expanda camera_concept em timeline 0-10s com shots e movimentos.
+"""
