@@ -34,9 +34,9 @@ def _sintese_forcada(gender, idioma):
     return f"Adult_Neutral_Character_{codigo}"
 
 
-def _peso_vocal(gender, fruit_type, voice_profile):
+def _peso_vocal(gender, character_type, voice_profile):
     genero = _genero_canonico(gender)
-    fruta = fruit_type or "Fruit"
+    tipo = character_type or "Character"
     perfil = voice_profile or "consistent expressive character voice"
     if "Female" in genero:
         base = "Feminine / clear adult character voice"
@@ -44,7 +44,7 @@ def _peso_vocal(gender, fruit_type, voice_profile):
         base = "Masculine / clear adult character voice"
     else:
         base = "Neutral / clear adult character voice"
-    return f"{base} / {fruta} / {perfil}"
+    return f"{base} / {tipo} / {perfil}"
 
 
 def criar_voice_registry(elenco, idioma):
@@ -56,18 +56,18 @@ def criar_voice_registry(elenco, idioma):
         speaker_key = chave_speaker(nome)
         voice_model_id = f"{speaker_key}_VOICE_LOCK"
         gender = personagem.get("gender", "")
-        fruit_type = personagem.get("fruit_type", "")
+        character_type = personagem.get("character_type", personagem.get("fruit_type", ""))
         voice_profile = personagem.get("voice_profile", "")
         age = personagem.get("age", "")
 
         identity_lock = (
             f"Voice Model: {voice_model_id}. "
             f"Speaker: {nome}. Age: {age}. Gender: {gender}. "
-            f"Fruit Type: {fruit_type}. Tone: {voice_profile}. {lock}."
+            f"Character Type: {character_type}. Tone: {voice_profile}. {lock}."
         )
         override = {
             "VOICE_GENDER": _genero_canonico(gender),
-            "VOCAL_WEIGHT": _peso_vocal(gender, fruit_type, voice_profile),
+            "VOCAL_WEIGHT": _peso_vocal(gender, character_type, voice_profile),
             "TONE_PROFILE": (
                 f"{nome}: {voice_profile}. Keep the same pitch, rhythm, accent, "
                 "emotional texture, and vocal weight in every scene."
@@ -89,6 +89,11 @@ def criar_voice_registry(elenco, idioma):
         "rule": (
             "Every DIALOGUE_LINES item must use the exact SPEAKER and "
             "VOICE_IDENTITY_LOCK from this registry. Never invent per-scene voices."
+        ),
+        "multi_speaker_rule": (
+            "When a scene has multiple speakers, synthesize one line at a time using the "
+            "active speaker only. Never blend voices, never reuse another speaker's timbre, "
+            "and never let visual position or camera focus change the assigned voice."
         ),
         "voices": voices,
     }
@@ -162,6 +167,7 @@ def voice_registry_prompt(elenco, idioma):
         "VOICE REGISTRY - CANONICO E OBRIGATORIO:",
         f"Language lock: {registry['language_lock']}",
         "Use exatamente estes SPEAKER e VOICE_IDENTITY_LOCK. Nao crie vozes novas.",
+        f"Multi-speaker rule: {registry.get('multi_speaker_rule', '')}",
     ]
     for nome, voz in registry.get("voices", {}).items():
         linhas.append(f"- SPEAKER: {nome}")

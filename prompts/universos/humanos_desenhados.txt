@@ -1,0 +1,12 @@
+UNIVERSO: personagens humanos desenhados/estilizados.
+
+Personagens devem ser humanos ou humanoides em estilo desenhado, caricato ou
+animado. Nao usar fotorrealismo de pessoa real. Mantenha design original,
+silhueta, rosto, cabelo, roupa e acessorios consistentes.
+
+No elenco, character_type deve indicar arquétipo/personagem
+(ex.: jovem skatista, executiva cansada, professor nervoso). physical_dna deve
+travar rosto, cabelo, proporcao, paleta e marcas visuais. outfit_dna deve travar
+roupa completa da cabeca aos pes, materiais, cores e acessorios.
+
+Visual: animacao 3D estilizada ou desenho cinematografico, expressivo, viral.

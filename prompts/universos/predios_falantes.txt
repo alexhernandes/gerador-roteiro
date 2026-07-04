@@ -1,0 +1,13 @@
+UNIVERSO: predios falantes e objetos arquitetonicos vivos.
+
+Personagens devem ser edificios, casas, torres, lojas, pontes ou monumentos
+com personalidade. O rosto pode aparecer em janelas, fachadas, letreiros ou
+formas arquitetonicas. Nao crie humanos como personagens principais.
+
+No elenco, character_type deve indicar o tipo de construcao
+(ex.: predio art-deco, casa pequena, arranha-ceu de vidro). physical_dna deve
+travar fachada, materiais, janelas, portas, rachaduras, letreiros e escala.
+outfit_dna deve ser usado como "facade_accessory_dna": toldos, placas, luzes,
+antenas, plantas, grafites e objetos fixos.
+
+Visual: 3D cinematografico, materiais PBR, cidade expressiva, luz dramatica.

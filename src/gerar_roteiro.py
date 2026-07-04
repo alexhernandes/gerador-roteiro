@@ -5,11 +5,13 @@ Uso: python main.py
 
 import json
 import os
+import subprocess
+import sys
 
 from api import chamar_api, extrair_json
 from auditoria import auditar_roteiro
 from paths import ROOT_DIR
-from config import MODEL
+from config import MODEL, OPEN_OUTPUT_FOLDER_ON_FINISH
 from corrigir_dialogos import corrigir_ate_validar
 from dialogo import ajustar_timing_cena, dialogos_de_intent, lock_idioma_texto, normalizar_idioma
 from entrada import perguntar
@@ -28,6 +30,7 @@ from schema import (
     NUM_CENAS,
     DURACAO_TOTAL,
 )
+from universos import carregar_prompt_universo, label_universo
 from voz import aplicar_voice_registry_cena, voice_registry_prompt
 
 ROLES_POR_CENA = {
@@ -58,6 +61,8 @@ PROTOCOLO ATUAL DO SISTEMA - SUBSTITUI QUALQUER REGRA ANTIGA CONFLITANTE:
 - Prompts visuais podem usar termos tecnicos em ingles, mas o audio falado nao.
 - Toda voz deve copiar o VOICE REGISTRY canonico. Nunca invente voz por cena.
 - Toda cena deve seguir o STORY CONTRACT canonico. Nunca pule causalidade.
+- O UNIVERSO SELECIONADO substitui qualquer regra antiga de personagens apenas como frutas.
+- Use character_type como campo generico do tipo de personagem.
 - Agentes de video/render devem trabalhar 1 cena por vez. Nunca processe 3 cenas por lote.
 - Todo agente deve fazer pos-verificacao de idioma, voz, audio, continuidade e locks visuais antes de finalizar.
 """
@@ -77,13 +82,18 @@ IDIOMA INQUEBRÁVEL — REJEIÇÃO AUTOMÁTICA SE VIOLAR:
 """
 
 
-def gerar_elenco(idioma, tema, aspect_ratio):
+def gerar_elenco(idioma, tema, aspect_ratio, universo):
+    universo_prompt = carregar_prompt_universo(universo)
     system = PROMPT_BASE + f"""
 
 Crie APENAS o ELENCO.
 Tema: {tema}. Formato: {aspect_ratio}. Resolução: {RESOLUCAO}. language: "{idioma}".
 
-- Frutas antropomórficas, pele 100% fruta
+UNIVERSO SELECIONADO: {label_universo(universo)}
+{universo_prompt}
+
+- Crie personagens coerentes com o UNIVERSO SELECIONADO
+- character_type deve descrever o tipo de personagem dentro desse universo
 - physical_dna e outfit_dna completos
 - 2 a 5 personagens com papéis claros na trama (protagonista, antagonista, aliado, etc.)
 - ai_image_task por personagem
@@ -145,8 +155,9 @@ def _sinopse_valida(sinopse):
     )
 
 
-def gerar_sinopse(idioma, tema, elenco, tentativa=1):
+def gerar_sinopse(idioma, tema, elenco, universo, tentativa=1):
     elenco_json = json.dumps(elenco, ensure_ascii=False, indent=2)
+    universo_prompt = carregar_prompt_universo(universo)
 
     reforco = ""
     if tentativa > 1:
@@ -157,6 +168,9 @@ NÃO use rótulos curtos como "início (Cenas 1-2)" — descreva o que acontece 
 """
 
     system = PROMPT_BASE + bloco_sinopse(idioma, tema) + f"""
+
+UNIVERSO SELECIONADO: {label_universo(universo)}
+{universo_prompt}
 
 Elenco disponível — use estes personagens na história:
 {elenco_json}
@@ -177,7 +191,7 @@ Começo, meio e fim claros. Reviravoltas. 4-6 falas planejadas por cena no dialo
 
     if not _sinopse_valida(sinopse) and tentativa < 3:
         print("  !! Sinopse incompleta. Tentando de novo...\n")
-        return gerar_sinopse(idioma, tema, elenco, tentativa + 1)
+        return gerar_sinopse(idioma, tema, elenco, universo, tentativa + 1)
 
     if not _sinopse_valida(sinopse):
         raise ValueError(
@@ -270,8 +284,9 @@ def _fallback_dialogos_globais(sinopse, elenco, idioma):
     return {"scenes": cenas}
 
 
-def gerar_dialogos_globais(idioma, tema, elenco, sinopse):
+def gerar_dialogos_globais(idioma, tema, elenco, sinopse, universo):
     sinopse_json = json.dumps(sinopse, ensure_ascii=False, indent=2)
+    universo_prompt = carregar_prompt_universo(universo)
 
     system = PROMPT_BASE + _bloco_idioma(idioma) + f"""
 
@@ -281,6 +296,9 @@ antes dos prompts visuais, para que a historia fique uniforme.
 {voice_registry_prompt(elenco, idioma)}
 
 {story_contract_prompt(sinopse)}
+
+UNIVERSO SELECIONADO: {label_universo(universo)}
+{universo_prompt}
 
 REGRAS:
 - Use SOMENTE os SPEAKER existentes no VOICE REGISTRY.
@@ -317,11 +335,12 @@ Crie os dialogos globais das {NUM_CENAS} cenas. Esse audio sera congelado e usad
     return dialogos
 
 
-def gerar_cena(idioma, tema, aspect_ratio, elenco, sinopse, beat, cena_anterior=None, dialogo_planejado=None):
+def gerar_cena(idioma, tema, aspect_ratio, elenco, sinopse, beat, universo, cena_anterior=None, dialogo_planejado=None):
     num = beat.get("scene_number", 1)
     elenco_json = json.dumps(elenco, ensure_ascii=False, indent=2)
     sinopse_json = json.dumps(sinopse, ensure_ascii=False, indent=2)
     dialogo_planejado_json = json.dumps(dialogo_planejado or {}, ensure_ascii=False, indent=2)
+    universo_prompt = carregar_prompt_universo(universo)
     cena_anterior_json = ""
     if cena_anterior:
         cena_anterior_json = json.dumps(cena_anterior, ensure_ascii=False, indent=2)
@@ -341,6 +360,9 @@ SINOPSE:
 {story_contract_prompt(sinopse, num)}
 
 {voice_registry_prompt(elenco, idioma)}
+
+UNIVERSO SELECIONADO: {label_universo(universo)}
+{universo_prompt}
 
 ELENCO (nomes exatos em SPEAKER e VISUAL_PROMPT):
 {elenco_json}
@@ -394,13 +416,13 @@ Use os DIALOGOS CONGELADOS exatamente como fonte de audio. A cena visual deve se
     return cena
 
 
-def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=None):
+def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, universo, opcoes_agente, sessao=None):
     beats = sorted(sinopse.get("beats", []), key=lambda b: b.get("scene_number", 0))
     cenas = {}
     cena_anterior = None
 
     print(f"  [3/4] Gerando roteiro — {NUM_CENAS} chamadas à API (1 cena cada)...")
-    dialogos_globais = gerar_dialogos_globais(idioma, tema, elenco, sinopse)
+    dialogos_globais = gerar_dialogos_globais(idioma, tema, elenco, sinopse, universo)
     if sessao:
         salvar(sessao, "dialogos_globais", dialogos_globais, em_log=True)
         print("       -> log/dialogos_globais.json salvo")
@@ -416,6 +438,7 @@ def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=None
             elenco,
             sinopse,
             beat,
+            universo,
             cena_anterior,
             dialogo_planejado,
         )
@@ -428,7 +451,14 @@ def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=None
 
     print("       Juntando as 7 cenas em roteiro.json...")
     roteiro = juntar_cenas_em_roteiro(cenas, sinopse)
-    return enriquecer_roteiro_com_sinopse(roteiro, aspect_ratio, idioma, elenco, sinopse)
+    return enriquecer_roteiro_com_sinopse(
+        roteiro,
+        aspect_ratio,
+        idioma,
+        elenco,
+        sinopse,
+        opcoes_agente=opcoes_agente,
+    )
 
 
 def mostrar_resumo(elenco, sinopse, roteiro):
@@ -443,7 +473,7 @@ def mostrar_resumo(elenco, sinopse, roteiro):
 
     print("\n--- ELENCO ---\n")
     for p in elenco.get("cast", []):
-        print(f"  * {p['name']} ({p['fruit_type']})")
+        print(f"  * {p['name']} ({p.get('character_type', p.get('fruit_type', 'personagem'))})")
 
     print("\n--- CENAS ---\n")
     cenas = roteiro.get("scenes", {})
@@ -466,11 +496,32 @@ def _salvar_passo(sessao, nome, dados, em_log=False):
     return arquivo
 
 
+def abrir_pasta_saida(sessao):
+    if not OPEN_OUTPUT_FOLDER_ON_FINISH:
+        return
+
+    try:
+        if os.name == "nt":
+            os.startfile(sessao)
+        elif sys.platform == "darwin":
+            subprocess.Popen(["open", sessao])
+        else:
+            subprocess.Popen(["xdg-open", sessao])
+        print(f"  Pasta aberta: {sessao}\n")
+    except Exception as erro:
+        print(f"  Nao consegui abrir a pasta automaticamente: {erro}\n")
+
+
 def gerar_roteiro():
     dados = perguntar()
     idioma = dados["idioma"]
     tema_original = dados["tema"]
     aspect_ratio = dados["aspect_ratio"]
+    universo = dados["universo"]
+    opcoes_agente = {
+        "confirm_between_steps": dados["agent_confirm_between_steps"],
+        "videos_per_step": dados["agent_videos_per_step"],
+    }
 
     sessao = criar_sessao()
 
@@ -481,24 +532,49 @@ def gerar_roteiro():
             "idioma": idioma,
             "tema_original": tema_original,
             "tema_traduzido": tema,
+            "universo": universo,
+            "universo_label": label_universo(universo),
+            "opcoes_agente": opcoes_agente,
         }, em_log=True)
 
         print(f"\nIdioma: {idioma} | Formato: {aspect_ratio} | {DURACAO_TOTAL}s ({NUM_CENAS} cenas)")
         print(f"Modelo: {MODEL} (xAI)")
+        print(f"Universo: {label_universo(universo)}")
         print(f"Tema original: {tema_original}")
         print(f"Tema traduzido: {tema}")
+        print(
+            "Agente: "
+            f"{opcoes_agente['videos_per_step']} vídeo(s) por passo; "
+            f"{'pergunta antes de seguir' if opcoes_agente['confirm_between_steps'] else 'segue automaticamente'}"
+        )
         print(f"Pasta: {sessao}\nGerando... aguarde.\n")
 
-        elenco = gerar_elenco(idioma, tema, aspect_ratio)
+        elenco = gerar_elenco(idioma, tema, aspect_ratio, universo)
         _salvar_passo(sessao, "elenco", elenco)
 
-        sinopse = gerar_sinopse(idioma, tema, elenco)
+        sinopse = gerar_sinopse(idioma, tema, elenco, universo)
         _salvar_passo(sessao, "sinopse", sinopse)
 
-        roteiro = gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=sessao)
+        roteiro = gerar_roteiro_cenas(
+            idioma,
+            tema,
+            aspect_ratio,
+            elenco,
+            sinopse,
+            universo,
+            opcoes_agente,
+            sessao=sessao,
+        )
         _salvar_passo(sessao, "roteiro_rascunho", roteiro, em_log=True)
 
-        enriquecer = lambda r: enriquecer_roteiro_com_sinopse(r, aspect_ratio, idioma, elenco, sinopse)
+        enriquecer = lambda r: enriquecer_roteiro_com_sinopse(
+            r,
+            aspect_ratio,
+            idioma,
+            elenco,
+            sinopse,
+            opcoes_agente=opcoes_agente,
+        )
         roteiro = corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer, elenco=elenco)
         _salvar_passo(sessao, "roteiro", roteiro)
 
@@ -516,3 +592,4 @@ def gerar_roteiro():
     mostrar_resumo(elenco, sinopse, roteiro)
     print(f"  Entrega: {sessao}/ (elenco, sinopse, roteiro)")
     print(f"  Logs:    {sessao}/log/\n")
+    abrir_pasta_saida(sessao)

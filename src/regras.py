@@ -291,15 +291,16 @@ REGRAS = [
     },
     {
         "id": "antropomorfico",
-        "nome": "DNA Antropomórfico",
+        "nome": "DNA do personagem",
         "severidade": "aviso",
         "explicacao": (
-            "Personagens são frutas com corpo de adulto. "
-            "A pele da fruta cobre 100% do corpo — proibido tom de pele humana."
+            "Cada personagem precisa ter um DNA visual completo e coerente com o universo escolhido. "
+            "O prompt deve travar silhueta, materiais/texturas, marcas visuais e proporções."
         ),
         "exemplo": (
-            "Anthropomorphic male strawberry with vibrant red skin covered in seeds, "
-            "green leafy crown, large Pixar eyes — no human skin tones."
+            "Frutinha: morango vermelho com sementes e coroa verde. "
+            "Carro: hatch vermelho com faróis expressivos e adesivo fixo. "
+            "Prédio: fachada art-deco com janelas como olhos."
         ),
     },
 ]

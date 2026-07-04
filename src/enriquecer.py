@@ -4,10 +4,42 @@ timing de diálogo calculado e metadados corretos.
 """
 
 from dialogo import calcular_timing
+from config import AGENT_CONFIRM_BETWEEN_STEPS, AGENT_VIDEOS_PER_STEP
 from narrativa import aplicar_story_contract_sinopse, aplicar_story_contract_roteiro
 from polir import polir_roteiro
 from schema import RESOLUCAO, DURACAO_CENA, NUM_CENAS, DURACAO_TOTAL
 from voz import aplicar_voice_registry_elenco, aplicar_voice_registry_roteiro
+
+
+def _agent_settings(opcoes_agente=None):
+    opcoes_agente = opcoes_agente or {}
+    videos_por_passo = int(opcoes_agente.get("videos_per_step", AGENT_VIDEOS_PER_STEP))
+    return {
+        "videos_per_step": max(1, videos_por_passo),
+        "confirm_between_steps": bool(
+            opcoes_agente.get("confirm_between_steps", AGENT_CONFIRM_BETWEEN_STEPS)
+        ),
+    }
+
+
+def _texto_execucao_agente(settings):
+    n = settings["videos_per_step"]
+    confirmacao = settings["confirm_between_steps"]
+    unidade = "scene" if n == 1 else f"group of up to {n} scenes"
+    confirm_txt = (
+        "After each approved QA pass, ask the user/operator for permission before continuing."
+        if confirmacao
+        else "After each approved QA pass, continue automatically to the next step."
+    )
+    if n == 1:
+        return (
+            "Work strictly ONE SCENE AT A TIME: render one scene, run scene QA, fix if needed, "
+            f"then proceed. {confirm_txt}"
+        )
+    return (
+        f"Work in controlled batches of up to {n} scenes: render one {unidade}, run QA for every scene "
+        f"in that group, fix failures, then proceed. {confirm_txt}"
+    )
 
 
 def _formatar_tempo(segundos):
@@ -29,15 +61,16 @@ def enriquecer_elenco(elenco, aspect_ratio, idioma):
         ),
         "resolution": RESOLUCAO,
         "aspect_ratio": aspect_ratio,
-        "output": "One full-body character reference image per cast member (PNG or JPG).",
-        "style": "Disney-Pixar 3D anthropomorphic fruit character, hyper-realistic PBR textures.",
+        "output": "One full character reference image per cast member (PNG or JPG).",
+        "style": "Cinematic stylized 3D character design, hyper-realistic PBR textures when applicable.",
     }
 
     for p in elenco.get("cast", []):
         nome = p.get("name", "Character")
+        character_type = p.get("character_type", p.get("fruit_type", "character"))
         p["ai_image_task"] = (
-            f"AI AGENT: Create a {RESOLUCAO} {aspect_ratio} full-body character reference IMAGE "
-            f"of {nome}. "
+            f"AI AGENT: Create a {RESOLUCAO} {aspect_ratio} full character reference IMAGE "
+            f"of {nome} ({character_type}). "
             f"Physical: {p.get('physical_dna', '')} "
             f"Outfit: {p.get('outfit_dna', '')} "
             f"Neutral pose, clear lighting, no background clutter. "
@@ -99,7 +132,10 @@ def enriquecer_sinopse(sinopse, idioma):
     return sinopse
 
 
-def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
+def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None, opcoes_agente=None):
+    agent_settings = _agent_settings(opcoes_agente)
+    execucao_agente = _texto_execucao_agente(agent_settings)
+
     roteiro["aspect_ratio"] = aspect_ratio
     roteiro["resolution"] = RESOLUCAO
     roteiro["language"] = idioma
@@ -111,8 +147,7 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
         "task": (
             f"AI AGENT: Generate exactly {NUM_CENAS} videos of {DURACAO_CENA} seconds each "
             f"({DURACAO_TOTAL}s total). Resolution: {RESOLUCAO}. Aspect ratio: {aspect_ratio}. "
-            "Work strictly ONE SCENE AT A TIME: render SCENE_1, run scene QA, fix if needed, "
-            "then continue to SCENE_2. Do not batch scenes, do not render 3 at a time."
+            f"{execucao_agente}"
         ),
         "resolution": RESOLUCAO,
         "aspect_ratio": aspect_ratio,
@@ -141,7 +176,13 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
             "complete sequence from SCENE_1 to SCENE_7 for voice consistency, audio continuity, story continuity, "
             "timestamps, visual character lock, outfit lock, and cliffhanger integrity. Re-render any failed scene."
         ),
+        "agent_execution": (
+            f"videos_per_step={agent_settings['videos_per_step']}; "
+            f"confirm_between_steps={agent_settings['confirm_between_steps']}; "
+            f"{execucao_agente}"
+        ),
     }
+    roteiro["agent_execution"] = agent_settings
 
     if elenco:
         roteiro = aplicar_voice_registry_roteiro(roteiro, elenco, idioma)
@@ -173,7 +214,8 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
         cena["AI_VIDEO_TASK"] = (
             f"AI AGENT: Create a {DURACAO_CENA}-second {RESOLUCAO} {aspect_ratio} VIDEO "
             f"for SCENE {num} — '{cena.get('SCENE_NAME', chave)}'. "
-            "Render ONLY this scene now. Do not batch multiple scenes. "
+            f"{execucao_agente} "
+            "For this task, render ONLY the current scene described here. "
             "After rendering this single scene, run scene-level QA before moving on. "
             f"Timestamp: {cena['TIMESTAMP']}. "
             f"Story beat: {cena.get('NARRATIVE_BEAT', '')}. "
@@ -192,6 +234,13 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
     return roteiro
 
 
-def enriquecer_roteiro_com_sinopse(roteiro, aspect_ratio, idioma, elenco, sinopse):
-    roteiro = enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco)
+def enriquecer_roteiro_com_sinopse(
+    roteiro,
+    aspect_ratio,
+    idioma,
+    elenco,
+    sinopse,
+    opcoes_agente=None,
+):
+    roteiro = enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco, opcoes_agente)
     return aplicar_story_contract_roteiro(roteiro, sinopse)

@@ -48,6 +48,7 @@ def _beats_ordenados(sinopse):
 def criar_story_contract(sinopse):
     beats = _beats_ordenados(sinopse)
     cenas = {}
+    fatos_acumulados = []
 
     for indice, beat in enumerate(beats):
         num = beat.get("scene_number", indice + 1)
@@ -55,6 +56,9 @@ def criar_story_contract(sinopse):
         proximo = beats[indice + 1] if indice + 1 < len(beats) else None
         narrative_beat = beat.get("narrative_beat", "")
         dialogue_intent = beat.get("dialogue_intent", "")
+        fatos_antes = " ".join(fatos_acumulados[-3:]) or "No prior facts. Establish the hook clearly."
+        fatos_acumulados.append(_resumo_curto(narrative_beat, 140))
+        fatos_depois = " ".join(fatos_acumulados[-4:])
 
         cenas[str(num)] = {
             "scene_number": num,
@@ -65,6 +69,13 @@ def criar_story_contract(sinopse):
                 if anterior else "Start immediately with the central hook."
             ),
             "required_reveal": _resumo_curto(narrative_beat),
+            "known_facts_before": _resumo_curto(fatos_antes, 260),
+            "new_fact_added": _resumo_curto(narrative_beat, 220),
+            "open_loops_after": _resumo_curto(
+                proximo.get("narrative_beat", "") if proximo else "The final unresolved question must remain alive.",
+                220,
+            ),
+            "story_state_after": _resumo_curto(fatos_depois, 320),
             "dialogue_must_cover": _resumo_curto(dialogue_intent),
             "must_end_handing_off_to": (
                 _resumo_curto(proximo.get("narrative_beat", ""))
@@ -130,9 +141,13 @@ def story_contract_prompt(sinopse, cena_numero=None):
         linhas.append(f"Scene {num} contract:")
         linhas.append(f"  role: {dados.get('scene_role', '')}")
         linhas.append(f"  must_start_from: {dados.get('must_start_from', '')}")
+        linhas.append(f"  known_facts_before: {dados.get('known_facts_before', '')}")
         linhas.append(f"  required_reveal: {dados.get('required_reveal', '')}")
+        linhas.append(f"  new_fact_added: {dados.get('new_fact_added', '')}")
         linhas.append(f"  dialogue_must_cover: {dados.get('dialogue_must_cover', '')}")
         linhas.append(f"  must_end_handing_off_to: {dados.get('must_end_handing_off_to', '')}")
+        linhas.append(f"  open_loops_after: {dados.get('open_loops_after', '')}")
+        linhas.append(f"  story_state_after: {dados.get('story_state_after', '')}")
 
     return "\n".join(linhas)
 

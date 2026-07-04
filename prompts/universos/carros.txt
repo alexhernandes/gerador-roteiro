@@ -1,0 +1,13 @@
+UNIVERSO: carros falantes em animacao 3D cinematografica.
+
+Personagens devem ser veiculos antropomorficos: carros, motos, caminhoes,
+onibus ou maquinas. Rosto, olhos e boca devem existir no design do veiculo,
+sem transformar o personagem em humano. O corpo principal e sempre o veiculo.
+
+No elenco, character_type deve indicar tipo/modelo de veiculo
+(ex.: hatch vermelho, muscle car preto, caminhao azul). physical_dna deve travar
+silhueta, pintura, rodas, farois, adesivos, arranhoes e acessorios. outfit_dna
+deve ser usado como "accessory_dna" para itens fixos: faixa, neon, rack, spoiler,
+placa, retrovisores, decals e detalhes externos.
+
+Visual: 3D cinematic automotivo, metal/verniz PBR, reflexos fortes, luz volumetrica.

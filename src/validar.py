@@ -95,8 +95,6 @@ def validar_elenco(elenco):
 
         if len(fisico) < 30:
             resultados.append(_resultado(regra, False, f"{nome}: physical_dna muito curto."))
-        elif re.search(r"\bhuman skin\b", fisico, re.I):
-            resultados.append(_resultado(regra, False, f"{nome}: menciona pele humana."))
         else:
             resultados.append(_resultado(regra, True, f"{nome}: DNA físico OK."))
 

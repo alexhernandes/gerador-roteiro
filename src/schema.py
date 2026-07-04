@@ -1,9 +1,16 @@
 # Schemas de saída — elenco e roteiro são JSONs separados
 
-RESOLUCAO = "480p"
-DURACAO_CENA = 10
-NUM_CENAS = 7
-DURACAO_TOTAL = 70
+from config import (
+    SCENE_DURATION_SECONDS,
+    TOTAL_DURATION_SECONDS,
+    TOTAL_SCENES,
+    VIDEO_RESOLUTION,
+)
+
+RESOLUCAO = VIDEO_RESOLUTION
+DURACAO_CENA = SCENE_DURATION_SECONDS
+NUM_CENAS = TOTAL_SCENES
+DURACAO_TOTAL = TOTAL_DURATION_SECONDS
 
 VOICE_OVERRIDE = {
     "type": "object",
@@ -67,6 +74,7 @@ AI_INSTRUCTIONS_ROTEIRO = {
         "style": {"type": "string"},
         "note": {"type": "string"},
         "post_generation_qa": {"type": "string"},
+        "agent_execution": {"type": "string"},
     },
     "required": [
         "task",
@@ -212,6 +220,7 @@ ELENCO_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "name": {"type": "string"},
+                    "character_type": {"type": "string"},
                     "fruit_type": {"type": "string"},
                     "age": {"type": "integer"},
                     "gender": {"type": "string"},
@@ -222,7 +231,7 @@ ELENCO_SCHEMA = {
                 },
                 "required": [
                     "name",
-                    "fruit_type",
+                    "character_type",
                     "age",
                     "gender",
                     "physical_dna",
@@ -259,6 +268,15 @@ ROTEIRO_SCHEMA = {
         "total_duration_seconds": {"type": "integer"},
         "total_scenes": {"type": "integer"},
         "ai_instructions": AI_INSTRUCTIONS_ROTEIRO,
+        "agent_execution": {
+            "type": "object",
+            "properties": {
+                "videos_per_step": {"type": "integer"},
+                "confirm_between_steps": {"type": "boolean"},
+            },
+            "required": ["videos_per_step", "confirm_between_steps"],
+            "additionalProperties": False,
+        },
         "scenes": {
             "type": "object",
             "additionalProperties": SCENE,
