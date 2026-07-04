@@ -23,6 +23,8 @@ from dialogo import (
 )
 from relatorio import imprimir_problemas
 from schema import CORRECAO_DIALOGOS_RESPONSE_FORMAT, CORRECAO_SCENE, DURACAO_CENA
+from narrativa import story_contract_prompt
+from voz import voice_registry_prompt
 
 CORRECAO_CENA_RESPONSE_FORMAT = {
     "name": "correcao_cena",
@@ -109,7 +111,7 @@ def _chamar_correcao_api(system, user, schema):
     raise ValueError(f"Falha na correção após 3 tentativas: {ultimo_erro}")
 
 
-def corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas=None):
+def corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas=None, elenco=None):
     """Corrige diálogos de uma única cena — chamada menor e mais confiável."""
     codigo = normalizar_idioma(idioma)
     wps = PALAVRAS_POR_SEGUNDO.get(codigo, 3.2)
@@ -134,6 +136,8 @@ def corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas=None):
     if problemas:
         problemas_txt = "PROBLEMAS:\n" + "\n".join(f"- {p}" for p in problemas)
 
+    voice_txt = voice_registry_prompt(elenco, idioma) if elenco else ""
+    story_txt = story_contract_prompt(sinopse, numero)
     cena_json = json.dumps(_extrair_dialogos({"scenes": {f"SCENE_{numero}": cena}}), ensure_ascii=False, indent=2)
 
     system = f"""
@@ -149,6 +153,16 @@ LIMITES RÍGIDOS:
 
 NARRATIVE_BEAT: {cena.get('NARRATIVE_BEAT', '')}
 dialogue_intent: {beat.get('dialogue_intent', '')}
+
+{voice_txt}
+
+{story_txt}
+
+REGRAS DE CONTINUIDADE:
+- Use somente SPEAKER existentes no VOICE REGISTRY.
+- Copie o VOICE_IDENTITY_LOCK canonico quando houver VOICE REGISTRY.
+- Preserve required_reveal e must_end_handing_off_to do STORY CONTRACT.
+- Nao adicione reacoes genericas que nao avancem o enredo.
 
 {_exemplo_dialogo(idioma)}
 """
@@ -166,7 +180,7 @@ Reescreva só os diálogos desta cena em {idioma}.
     return _aplicar_correcao(roteiro, {"scenes": {f"SCENE_{numero}": correcao}})
 
 
-def corrigir_dialogos(roteiro, sinopse, idioma, problemas=None):
+def corrigir_dialogos(roteiro, sinopse, idioma, problemas=None, elenco=None):
     codigo = normalizar_idioma(idioma)
     wps = PALAVRAS_POR_SEGUNDO.get(codigo, 3.2)
     min_palavras = int(MIN_SEGUNDOS_FALA * wps)
@@ -179,6 +193,8 @@ def corrigir_dialogos(roteiro, sinopse, idioma, problemas=None):
 
     roteiro_json = json.dumps(_extrair_dialogos(roteiro), ensure_ascii=False, indent=2)
     sinopse_json = json.dumps(_extrair_sinopse_dialogos(sinopse), ensure_ascii=False, indent=2)
+    voice_txt = voice_registry_prompt(elenco, idioma) if elenco else ""
+    story_txt = story_contract_prompt(sinopse)
 
     system = f"""
 Você é um roteirista especialista em diálogos para vídeos virais de 10 segundos.
@@ -201,8 +217,14 @@ NARRATIVA:
 - Use NARRATIVE_BEAT de cada cena e dialogue_intent da sinopse
 - Cada fala avança o enredo — reação, revelação ou tensão
 - Alterne personagens quando houver mais de um na cena
+- Preserve o STORY CONTRACT: cada cena precisa pagar a anterior e plantar a proxima
+- Use somente SPEAKER do VOICE REGISTRY quando ele existir
 
 Retorne SCENE_NUMBER, DIALOGUE_LINES, DELIVERY_STYLE, VOICE_OVERRIDE_METADATA por cena.
+
+{voice_txt}
+
+{story_txt}
 
 {_exemplo_dialogo(idioma)}
 """
@@ -232,7 +254,7 @@ NUNCA ultrapasse {MAX_SEGUNDOS_FALA}s nem fique abaixo de {MIN_SEGUNDOS_FALA}s.
         for numero in numeros:
             print(f"       Cena {numero}...")
             problemas_cena = _problemas_da_cena(problemas, numero)
-            roteiro = corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas_cena)
+            roteiro = corrigir_cena_dialogos(roteiro, sinopse, idioma, numero, problemas_cena, elenco=elenco)
         return roteiro
 
     print("  [4/4] Corrigindo e expandindo diálogos (lote)...")
@@ -278,7 +300,7 @@ def _ajuste_local_por_cena(roteiro, idioma, problemas):
     return roteiro
 
 
-def corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer_fn, max_tentativas=3):
+def corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer_fn, max_tentativas=3, elenco=None):
     for tentativa in range(1, max_tentativas + 1):
         problemas = analisar_dialogos_roteiro(roteiro, idioma)
         if not problemas:
@@ -298,7 +320,7 @@ def corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer_fn, max_tentativas
             print("  -> Diálogos OK (ajuste local).\n")
             return roteiro
 
-        roteiro = corrigir_dialogos(roteiro, sinopse, idioma, problemas)
+        roteiro = corrigir_dialogos(roteiro, sinopse, idioma, problemas, elenco=elenco)
         roteiro = enriquecer_fn(roteiro)
 
     problemas = analisar_dialogos_roteiro(roteiro, idioma)

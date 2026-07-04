@@ -251,6 +251,32 @@ REGRAS = [
         ),
     },
     {
+        "id": "voice_registry",
+        "nome": "Voice Registry canonico",
+        "severidade": "erro",
+        "explicacao": (
+            "As vozes precisam vir de um registro unico do elenco. "
+            "Cada fala deve copiar o SPEAKER, VOICE_IDENTITY_LOCK e metadata canonicos."
+        ),
+        "exemplo": (
+            "SPEAKER: 'CARA' sempre usa o mesmo Voice Model, genero, peso vocal, "
+            "TONE_PROFILE e FORCE_SYNTHESIS em todas as cenas."
+        ),
+    },
+    {
+        "id": "continuidade_causal",
+        "nome": "Continuidade causal",
+        "severidade": "erro",
+        "explicacao": (
+            "Cada cena precisa seguir o story contract: comecar como consequencia "
+            "da cena anterior, entregar a revelacao planejada e plantar a proxima cena."
+        ),
+        "exemplo": (
+            "Cena 3 revela a mentira prometida, Cena 4 usa essa mentira como reviravolta, "
+            "Cena 5 mostra a consequencia direta."
+        ),
+    },
+    {
         "id": "cliffhanger",
         "nome": "Cliffhanger (Parte 2)",
         "severidade": "info",

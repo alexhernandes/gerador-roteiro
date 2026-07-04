@@ -180,10 +180,22 @@ def _montar_linhas_com_pausas(falas):
     return linhas
 
 
-_REACOES = {
-    "pt": ["Sério isso?", "Não acredito!", "Que absurdo!", "Impossível!", "Meu Deus!"],
-    "en": ["No way!", "Seriously?", "Unbelievable!", "What?!", "Oh my!"],
-    "es": ["¿En serio?", "¡No lo creo!", "¡Qué absurdo!", "¡Imposible!", "¡Dios mío!"],
+_REFORCOS_NARRATIVOS = {
+    "pt": [
+        "Isso muda tudo, e voce sabe.",
+        "Agora a verdade apareceu de vez.",
+        "Se isso sair daqui, acabou.",
+    ],
+    "en": [
+        "This changes everything, and you know it.",
+        "Now the truth is finally out.",
+        "If this gets out, we are done.",
+    ],
+    "es": [
+        "Esto lo cambia todo, y lo sabes.",
+        "Ahora la verdad salio de una vez.",
+        "Si esto sale de aqui, se acabo.",
+    ],
 }
 
 _EXTENSOES = {
@@ -202,7 +214,7 @@ def ajustar_timing_cena(cena, idioma):
     codigo = normalizar_idioma(idioma)
     wps = PALAVRAS_POR_SEGUNDO.get(codigo, 3.2)
     lock = lock_idioma_texto(idioma)
-    reacoes = _REACOES.get(codigo, _REACOES["pt"])
+    reforcos = _REFORCOS_NARRATIVOS.get(codigo, _REFORCOS_NARRATIVOS["pt"])
 
     for fala in falas:
         speaker = fala.get("SPEAKER", "SPEAKER")
@@ -212,13 +224,18 @@ def ajustar_timing_cena(cena, idioma):
     def segundos():
         return _segundos_das_falas(falas, wps)
 
-    while segundos() > MAX_SEGUNDOS_FALA and len(falas) > MIN_FALAS_POR_CENA:
-        falas.pop()
+    def indices_editaveis():
+        if len(falas) <= 2:
+            return list(range(len(falas)))
+        return list(range(1, len(falas) - 1))
 
     tentativas = 0
     while segundos() > MAX_SEGUNDOS_FALA and tentativas < 20:
         tentativas += 1
-        indice = max(range(len(falas)), key=lambda i: len(falas[i]["TEXT"].split()))
+        candidatos = indices_editaveis()
+        if not candidatos:
+            break
+        indice = max(candidatos, key=lambda i: len(falas[i]["TEXT"].split()))
         palavras = falas[indice]["TEXT"].split()
         if len(palavras) > 2:
             falas[indice]["TEXT"] = " ".join(palavras[:-1])
@@ -228,20 +245,21 @@ def ajustar_timing_cena(cena, idioma):
             falas[indice]["TEXT"] = " ".join(palavras[:2])
             break
 
-    indice_reacao = 0
+    indice_reforco = 0
     while segundos() < MIN_SEGUNDOS_FALA and len(falas) < MAX_FALAS_POR_CENA:
         speaker = falas[-1].get("SPEAKER", "PERSONAGEM")
         falas.append({
             "SPEAKER": speaker,
             "VOICE_IDENTITY_LOCK": f"{speaker} voice. {lock}.",
-            "TEXT": reacoes[indice_reacao % len(reacoes)],
+            "TEXT": reforcos[indice_reforco % len(reforcos)],
         })
-        indice_reacao += 1
+        indice_reforco += 1
 
     tentativas = 0
     while segundos() < MIN_SEGUNDOS_FALA and tentativas < 10:
         tentativas += 1
-        indice = min(range(len(falas)), key=lambda i: len(falas[i]["TEXT"].split()))
+        candidatos = indices_editaveis() or list(range(len(falas)))
+        indice = min(candidatos, key=lambda i: len(falas[i]["TEXT"].split()))
         falas[indice]["TEXT"] = (
             falas[indice]["TEXT"].rstrip("!.?") + _EXTENSOES.get(codigo, "!")
         )

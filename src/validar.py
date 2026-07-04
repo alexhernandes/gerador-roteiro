@@ -14,8 +14,10 @@ from dialogo import (
     MIN_SEGUNDOS_FALA,
     MAX_SEGUNDOS_FALA,
 )
+from narrativa import problemas_continuidade
 from regras import REGRAS
 from schema import RESOLUCAO, DURACAO_CENA, NUM_CENAS, DURACAO_TOTAL
+from voz import problemas_voice_registry
 
 PALAVRAS_SANGUE = re.compile(r"\b(blood|sangue|bleeding|hemorrag)\b", re.I)
 PALAVRAS_AGRESSAO = re.compile(
@@ -119,6 +121,18 @@ def validar_elenco(elenco):
             f"{nome}: ai_image_task {'OK' if ok else 'ausente'}.",
         ))
 
+    regra_voice = _buscar_regra("voice_registry")
+    registry = elenco.get("voice_registry", {})
+    vozes = registry.get("voices", {}) if isinstance(registry, dict) else {}
+    if len(vozes) == len(cast) and vozes:
+        resultados.append(_resultado(regra_voice, True, f"{len(vozes)} voz(es) canonica(s) no registry."))
+    else:
+        resultados.append(_resultado(
+            regra_voice,
+            False,
+            f"voice_registry incompleto ({len(vozes)}/{len(cast)} personagens).",
+        ))
+
     regra_res = _buscar_regra("resolucao_480p")
     ok = elenco.get("resolution") == RESOLUCAO
     resultados.append(_resultado(
@@ -210,6 +224,8 @@ def validar_roteiro(roteiro, elenco, sinopse=None):
     regra_narrativa = _buscar_regra("narrativa_coesa")
     regra_dialogo_narr = _buscar_regra("dialogo_narrativo")
     regra_camera = _buscar_regra("camera_detalhada")
+    regra_voice = _buscar_regra("voice_registry")
+    regra_cont = _buscar_regra("continuidade_causal")
 
     # Story summary
     summary = roteiro.get("story_summary", "")
@@ -242,6 +258,25 @@ def validar_roteiro(roteiro, elenco, sinopse=None):
         resultados.append(_resultado(regra_source, False, "audio_source não menciona DIALOGUE_LINES > TEXT."))
     else:
         resultados.append(_resultado(regra_ia, False, "Falta ai_instructions."))
+
+    voice_falhas = problemas_voice_registry(elenco, roteiro)
+    if voice_falhas:
+        for falha in voice_falhas[:8]:
+            resultados.append(_resultado(regra_voice, False, falha))
+        if len(voice_falhas) > 8:
+            resultados.append(_resultado(regra_voice, False, f"... +{len(voice_falhas) - 8} falha(s) de voz."))
+    else:
+        resultados.append(_resultado(regra_voice, True, "Todas as falas usam o voice_registry canonico."))
+
+    if sinopse:
+        continuidade_falhas = problemas_continuidade(roteiro, sinopse)
+        if continuidade_falhas:
+            for falha in continuidade_falhas[:8]:
+                resultados.append(_resultado(regra_cont, False, falha))
+            if len(continuidade_falhas) > 8:
+                resultados.append(_resultado(regra_cont, False, f"... +{len(continuidade_falhas) - 8} falha(s) de continuidade."))
+        else:
+            resultados.append(_resultado(regra_cont, True, "Cenas seguem o story_contract canonico."))
 
     cenas_ordenadas = sorted(cenas.items(), key=lambda x: x[1].get("SCENE_NUMBER", 0))
     roles_encontrados = set()

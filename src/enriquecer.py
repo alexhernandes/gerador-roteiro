@@ -3,9 +3,11 @@ Garante que os JSONs tenham instruções claras para agentes de IA,
 timing de diálogo calculado e metadados corretos.
 """
 
-from dialogo import calcular_timing, normalizar_idioma
+from dialogo import calcular_timing
+from narrativa import aplicar_story_contract_sinopse, aplicar_story_contract_roteiro
 from polir import polir_roteiro
 from schema import RESOLUCAO, DURACAO_CENA, NUM_CENAS, DURACAO_TOTAL
+from voz import aplicar_voice_registry_elenco, aplicar_voice_registry_roteiro
 
 
 def _formatar_tempo(segundos):
@@ -42,7 +44,7 @@ def enriquecer_elenco(elenco, aspect_ratio, idioma):
             f"This image locks the character look for all video scenes."
         )
 
-    return elenco
+    return aplicar_voice_registry_elenco(elenco, idioma)
 
 
 def _resumir_ato(beats, numeros_cena):
@@ -76,6 +78,7 @@ def _preencher_atos_sinopse(sinopse):
 
 def enriquecer_sinopse(sinopse, idioma):
     sinopse = _preencher_atos_sinopse(sinopse)
+    sinopse = aplicar_story_contract_sinopse(sinopse)
     sinopse["ai_instructions"] = {
         "task": (
             "REFERENCE ONLY — AI AGENT: Do NOT generate images, videos or audio from this file. "
@@ -103,8 +106,6 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
     roteiro["scene_duration_seconds"] = DURACAO_CENA
     roteiro["total_duration_seconds"] = DURACAO_TOTAL
     roteiro["total_scenes"] = NUM_CENAS
-
-    codigo = normalizar_idioma(idioma)
 
     roteiro["ai_instructions"] = {
         "task": (
@@ -139,6 +140,11 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
             "(4) Re-render any scene that fails before final delivery."
         ),
     }
+
+    if elenco:
+        roteiro = aplicar_voice_registry_roteiro(roteiro, elenco, idioma)
+        roteiro = polir_roteiro(roteiro, elenco, idioma)
+        roteiro = aplicar_voice_registry_roteiro(roteiro, elenco, idioma)
 
     cenas = roteiro.get("scenes", {})
     textos_dialogo = []
@@ -177,7 +183,9 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
             f"After ALL scenes are generated: run final audio QA per ai_instructions.post_generation_qa."
         )
 
-    if elenco:
-        roteiro = polir_roteiro(roteiro, elenco, idioma)
-
     return roteiro
+
+
+def enriquecer_roteiro_com_sinopse(roteiro, aspect_ratio, idioma, elenco, sinopse):
+    roteiro = enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco)
+    return aplicar_story_contract_roteiro(roteiro, sinopse)

@@ -341,6 +341,38 @@ CORRECAO_DIALOGOS_RESPONSE_FORMAT = {
     "schema": CORRECAO_DIALOGOS_SCHEMA,
 }
 
+AUDITORIA_PROBLEMA = {
+    "type": "object",
+    "properties": {
+        "scene_number": {"type": "integer"},
+        "category": {"type": "string"},
+        "severity": {"type": "string"},
+        "issue": {"type": "string"},
+        "suggested_fix": {"type": "string"},
+    },
+    "required": ["scene_number", "category", "severity", "issue", "suggested_fix"],
+    "additionalProperties": False,
+}
+
+AUDITORIA_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "overall_status": {"type": "string"},
+        "problems": {
+            "type": "array",
+            "items": AUDITORIA_PROBLEMA,
+        },
+    },
+    "required": ["overall_status", "problems"],
+    "additionalProperties": False,
+}
+
+AUDITORIA_RESPONSE_FORMAT = {
+    "name": "auditoria_narrativa",
+    "strict": True,
+    "schema": AUDITORIA_SCHEMA,
+}
+
 CENA_RESPONSE_FORMAT = {
     "name": "cena",
     "strict": True,
