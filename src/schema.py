@@ -65,6 +65,8 @@ AI_INSTRUCTIONS_ROTEIRO = {
         "audio_source": {"type": "string"},
         "output": {"type": "string"},
         "style": {"type": "string"},
+        "note": {"type": "string"},
+        "post_generation_qa": {"type": "string"},
     },
     "required": [
         "task",
@@ -289,6 +291,23 @@ ELENCO_RESPONSE_FORMAT = {
     "name": "elenco",
     "strict": True,
     "schema": ELENCO_SCHEMA,
+}
+
+TRADUCAO_TEMA_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "original_theme": {"type": "string"},
+        "target_language": {"type": "string"},
+        "translated_theme": {"type": "string"},
+    },
+    "required": ["original_theme", "target_language", "translated_theme"],
+    "additionalProperties": False,
+}
+
+TRADUCAO_TEMA_RESPONSE_FORMAT = {
+    "name": "traducao_tema",
+    "strict": True,
+    "schema": TRADUCAO_TEMA_SCHEMA,
 }
 
 ROTEIRO_RESPONSE_FORMAT = {

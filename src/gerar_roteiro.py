@@ -22,6 +22,7 @@ from schema import (
     SINOPSE_RESPONSE_FORMAT,
     CENA_RESPONSE_FORMAT,
     CORRECAO_DIALOGOS_RESPONSE_FORMAT,
+    TRADUCAO_TEMA_RESPONSE_FORMAT,
     RESOLUCAO,
     DURACAO_CENA,
     NUM_CENAS,
@@ -57,6 +58,8 @@ PROTOCOLO ATUAL DO SISTEMA - SUBSTITUI QUALQUER REGRA ANTIGA CONFLITANTE:
 - Prompts visuais podem usar termos tecnicos em ingles, mas o audio falado nao.
 - Toda voz deve copiar o VOICE REGISTRY canonico. Nunca invente voz por cena.
 - Toda cena deve seguir o STORY CONTRACT canonico. Nunca pule causalidade.
+- Agentes de video/render devem trabalhar 1 cena por vez. Nunca processe 3 cenas por lote.
+- Todo agente deve fazer pos-verificacao de idioma, voz, audio, continuidade e locks visuais antes de finalizar.
 """
 
 
@@ -91,6 +94,31 @@ Tema: {tema}. Formato: {aspect_ratio}. Resolução: {RESOLUCAO}. language: "{idi
     print("  [1/4] Gerando elenco...")
     resposta = chamar_api(system, user, schema=ELENCO_RESPONSE_FORMAT)
     return enriquecer_elenco(extrair_json(resposta), aspect_ratio, idioma)
+
+
+def traduzir_tema(tema, idioma):
+    system = f"""
+Voce traduz temas de historias curtas para o idioma alvo.
+
+Regras:
+- Traduza o tema para: {idioma}.
+- Preserve nomes proprios, marcas e nomes de personagens.
+- Nao expanda a ideia, nao adicione detalhes novos.
+- Retorne apenas o JSON solicitado.
+"""
+    user = f"""
+Tema original:
+{tema}
+
+Idioma alvo:
+{idioma}
+"""
+    resposta = chamar_api(system, user, schema=TRADUCAO_TEMA_RESPONSE_FORMAT)
+    dados = extrair_json(resposta)
+    traduzido = dados.get("translated_theme", "").strip()
+    if not traduzido:
+        raise ValueError("Traducao do tema veio vazia.")
+    return traduzido
 
 
 def _sinopse_corrompida(sinopse):
@@ -200,6 +228,11 @@ def _falas_fallback_beat(beat, speakers, idioma):
             "Entonces explica esto ahora.",
             "Ya no podemos esconderlo.",
             "Si esto es verdad, se acabo.",
+        ],
+        "de": [
+            "Dann erklär das sofort.",
+            "Wir können das nicht mehr verstecken.",
+            "Wenn das wahr ist, ist alles vorbei.",
         ],
     }.get(codigo, [
         "Entao explica isso agora.",
@@ -436,17 +469,26 @@ def _salvar_passo(sessao, nome, dados, em_log=False):
 def gerar_roteiro():
     dados = perguntar()
     idioma = dados["idioma"]
-    tema = dados["tema"]
+    tema_original = dados["tema"]
     aspect_ratio = dados["aspect_ratio"]
 
     sessao = criar_sessao()
 
-    print(f"\nIdioma: {idioma} | Formato: {aspect_ratio} | {DURACAO_TOTAL}s ({NUM_CENAS} cenas)")
-    print(f"Modelo: {MODEL} (xAI)")
-    print(f"Tema: {tema}")
-    print(f"Pasta: {sessao}\nGerando... aguarde.\n")
-
     try:
+        print(f"\nTraduzindo tema para {idioma}...")
+        tema = traduzir_tema(tema_original, idioma)
+        _salvar_passo(sessao, "tema", {
+            "idioma": idioma,
+            "tema_original": tema_original,
+            "tema_traduzido": tema,
+        }, em_log=True)
+
+        print(f"\nIdioma: {idioma} | Formato: {aspect_ratio} | {DURACAO_TOTAL}s ({NUM_CENAS} cenas)")
+        print(f"Modelo: {MODEL} (xAI)")
+        print(f"Tema original: {tema_original}")
+        print(f"Tema traduzido: {tema}")
+        print(f"Pasta: {sessao}\nGerando... aguarde.\n")
+
         elenco = gerar_elenco(idioma, tema, aspect_ratio)
         _salvar_passo(sessao, "elenco", elenco)
 

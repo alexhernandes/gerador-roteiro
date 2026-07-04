@@ -110,7 +110,9 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
     roteiro["ai_instructions"] = {
         "task": (
             f"AI AGENT: Generate exactly {NUM_CENAS} videos of {DURACAO_CENA} seconds each "
-            f"({DURACAO_TOTAL}s total). Resolution: {RESOLUCAO}. Aspect ratio: {aspect_ratio}."
+            f"({DURACAO_TOTAL}s total). Resolution: {RESOLUCAO}. Aspect ratio: {aspect_ratio}. "
+            "Work strictly ONE SCENE AT A TIME: render SCENE_1, run scene QA, fix if needed, "
+            "then continue to SCENE_2. Do not batch scenes, do not render 3 at a time."
         ),
         "resolution": RESOLUCAO,
         "aspect_ratio": aspect_ratio,
@@ -131,13 +133,13 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
             "Use this roteiro.json and elenco.json as the production sources."
         ),
         "post_generation_qa": (
-            "AFTER generating ALL scene videos, AI AGENT MUST run a final dialogue audio review: "
-            "(1) Listen to every spoken line in each clip. "
-            "(2) Verify each word matches DIALOGUE_LINES > TEXT exactly — same language, "
-            "no missing words, no wrong words, no invented lines. "
-            "(3) Confirm every line is clearly audible (intelligible, correct volume, no mumbling, "
-            "no overlapping speech, lip-sync aligned with the active speaker). "
-            "(4) Re-render any scene that fails before final delivery."
+            "MANDATORY TWO-LAYER QA. Scene-level QA: after EACH individual scene render, "
+            "listen to that scene before moving to the next one; verify every spoken word matches "
+            "DIALOGUE_LINES > TEXT exactly, the same voice registry identity is used, language is unchanged, "
+            "audio is clear, no words are missing/invented, no overlap occurs, and active-speaker lip-sync is aligned. "
+            "Re-render that scene until it passes. Final global QA: after all scenes pass individually, review the "
+            "complete sequence from SCENE_1 to SCENE_7 for voice consistency, audio continuity, story continuity, "
+            "timestamps, visual character lock, outfit lock, and cliffhanger integrity. Re-render any failed scene."
         ),
     }
 
@@ -171,6 +173,8 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
         cena["AI_VIDEO_TASK"] = (
             f"AI AGENT: Create a {DURACAO_CENA}-second {RESOLUCAO} {aspect_ratio} VIDEO "
             f"for SCENE {num} — '{cena.get('SCENE_NAME', chave)}'. "
+            "Render ONLY this scene now. Do not batch multiple scenes. "
+            "After rendering this single scene, run scene-level QA before moving on. "
             f"Timestamp: {cena['TIMESTAMP']}. "
             f"Story beat: {cena.get('NARRATIVE_BEAT', '')}. "
             f"Hook (first 2s): {cena.get('OPENING_HOOK', '')}. "
@@ -180,7 +184,9 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
             f"Spoken lines (DIALOGUE_LINES > TEXT only): {dialogo_texto[:300]}. "
             f"Speech: {timing['total_dialogue_seconds']}s / {DURACAO_CENA}s. "
             f"Duration MUST be exactly {DURACAO_CENA} seconds. "
-            f"After ALL scenes are generated: run final audio QA per ai_instructions.post_generation_qa."
+            "If this scene fails audio, voice, lip-sync, visual lock, timing, or continuity QA, "
+            "re-render this scene before generating the next scene. "
+            "After ALL scenes are generated one by one: run final global QA per ai_instructions.post_generation_qa."
         )
 
     return roteiro

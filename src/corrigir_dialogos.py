@@ -34,6 +34,21 @@ CORRECAO_CENA_RESPONSE_FORMAT = {
 
 
 def _exemplo_dialogo(idioma):
+    if normalizar_idioma(idioma) == "de":
+        return """
+BEISPIEL (5 kurze Zeilen, ~9s, fuellt 10s Szene):
+[
+  {"SPEAKER": "ERDBEERE", "VOICE_IDENTITY_LOCK": "... Language: German.", "TEXT": "Orange?! Was machst du hier?!"},
+  {"PAUSE": 0.2},
+  {"SPEAKER": "ORANGE", "VOICE_IDENTITY_LOCK": "... Language: German.", "TEXT": "Beruhig dich... wir haben nur geredet."},
+  {"PAUSE": 0.2},
+  {"SPEAKER": "TRAUBE", "VOICE_IDENTITY_LOCK": "... Language: German.", "TEXT": "Geredet? Schau auf das Glas."},
+  {"PAUSE": 0.2},
+  {"SPEAKER": "ERDBEERE", "VOICE_IDENTITY_LOCK": "... Language: German.", "TEXT": "Mein bester Freund verrät mich?!"},
+  {"PAUSE": 0.2},
+  {"SPEAKER": "TRAUBE", "VOICE_IDENTITY_LOCK": "... Language: German.", "TEXT": "Wir heiraten. Gewöhn dich dran."}
+]
+"""
     if normalizar_idioma(idioma) == "en":
         return """
 EXEMPLO (4 speeches, ~9s, fills 10s scene):

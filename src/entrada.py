@@ -1,11 +1,30 @@
+IDIOMAS = {
+    "1": "Português (Brasil)",
+    "2": "English",
+    "3": "Español",
+    "4": "Deutsch",
+}
+
+
+def _selecionar_idioma():
+    print("Em qual idioma serão os diálogos?")
+    print("  1 - Português (Brasil) [padrão]")
+    print("  2 - English")
+    print("  3 - Español")
+    print("  4 - Deutsch\n")
+
+    escolha = input("Idioma (ENTER = 1): ").strip()
+    while escolha and escolha not in IDIOMAS:
+        print("Opção inválida. Escolha 1, 2, 3 ou 4.")
+        escolha = input("Idioma (ENTER = 1): ").strip()
+
+    return IDIOMAS.get(escolha or "1")
+
+
 def perguntar():
     print("\n=== GERADOR DE ROTEIRO ===\n")
 
-    print("Em qual idioma serão os diálogos?")
-    print("Exemplos: Português, English, Español\n")
-    idioma = input("Idioma: ").strip()
-    while not idioma:
-        idioma = input("Idioma (obrigatório): ").strip()
+    idioma = _selecionar_idioma()
 
     print("\nFormato do vídeo?")
     print("  1 - 9:16 (vertical — TikTok/Reels) [padrão]")

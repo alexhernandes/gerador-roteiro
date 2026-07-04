@@ -12,6 +12,7 @@ PALAVRAS_POR_SEGUNDO = {
     "pt": 3.2,
     "en": 2.8,
     "es": 3.0,
+    "de": 2.7,
 }
 
 MIN_FALAS_POR_CENA = 4
@@ -42,10 +43,28 @@ PALAVRAS_EN = {
     "hello", "today", "going", "about", "right", "know", "think",
 }
 
+PALAVRAS_ES = {
+    "que", "no", "si", "sí", "tu", "tú", "usted", "yo", "el", "él", "ella",
+    "eso", "esto", "aqui", "aquí", "ahora", "nunca", "siempre", "todo", "nada",
+    "como", "cómo", "cuando", "cuándo", "donde", "dónde", "porque", "por",
+    "para", "con", "pero", "mas", "más", "mira", "escucha", "espera", "amor",
+    "verdad", "mentira", "secreto", "traicion", "traición", "perdon", "perdón",
+}
+
+PALAVRAS_DE = {
+    "der", "die", "das", "du", "ich", "wir", "ihr", "sie", "er", "ist", "bist",
+    "sind", "nicht", "kein", "keine", "was", "wer", "wie", "warum", "wann",
+    "wo", "hier", "jetzt", "nie", "immer", "alles", "nichts", "mit", "ohne",
+    "aber", "und", "oder", "mein", "meine", "dein", "deine", "schau", "warte",
+    "hör", "hoer", "liebe", "wahrheit", "lüge", "luege", "geheimnis", "verrat",
+    "entschuldigung", "wirklich", "doch", "noch", "schon", "wenn", "dann",
+}
+
 LOCK_IDIOMA = {
     "pt": "Language: Portuguese (Brazil)",
     "en": "Language: English",
     "es": "Language: Spanish",
+    "de": "Language: German",
 }
 
 
@@ -57,12 +76,16 @@ def normalizar_idioma(idioma):
         return "en"
     if any(x in idioma for x in ("espan", "español", "espanol")):
         return "es"
+    if any(x in idioma for x in ("alem", "deutsch", "german", "deu")):
+        return "de"
     if idioma in ("pt", "br"):
         return "pt"
     if idioma in ("en",):
         return "en"
     if idioma in ("es",):
         return "es"
+    if idioma in ("de",):
+        return "de"
     return "pt"
 
 
@@ -90,13 +113,17 @@ def detectar_idioma_texto(texto):
 
     pt = sum(1 for p in palavras if p in PALAVRAS_PT)
     en = sum(1 for p in palavras if p in PALAVRAS_EN)
+    es = sum(1 for p in palavras if p in PALAVRAS_ES)
+    de = sum(1 for p in palavras if p in PALAVRAS_DE)
 
-    if pt > en:
-        return "pt"
-    if en > pt:
+    contagens = {"pt": pt, "en": en, "es": es, "de": de}
+    idioma, pontos = max(contagens.items(), key=lambda item: item[1])
+    if pontos > 0 and list(contagens.values()).count(pontos) == 1:
+        return idioma
+    if en >= 2 and pt == 0 and es == 0 and de == 0:
         return "en"
-    if en >= 2 and pt == 0:
-        return "en"
+    if de >= 2 and pt == 0 and en == 0 and es == 0:
+        return "de"
     return "desconhecido"
 
 
@@ -107,7 +134,13 @@ def texto_no_idioma(texto, idioma_esperado):
     if detectado == "desconhecido":
         # Texto curto em inglês óbvio
         if idioma == "pt" and re.search(
-            r"\b(the|you|what|why|hello|good morning|i'm|you're|don't)\b", texto, re.I
+            r"\b(the|you|what|why|hello|good morning|i'm|you're|don't|warum|nicht|wahrheit)\b", texto, re.I
+        ):
+            return False
+        if idioma == "de" and re.search(
+            r"\b(the|you|what|why|hello|good morning|voce|você|nao|não|verdad|mentira)\b",
+            texto,
+            re.I,
         ):
             return False
         return True
@@ -121,6 +154,7 @@ def voice_lock_valido(lock, idioma):
         "pt": r"portugu",
         "en": r"english",
         "es": r"espan",
+        "de": r"german|deutsch",
     }
     return bool(re.search(padroes.get(codigo, ""), lock, re.I))
 
@@ -196,12 +230,18 @@ _REFORCOS_NARRATIVOS = {
         "Ahora la verdad salio de una vez.",
         "Si esto sale de aqui, se acabo.",
     ],
+    "de": [
+        "Das ändert alles, und du weißt es.",
+        "Jetzt ist die Wahrheit endlich raus.",
+        "Wenn das rauskommt, ist alles vorbei.",
+    ],
 }
 
 _EXTENSOES = {
     "pt": " demais!",
     "en": " too much!",
     "es": " demasiado!",
+    "de": " wirklich!",
 }
 
 
