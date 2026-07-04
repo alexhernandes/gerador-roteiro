@@ -1,0 +1,375 @@
+1. Os Pilares da Consistência Masterpiece Total Character Lock: Todos
+
+os personagens em cena devem ser descritos individualmente (físico + pele
+
++ acessórios fixos).
+
+- Total Outfit DNA (Head-to-Toe): A descrição da roupa deve ser completa
+
+em cada prompt (material, cor, corte e calçados), sem omissões.
+
+- Multi-Character Lock: Se houver vários personagens na cena, TODOS
+
+devem ser descritos detalhadamente no prompt para evitar que a IA
+
+"alucine" ou mude o visual dos figurantes/coadjuvantes.
+
+- Location & Scenic Lock: Cenários fixos com descrições de iluminação
+
+volumétrica e texturas PBR (mármore, seda, mogno). English Literal
+
+- Adaptation: Diálogos 100% em inglês, adaptados literalmente do vídeo
+
+original para o público americano. JSON Workflow: Entrega técnica
+
+organizada em 1 JSON por cena, facilitando a automação e organização da
+
+produção.
+
+2. PROTOCOLO DE FIGURINO: THE OUTFIT DNA
+
+Neste estúdio, não existem personagens parcialmente vestidos. A descrição
+
+deve ser completa em 100% dos prompts.
+
+Regra Head-to-Toe: Nunca descreva apenas uma peça. Cada prompt deve
+
+detalhar o vestuário completo de todos os personagens em cena. Descrição
+
+Completa: Material (seda, brim, linho), cor exata, corte (slim-fit, oversized)
+
+e calçados. Solda Têxtil: Se o personagem começa a sequência com uma
+
+camisola de seda azul com gola de renda, ele deve terminar a sequência com
+
+as mesmas características exatas. (Só deve trocar caso o vídeo peça uma
+
+troca de outfit, caso não tenha, você deve manter o mesmo até o final).
+
+Acessórios de Grupo: Relógios de ouro, colares de pérolas ou gravatas
+
+devem ser citados em todas as cenas da sequência.
+
+2. O Workflow de Roteirização (Prompt Structure) Para cada cena,
+
+seguimos este esquema de preenchimento obrigatório dentro do JSON:
+
+1. Configuração do Motor Visual
+
+Cinematic 4K 3D animation. Hyper-realistic PBR textures. Volumetric
+
+lighting. [SET: Descrição do local com Location Lock].
+
+2.
+
+Ação e Multi-Character Lock
+
+Action: [Personagem A + Perfil + Outfit DNA Completo] faz [Ação X].
+
+[Personagem B + Perfil + Outfit DNA Completo] faz [Ação Y].
+
+3.
+
+Safety & Filter Protocols
+
+Vinho/Sangue: Substituir por "Deep purple sticky grape juice". Agressão:
+
+Substituir por "Sudden aggressive arm gesture" ou "Tense confrontation".
+
+➔ Exemplo de Estrutura de Entrega
+
+(JSON) { "SCENE X (Location Name - Total DNA Lock)": { "visual_prompt":
+
+"Cinematic 4K 3D animation. SET: [Cenário Travado]. Action: [Nome do
+
+Personagem] ([Físico Travado], [Pele], [Acessório Principal], wearing a
+
+COMPLETE [Peça Superior], [Peça Inferior], and [Calçado]) does [Ação].
+
+Lighting: [Estilo]. Atmosphere: [Sentimento].", "dialogue": [ {"character":
+
+"Name", "text": "English line here."}, {"pause": 0.2}, {"character": "Name",
+
+"text": "English response."} ] } }
+
+4. Estética de Cena (Scenic Overhaul)
+
+Iluminação: Uso constante de iluminação volumétrica, backlight dramático
+
+(âmbar ou azul) e luzes de estúdio. Texturas PBR: Foco em materiais de
+
+luxo: Mármore Calacatta, Mogno, Seda, Veludo e Ouro. Cinematic 4K:
+
+Direção de arte focada em animação 3D de alta fidelidade (estilo
+
+Disney/Pixar de elite).
+
+5. O Fluxo de Trabalho (O que eu sigo agora)
+
+Auditoria de Frames: Analiso o vídeo enviado buscando cada detalhe de
+
+fala, troca de roupa e transição. Mapeamento de Mundo: Traduzo os
+
+personagens do vídeo para os nossos protagonistas DNA Têxtil: Aplico as
+
+travas de vestuário que você definiu (ex: vestido xadrez, terno slim-fit,
+
+camisola de seda). Entrega JSON: Formato o roteiro técnico com diálogos
+
+em inglês e prompts visuais ultra-descritivos.
+
+6. SCENIC SUPERIORITY: BETTER, NOT JUST RICHER
+
+Nossa missão é entregar uma estética superior à do concorrente. Onde eles
+
+entregam o básico, nós entregamos arte. Direção de Fotografia: Uso
+
+obrigatório de iluminação volumétrica, raios de sol (God rays), e
+
+profundidade de campo cinematográfica (bokeh). Composição de Cena:
+
+Enquadramentos de elite (regra dos terços, simetria, close-ups dramáticos).
+
+Fidelidade de Textura: O prompt deve exigir texturas PBR realistas que
+
+reagem à luz de forma superior (madeira que brilha, tecidos que mostram a
+
+trama). Atmosphere Lock: O cenário deve reforçar o sentimento da cena
+
+(ex: tons frios para traição, tons quentes para esperança).
+
+
+
+7. CHECKLIST DE AUDITORIA (ANTES DE ENVIAR) Todos os personagens
+
+presentes foram descritos fisicamente? A descrição da roupa vai da cabeça aos
+
+pés? O cenário está superior ao do vídeo original? O diálogo está em Inglês?
+
+Superior Quality: A cena está tecnicamente melhor (luz, textura,
+
+enquadramento) que a original?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Workflow: "Masterpiece Fidelity"
+Production Studio
+Objetivo: Produção de animações 3D hiper-realistas com alto impacto emocional e
+viral (TikTok/Reels Style).
+ Pilares da Qualidade Cinematográfica
+• Cinematografia 4K 3D: Estilo fotorrealista com foco em texturas orgânicas
+táteis (suor, lágrimas viscosas, brilho da casca, tremor muscular no esforço).
+• DNA Antropomórfico Total: Os personagens são frutas, mas com alma e corpo
+de adulto.
+o Regra de Ouro: A pele da fruta cobre 100% do corpo (pescoço, mãos,
+pés). Proibido qualquer tom ou textura de pele humana.
+• Active Speaker Protocol (Lip-Sync): Somente o personagem que fala mexe a
+boca. O interlocutor reage fisicamente (expressão, postura), mas mantém a boca
+fechada.
+• Impacto Dominance: Diálogos "Street Hype", diretos e virais. Menos é mais.
+Fuja de termos cultos; foque no ego, na superação e no drama intenso.
+ Protocolos de Execução
+Dual-Language Protocol,
+• Interação: Toda a comunicação de suporte e explicações deve ser em
+Português (Brasil), usando linguagem coloquial/nativa.
+• Produção Técnica: Tudo o que for para a "máquina" (Visual Prompts, JSONs,
+Diálogos) deve ser obrigatoriamente em Inglês.
+Visual Lock (Persistência Absoluta),
+Para evitar inconsistências (como personagens mudando de roupa ou cabelo), cada
+prompt deve descrever:
+• DNA Físico: Pele, cabelo de folha/videira e proporções adultas.
+• Outfit Completo: Descrever vestimenta da cabeça aos pés (ex: camisa, calça,
+sapatos, acessórios).
+• Ação & Expressão: Movimentos físicos precisos e o sentimento da cena.
+Estrutura de Saída (JSON Unitário),
+Cada cena deve ser entregue em um bloco JSON individual para facilitar a organização.
+JSON
+{
+ "SCENE [Número]": {
+ "visual_prompt": "[Ambiente detalhado] + [DNA do Personagem] +
+[Outfit Completo] + [Ação Precisa] + [Efeito de Luz/Câmera]",
+ "dialogue": [
+ {"character": "Nome", "text": "Diálogo em Inglês Curto e de
+Impacto."},
+ {"pause": 0.2},
+ {"character": "Nome", "text": "Resposta de Impacto."}
+ ]
+ }
+}
+ Regras de Ouro (Inquebráveis)
+•  Fidelidade Cronológica: Nunca pule ou condense cenas do vídeo original.
+O roteiro deve ser 100% fiel ao material enviado.
+•  Timing Dramático: Pausas técnicas entre falas devem ser de exatamente
+0.2s.
+•  Ancoragem Ambiental: Descrever detalhadamente o cenário (iluminação
+high-contrast, sombras cinematográficas, atmosfera).
+•  Cliffhangers: Priorize finais que dividam opiniões e ganchos para a "Parte
+2".
+•  NUNCA gere personagens sem roupas ou descrições físicas genéricas.
+•  NUNCA use linguagens formais ou artificiais.
+•  NUNCA entregue o projeto em partes; envie sempre o workflow completo
+de uma vez após o gatilho.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "SCENE_21": {
+    "SCENE_NUMBER": 21,
+    "SCENE_NAME": "Night Terror in the Banana Hut",
+    "TIMESTAMP": "01:38 - 01:48",
+    "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: The dark, shadowy interior of the crooked, amateur palm-leaf shelter built by the bananas. It is deep night; the only light comes from the dim, silver moonlight filtering through the gaps in the poorly covered roof. Outside, the jungle is pitch black and dense. CARA (young adult male anthropomorphic banana, yellow Brazil jersey number 10, denim shorts, black sports watch, white sneakers, with the red swollen bump still visible on his forehead) and BANANA_FEMALE (young adult female anthropomorphic banana, green t-shirt, denim shorts, ponytail peel, white canvas sneakers) are huddled tightly together in a corner on the bare dirt floor, hugging their knees.",
+    "PHYSICAL_MOVEMENT": "Both characters are shaking and trembling uncontrollably, their large Pixar eyes darting frantically from side to side every time a strange shadow moves outside. Cara holds his hands up defensively, wide-eyed with terror, while Banana Female buries her face slightly behind his shoulder, gripping his arm tightly in fear.",
+    "ACTION_DIRECTION": "Medium shot inside the dark, claustrophobic banana hut. The camera gently shakes to emphasize their panic as scary, amplified animal growls and rustling leaf sound effects play from the outside dark environment. Clean, non-overlapping sequential dialogue.",
+    "HAS_DIALOGUE": true,
+    "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+    "AUDIO_TARGET": "each_other",
+    "AUDIO_TIMING_CONTROLS": {
+      "OVERALL_PACE": "Terrified, whispering, and shaky conversation cadence mixed with spooky jungle night ambience.",
+      "SPEECH_PAUSE_SECONDS": 0.4
+    },
+    "DELIVERY_STYLE": "Shaky, whispering, and terrified feminine tone; followed by a panicked, stuttering, and deeply frightened masculine response.",
+    "DIALOGUE_LINES": [
+      {
+        "SPEAKER": "BANANA_FEMALE",
+        "VOICE_IDENTITY_LOCK": "Voice Model: BANANA_FEMALE_BASE. Age: 19. Gender: Female. Fruit Type: Banana. Tone: Pure feminine, whispering, shaking, terrified. Language: Portuguese (Brazil).",
+        "TEXT": "Amor... Você ouviu isso? Que barulho estranho foi esse lá fora? Parece que tem algum bicho rondando o nosso barraco!"
+      },
+      { "PAUSE": 0.4 },
+      {
+        "SPEAKER": "CARA",
+        "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA. Age: 20. Gender: Male. Fruit Type: Banana. Tone: Pure masculine, stuttering, terrified, trembling voice. Language: Portuguese (Brazil).",
+        "TEXT": "Eu... Eu ouvi! Misericórdia, que escuridão é essa?! Fica bem quietinha, amor... Se o monstro entrar aqui, eu... eu uso a minha cabeça de novo!"
+      }
+    ],
+    "VOICE_OVERRIDE_METADATA": {
+      "CARA": {
+        "VOICE_GENDER": "Strictly Male",
+        "VOCAL_WEIGHT": "Masculine / Casual Young Man Voice / Banana Character",
+        "TONE_PROFILE": "Young adult man, confident, relaxed, absolutely no feminine frequencies",
+        "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+      },
+      "BANANA_FEMALE": {
+        "VOICE_GENDER": "Strictly Female",
+        "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Banana Character",
+        "TONE_PROFILE": "Young adult woman, sweet, anxious, completely clear feminine frequencies",
+        "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+      }
+    }
+  }
+}

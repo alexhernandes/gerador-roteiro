@@ -1,0 +1,27 @@
+---
+pid: 2596
+cwd: "D:\Desenvolvimento\.projetos\gerador-roteiro"
+command: "cd \"D:\\Desenvolvimento\\.projetos\\gerador-roteiro\"; python -c @\"
+import json
+from gerar_roteiro import gerar_sinopse
+from salvar import salvar
+
+with open('output/20260704_152301/elenco.json', encoding='utf-8') as f:
+    elenco = json.load(f)
+
+tema = 'Traicao tropical na ilha com frutas antropomorficas'
+idioma = elenco.get('language', 'portugues do brasil')
+
+sinopse = gerar_sinopse(idioma, tema, elenco)
+arquivo = salvar('output/20260704_152301', 'sinopse', sinopse)
+print('Salvo:', arquivo)
+print('beats:', len(sinopse['beats']))
+print('summary:', sinopse['story_summary'][:100], '...')
+\"@"
+started_at: 2026-07-04T18:29:10.751Z
+running_for_ms: 605010   
+---
+  [2/4] Planejando sinopse (história)...
+Salvo: output/20260704_152301\sinopse.json
+beats: 7
+summary: Mangão encontra Moranguinho chorando na praia, rejeitada e humilhada pelo manipulador Bananete. Semp ...

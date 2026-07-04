@@ -1,0 +1,658 @@
+{
+  "title": "Traição Tropical: Invasão Cósmica",
+  "story_summary": "Mangão encontra Moranguinho chorando na praia, rejeitada e humilhada pelo manipulador Bananete. Sempre sarcástico mas de bom coração, Mangão a acolhe e a leva para sua cabana na selva. Limãozinho, o amigo ranzinza, desconfia da estranha luz que brilha no céu. A tensão escala quando Bananete revela sua verdadeira face: ele não é desta ilha, mas sim um colonizador de uma dimensão paralela, e trouxe seu exército de clones de frutas cítricas para dominar a ilha. No clímax, CocoZão se sacrifica heroicamente para conter o portal, selando-o temporariamente. A ilha está em ruínas, mas os sobreviventes se unem. No último segundo, o brilho cósmico retorna — Bananete sussurra que a invasão ainda não terminou.",
+  "language": "portugues do brasil",
+  "aspect_ratio": "9:16",
+  "resolution": "480p",
+  "scene_duration_seconds": 10,
+  "total_duration_seconds": 70,
+  "total_scenes": 7,
+  "ai_instructions": {
+    "task": "AI AGENT: Generate exactly 7 videos of 10 seconds each (70s total). Resolution: 480p. Aspect ratio: 9:16.",
+    "resolution": "480p",
+    "aspect_ratio": "9:16",
+    "duration_per_scene_seconds": 10,
+    "total_duration_seconds": 70,
+    "total_scenes": 7,
+    "audio_source": "ALL spoken audio comes ONLY from DIALOGUE_LINES > TEXT. Language: portugues do brasil. Do NOT translate or change language.",
+    "output": "7 video clips of 10s each (MP4), total 70s.",
+    "style": "Cinematic 3D animation at 480p, 9:16, Disney-Pixar style, volumetric lighting."
+  },
+  "scenes": {
+    "SCENE_1": {
+      "SCENE_NUMBER": 1,
+      "SCENE_NAME": "Lágrimas na Areia Dourada",
+      "SCENE_ROLE": "Hook and Introduction",
+      "STORY_POSITION": "início",
+      "NARRATIVE_BEAT": "Após ser friamente rejeitado pelo manipulador Bananete, Moranguinho chora sozinha na praia ao pôr-do-sol. Mangão, o surfista sarcástico, a encontra e oferece ajuda do seu jeito: com deboche e compaixão escondida. Ele a convence a sair da areia e buscar refúgio em sua cabana.",
+      "OPENING_HOOK": "Close-up dramático nos olhos verdes lagrimejando de Moranguinho nos primeiros 2 segundos, com o brilho dourado do pôr-do-sol refletindo na lágrima que escorre pela textura de morango. Em off, um soluço audível prende a atenção do espectador.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:00 - 00:10",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 1 — 'Lágrimas na Areia Dourada'. Timestamp: 00:00 - 00:10. Story beat: Após ser friamente rejeitado pelo manipulador Bananete, Moranguinho chora sozinha na praia ao pôr-do-sol. Mangão, o surfista sarcástico, a encontra e oferece ajuda do seu jeito: com deboche e compaixão escondida. Ele a convence a sair da areia e buscar refúgio em sua cabana.. Hook (first 2s): Close-up dramático nos olhos verdes lagrimejando de Moranguinho nos primeiros 2 segundos, com o brilho dourado do pôr-do-sol refletindo na lágrima que escorre pela textura de morango. Em off, um soluço audível prende a atenção do espectador.. Camera: 0-2s: EXTREME CLOSE-UP on Moranguinho's face, shallow depth of field (bokeh background), a single tear rolls down her strawberry-textured cheek reflecting the amber sunset. 2-5s: SLOW DOLLY OUT while racking focus to the background, revealing the paradise setting. 5-7s: The shadow of Mangão falls over Moranguinho (low angle shot from her perspective looking up at him). 7-10s: MEDIUM TWO-SHOT, came. Movement: Moranguinho's shoulders tremble rhythmically. She sniffs, pressing her seed-knuckled hands to her face. Her leaf-crown rustles slightly with her sobs. Mangão approaches from the water, his fruity skin. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Mangão... ele me usou e me jogou fora como casca podre... | Ah, Moranguinho... aquele cacho de banana fajuta nunca mereceu você. | Ele só queria informações. Tudo era mentira! | Levanta daí. Vamos pra minha cabana. Nenhuma fruta chora sozinha nessa ilha.. Speech: 13.1s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: A breathtaking tropical beach at sunset. The sky is a canvas of deep burnt orange, magenta, and lavender gradients bleeding into the calm turquoise ocean. The white sand shimmers with golden reflections. Silhouettes of palm trees with PBR-textured fronds sway gently in the foreground and background. Volumetric God rays cut horizontally across the scene. MORANGUINHO (Young adult female anthropomorphic MORANGO, bright red strawberry skin with golden achenes all over body, large emerald green Pixar eyes with dark seed-inspired lashes, lush crown of green strawberry leaves styled as a messy bun with a white flower tucked to the left, wearing an elegant white linen sundress with thin straps and a lace hem, a thin gold chain necklace with a diamond pendant, and white leather flat sandals with golden buckles) is sitting on a flat volcanic rock at the water's edge, hugging her knees, her head bowed in despair, tears streaming. MANGÃO (Young adult male anthropomorphic MANGA PALMER, tall and lean, smooth mango skin with pink-red and yellow-orange sun-kissed gradient, large expressive Pixar eyes with warm amber irises, spiky dark green faux-hawk leaf hair, wearing a fully unbuttoned turquoise-and-orange floral Hawaiian shirt revealing his smooth mango chest, khaki cargo shorts with a woven rope belt, a waterproof black tactical watch on his right wrist, barefoot with a beaded puka shell anklet on his left ankle) walks calmly into the frame from the right foreground, holding his surfboard under one arm, a confident smirk on his face.",
+      "CAMERA_DIRECTION": "0-2s: EXTREME CLOSE-UP on Moranguinho's face, shallow depth of field (bokeh background), a single tear rolls down her strawberry-textured cheek reflecting the amber sunset. 2-5s: SLOW DOLLY OUT while racking focus to the background, revealing the paradise setting. 5-7s: The shadow of Mangão falls over Moranguinho (low angle shot from her perspective looking up at him). 7-10s: MEDIUM TWO-SHOT, camera at eye-level, Mangão drops his surfboard in the sand (bass thud sound), places hands on hips. Warm, hazy lens flare from the setting sun.",
+      "PHYSICAL_MOVEMENT": "Moranguinho's shoulders tremble rhythmically. She sniffs, pressing her seed-knuckled hands to her face. Her leaf-crown rustles slightly with her sobs. Mangão approaches from the water, his fruity skin glistening with seawater. He plants his surfboard in the sand with a casual confidence, then leans forward slightly, his smirk softening as he recognizes her state of distress. He uses one hand to flick a stray leaf from his eye. Moranguinho looks up, her green eyes glassy, a little startled.",
+      "ACTION_DIRECTION": "Lip-sync Active Speaker Protocol. Moranguinho speaks, Mangão's mouth is closed. Mangão speaks, Moranguinho's mouth is closed, but she reacts physically (wipe a tear, look up). The scene begins with the sound of gentle waves and Moranguinho's soft sniffles before dialogue kicks in. The final shot highlights Mangão's extended hand in the foreground, slightly silhouetted.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Emotional, comforting cynical tone. Starts sad and ends with a spark of hope.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Sobbing, fragile feminine voice countered by a laid-back, sarcastic but warm masculine voice.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Sobbing, trembling, heartbroken. Language: Portuguese (Brazil).",
+          "TEXT": "Mangão... ele me usou e me jogou fora como casca podre..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MANGÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MANGÃO. Age: 28. Gender: Strictly Male. Fruit Type: Manga. Tone: Sarcastic, laid-back, comforting. Language: Portuguese (Brazil).",
+          "TEXT": "Ah, Moranguinho... aquele cacho de banana fajuta nunca mereceu você."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Sniffling, fragile. Language: Portuguese (Brazil).",
+          "TEXT": "Ele só queria informações. Tudo era mentira!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MANGÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MANGÃO. Age: 28. Gender: Strictly Male. Fruit Type: Manga. Tone: Confident, protector. Language: Portuguese (Brazil).",
+          "TEXT": "Levanta daí. Vamos pra minha cabana. Nenhuma fruta chora sozinha nessa ilha."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, sweet, emotional, heartbroken, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "MANGÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Casual Young Man Voice / Mango Character",
+          "TONE_PROFILE": "Young adult man, confident, relaxed, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 40,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 12.5,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 13.1,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_2": {
+      "SCENE_NUMBER": 2,
+      "SCENE_NAME": "A Luz Estranha no Horizonte",
+      "SCENE_ROLE": "Conflict Introduction",
+      "STORY_POSITION": "início",
+      "NARRATIVE_BEAT": "Dentro da cabana rústica de Mangão, ele serve água de coco para Moranguinho se acalmar. O clima é interrompido por Limãozinho, que invade o local alertando sobre uma sinistra luz verde no céu. Moranguinho, tremendo, conecta aquilo com as palavras de Bananete sobre uma 'chegada iminente'.",
+      "OPENING_HOOK": "A atmosfera muda subitamente de acolhedora para sinistra. Som de trovão seco e a luz da cabana pisca. A projeção da sombra de um limão com espinhos na parede antecipa a entrada explosiva de Limãozinho.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:10 - 00:20",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 2 — 'A Luz Estranha no Horizonte'. Timestamp: 00:10 - 00:20. Story beat: Dentro da cabana rústica de Mangão, ele serve água de coco para Moranguinho se acalmar. O clima é interrompido por Limãozinho, que invade o local alertando sobre uma sinistra luz verde no céu. Moranguinho, tremendo, conecta aquilo com as palavras de Bananete sobre uma 'chegada iminente'.. Hook (first 2s): A atmosfera muda subitamente de acolhedora para sinistra. Som de trovão seco e a luz da cabana pisca. A projeção da sombra de um limão com espinhos na parede antecipa a entrada explosiva de Limãozinho.. Camera: 0-2s: MEDIUM SHOT. Warm, stable. Mangão kneels to hand the cup to Moranguinho. Sound of crickets. 2-4s: SUDDEN DUTCH ANGLE (15° tilt) and quick ZOOM IN on the window. The green light outside intensifies, casting an eerie glow on the back wall. 4-6s: FAST WHIP PAN to the door as it slams open. LOW ANGLE SHOT of Limãozinho breathing heavily in the doorway. 6-8s: HANDHELD SHAKY CAM as Limãozinho poin. Movement: Mangão moves calmly, his amber eyes looking reassuringly at Moranguinho. Moranguinho holds the coconut cup with trembling, seed-textured hands, taking a small sip. Limãozinho charges in, his leaf-spik. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Mangão! Vocês tão vendo aquela luz verde no horizonte? Isso não é tempestade! | Ai, não... O Bananete falou em 'chegada iminente'. É isso! | Calma, Moranguinho. Explica isso direito. | Não tem tempo pra calma! O céu tá se rasgando lá fora!. Speech: 13.1s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: Interior of Mangão's rustic bamboo cabana at night. The room is cluttered with surfboards, fishing nets, and exotic tiki decor. Warm, flickering orange light from a hand-carved coconut oil lamp fills the room, casting deep volumetric shadows. The PBR bamboo walls are textured with realistic wood grain. Outside the circular window, the sky is an unnatural pitch black with a faint pulsing green glow. MANGÃO (OUTFIT DNA LOCKED: turquoise hibiscus floral shirt unbuttoned, khaki cargo shorts, rope belt, black tactical watch, puka shell anklet) hands a hollowed-out coconut cup to MORANGUINHO (OUTFIT DNA LOCKED: white linen sundress, gold chain necklace, diamond pendant, white leather sandals) who sits on a wicker chair, still sniffling. LIMÃOZINHO (Young adult male anthropomorphic LIMÃO TAITI, stocky and muscular, vibrant lime green pitted citrus skin all over with darker green oil glands, large Pixar eyes with citrine yellow irises in a squint, rigid upward-spiked crest of dark green lemon leaves and tiny thorns, wearing a tight black tactical compression t-shirt over his muscular citrus torso, dark olive green cargo pants with multiple pockets, heavy black combat boots, a rugged compass watch on his left wrist, and a silver chain necklace with a steel padlock pendant) suddenly bursts through the bamboo door, his expression dark and sour.",
+      "CAMERA_DIRECTION": "0-2s: MEDIUM SHOT. Warm, stable. Mangão kneels to hand the cup to Moranguinho. Sound of crickets. 2-4s: SUDDEN DUTCH ANGLE (15° tilt) and quick ZOOM IN on the window. The green light outside intensifies, casting an eerie glow on the back wall. 4-6s: FAST WHIP PAN to the door as it slams open. LOW ANGLE SHOT of Limãozinho breathing heavily in the doorway. 6-8s: HANDHELD SHAKY CAM as Limãozinho points aggressively toward the window, his finger trembling. 8-10s: TIGHT CLOSE-UP on Moranguinho's face, the green light from outside reflecting in her terrified emerald eyes as she whispers.",
+      "PHYSICAL_MOVEMENT": "Mangão moves calmly, his amber eyes looking reassuringly at Moranguinho. Moranguinho holds the coconut cup with trembling, seed-textured hands, taking a small sip. Limãozinho charges in, his leaf-spikes bristling like an angry cat, pointing a thick citrus finger toward the window. His frown lines are deeply etched, his citrine eyes darting between Mangão and the window. Moranguinho stands up abruptly, dropping the coconut cup, which rolls on the wood floor spilling liquid. Mangão's smirk disappears, replaced by a rare frown of concern.",
+      "ACTION_DIRECTION": "Lip-sync Active Speaker Protocol. Limãozinho's voice is a gravelly, rapid-fire tenor. Moranguinho's voice is a frightened, high-pitched soprano. Mangão remains the calm, deep baritone center. The green light from outside should pulse in intensity corresponding to the tension in the dialogue.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Urgent, panicked interruption of a quiet moment. Very tense and paranoid.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Gravelly and paranoid masculine yelling from Limãozinho, panicked and traumatized feminine gasps from Moranguinho, serious and tactical baritone from Mangão.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "LIMÃOZINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: LIMÃOZINHO. Age: 26. Gender: Strictly Male. Fruit Type: Limão. Tone: Gravelly, urgent, suspicious, paranoid. Language: Portuguese (Brazil).",
+          "TEXT": "Mangão! Vocês tão vendo aquela luz verde no horizonte? Isso não é tempestade!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Shaking, terrified, quick realization. Language: Portuguese (Brazil).",
+          "TEXT": "Ai, não... O Bananete falou em 'chegada iminente'. É isso!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MANGÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MANGÃO. Age: 28. Gender: Strictly Male. Fruit Type: Manga. Tone: Dropping sarcasm, genuine concern. Language: Portuguese (Brazil).",
+          "TEXT": "Calma, Moranguinho. Explica isso direito."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "LIMÃOZINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: LIMÃOZINHO. Age: 26. Gender: Strictly Male. Fruit Type: Limão. Tone: Agitated, urgent, fearful. Language: Portuguese (Brazil).",
+          "TEXT": "Não tem tempo pra calma! O céu tá se rasgando lá fora!"
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "LIMÃOZINHO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Gravelly Sour Voice / Lemon Character",
+          "TONE_PROFILE": "Young adult man, aggressive, suspicious, high energy, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        },
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, sweet, emotional, scared, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "MANGÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Casual Young Man Voice / Mango Character",
+          "TONE_PROFILE": "Young adult man, confident, turning serious, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 40,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 12.5,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 13.1,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_3": {
+      "SCENE_NUMBER": 3,
+      "SCENE_NAME": "O Portal e o Traidor",
+      "SCENE_ROLE": "Escalation and Villain Reveal",
+      "STORY_POSITION": "meio",
+      "NARRATIVE_BEAT": "As três frutas saem da cabana e testemunham o céu se rasgando em um portal verde fluorescente. No alto de uma colina, Bananete aparece, iluminado pela luz do portal, e revela cruelmente que veio de outra dimensão para liderar a invasão de 'frutas perfeitas' e descartar as imperfeitas da ilha.",
+      "OPENING_HOOK": "Plano aberto devastador. O som é um zumbido cósmico de baixa frequência (LFE). O céu se abre como uma pálpebra verde, revelando um vórtice de energia pura. A silhueta de Bananete aparece no topo da colina, iluminada por trás, como um messias sombrio.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:20 - 00:30",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 3 — 'O Portal e o Traidor'. Timestamp: 00:20 - 00:30. Story beat: As três frutas saem da cabana e testemunham o céu se rasgando em um portal verde fluorescente. No alto de uma colina, Bananete aparece, iluminado pela luz do portal, e revela cruelmente que veio de outra dimensão para liderar a invasão de 'frutas perfeitas' e descartar as imperfeitas da ilha.. Hook (first 2s): Plano aberto devastador. O som é um zumbido cósmico de baixa frequência (LFE). O céu se abre como uma pálpebra verde, revelando um vórtice de energia pura. A silhueta de Bananete aparece no topo da colina, iluminada por trás, como um messias sombrio.. Camera: 0-3s: EXTREME WIDE SHOT (sweeping establishing shot) of the valley, the portal dominates the upper third of the screen. Crane shot tilting up from the heroes on the deck to the portal above. 3-5s: FAST ZOOM IN and PUSH-IN on Bananete's figure on the hill, using a low-angle hero shot against the green vortex. 5-7s: OVER-THE-SHOULDER SHOT from behind Bananete, looking down at the tiny, horrified her. Movement: Moranguinho grabs Mangão's arm tightly, pressing her leaf-crown against his shoulder, her body shaking violently. Mangão stands protectively in front of her, his fists clenching and his knuckles turni. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Bem-vindos ao novo mundo! Minha dimensão ordenou uma limpeza das frutas... imperfeitas. | Seu monstro! Todas aquelas declarações de amor eram falsas?! | Claro que sim, frutinha tola. Fui enviado como batedor. | Eu sempre soube! Cítrico falso e traidor!. Speech: 12.2s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: The exterior of the cabana, overlooking a jungle valley that leads to a tall, barren volcanic hill. The night sky is dominated by a massive, swirling neon green interdimensional portal crackling with purple electricity. The portal casts harsh, contrasting highlights and Rembrandt lighting on the environment. The jungle trees look sickly under the green glow. MANGÃO (OUTFIT DNA LOCKED), MORANGUINHO (OUTFIT DNA LOCKED), and LIMÃOZINHO (OUTFIT DNA LOCKED) are standing on a wooden deck, their heads tilted up in horror. BANANETE (Young adult male anthropomorphic BANANA PRATA, slim and elegant with a crescent-moon curve, smooth pale yellow banana skin with brown sugar spots near the bottom, large Pixar eyes with intelligent sapphire blue irises, a single dramatic dark green banana leaf draped over his head like an avant-garde ponytail, wearing tight-fitting black silk V-neck t-shirt, pristine white linen trousers, dark brown leather loafers with gold horsebit detail and no socks, a gold Rolex on his right wrist, and his white linen jacket slung over his shoulder) poses triumphantly on the summit of the hill, arms open wide, looking down on them.",
+      "CAMERA_DIRECTION": "0-3s: EXTREME WIDE SHOT (sweeping establishing shot) of the valley, the portal dominates the upper third of the screen. Crane shot tilting up from the heroes on the deck to the portal above. 3-5s: FAST ZOOM IN and PUSH-IN on Bananete's figure on the hill, using a low-angle hero shot against the green vortex. 5-7s: OVER-THE-SHOULDER SHOT from behind Bananete, looking down at the tiny, horrified heroes. 7-10s: 360-DEGREE TRACKING SHOT circling Moranguinho, Mangão, and Limãozinho as Bananete's voice echoes around them, showing their dizzying disorientation and fear.",
+      "PHYSICAL_MOVEMENT": "Moranguinho grabs Mangão's arm tightly, pressing her leaf-crown against his shoulder, her body shaking violently. Mangão stands protectively in front of her, his fists clenching and his knuckles turning a deeper shade of orange. Limãozinho's spiky hair bristles up like a threatened cat, his citrine eyes burning with rage, his mouth contorted in a snarl, acidic saliva sizzling slightly at the corner of his mouth. Bananete descends the hill slowly with smooth, gliding steps, his smirk widening, his sapphire eyes gleaming with malice. He gestures theatrically.",
+      "ACTION_DIRECTION": "Lip-sync Active Speaker Protocol. Bananete's voice is a smooth, seductive, terrifying tenor. The background is filled with the low hum of the portal and crackle of lightning. Moranguinho's breath is visible as a quick vapor due to the temperature dropping. The Sequence ends with a slow-motion beat on Bananete's laugh.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Grandiose villain monologue meets desperate defiance. The pace is slower, heavier, and more dramatic.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Smooth, charismatic, and deeply condescending villain voice, contrasted by Limãozinho's gravelly anger and Moranguinho's desperate cry.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "BANANETE",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BANANETE. Age: 22. Gender: Strictly Male. Fruit Type: Banana. Tone: Smooth, grandiose, evil, mocking. Language: Portuguese (Brazil).",
+          "TEXT": "Bem-vindos ao novo mundo! Minha dimensão ordenou uma limpeza das frutas... imperfeitas."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Desperate, crying, betrayed. Language: Portuguese (Brazil).",
+          "TEXT": "Seu monstro! Todas aquelas declarações de amor eram falsas?!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BANANETE",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BANANETE. Age: 22. Gender: Strictly Male. Fruit Type: Banana. Tone: Smug, utterly remorseless. Language: Portuguese (Brazil).",
+          "TEXT": "Claro que sim, frutinha tola. Fui enviado como batedor."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "LIMÃOZINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: LIMÃOZINHO. Age: 26. Gender: Strictly Male. Fruit Type: Limão. Tone: Aggressive, snarling, defiant. Language: Portuguese (Brazil).",
+          "TEXT": "Eu sempre soube! Cítrico falso e traidor!"
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "BANANETE": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Smooth Charismatic Villain Voice / Banana Character",
+          "TONE_PROFILE": "Young adult man, smooth, manipulative, utterly evil, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        },
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, sweet, emotional, betrayed, screaming, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "LIMÃOZINHO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Gravelly Sour Voice / Lemon Character",
+          "TONE_PROFILE": "Young adult man, snarling, angry, aggressive, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 37,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 11.6,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 12.2,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_4": {
+      "SCENE_NUMBER": 4,
+      "SCENE_NAME": "Exército de Cítricos Falsos",
+      "SCENE_ROLE": "Rising Action",
+      "STORY_POSITION": "meio",
+      "NARRATIVE_BEAT": "Do portal, caem dezenas de clones cítricos deformados marchando como soldados. Moranguinho entra em choque, Limãozinho fica indignado, e Mangão convoca CocoZão, o gigante gentil. Bananete assiste de cima, enquanto CocoZão aparece derrubando árvores para proteger seus amigos.",
+      "OPENING_HOOK": "Som robótico e metálico de passos sincronizados. O primeiro clone despenca do portal e bate no chão com um baque surdo, seus olhos se acendendo em vermelho. Em segundos, uma horda de luzes vermelhas enche a escuridão da selva.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:30 - 00:40",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 4 — 'Exército de Cítricos Falsos'. Timestamp: 00:30 - 00:40. Story beat: Do portal, caem dezenas de clones cítricos deformados marchando como soldados. Moranguinho entra em choque, Limãozinho fica indignado, e Mangão convoca CocoZão, o gigante gentil. Bananete assiste de cima, enquanto CocoZão aparece derrubando árvores para proteger seus amigos.. Hook (first 2s): Som robótico e metálico de passos sincronizados. O primeiro clone despenca do portal e bate no chão com um baque surdo, seus olhos se acendendo em vermelho. Em segundos, uma horda de luzes vermelhas enche a escuridão da selva.. Camera: 0-2s: BIRD'S-EYE VIEW (zenital) looking straight down as clones rain from the portal like green meteorites. 2-4s: FAST MONTAGE of close-ups: Limãozinho's twisting fists, Moranguinho's screaming mouth, Mangão's determined eyes. 4-7s: WIDE SHOT with CHAOTIC HANDHELD SHAKE simulating an earthquake as the jungle canopy shakes. A massive coconut frond sweeps across the foreground. 7-10s: LOW ANGLE HERO. Movement: The clones move with stiff, mechanical synchronization, their claws extending. Moranguinho screams and covers her leaf-crown with her hands. Mangão rips a wooden plank from the deck to fashion a makes. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Eles são centenas! Vão nos destruir! | Cítrico falso não me mete medo! Eu vou derreter esses vagabundo! | COCOZÃO! AGORA! A GENTE PRECISA DE VOCÊ, AMIGÃO! | Coco... defender... AMIGOS!. Speech: 9.3s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: The valley floor. The green portal pulses above. From it, CLONES CÍTRICOS DEFORMADOS (laranjas, tangerinas e pomelos mutantes, with cracked, uneven skin and asymmetrical glowing red eyes, wearing metallic armor plates bolted into their flesh) are marching in a zombie-like formation towards the deck. MANGÃO (OUTFIT DNA LOCKED) pulls MORANGUINHO (OUTFIT DNA LOCKED) behind him. LIMÃOZINHO (OUTFIT DNA LOCKED) assumes a combat stance, fists up, acidic drool dripping onto the wood and sizzling. Suddenly, the ground shakes violently. COCOZÃO (Young adult male anthropomorphic COCO VERDE, massive and lumbering, hard fibrous green coconut husk texture all over with brown strands, three dark facial indentation spots, majestic tall green palm frond 'crown' swaying, wearing a tattered brown burlap sack loincloth with jute rope, a garland of frangipani flowers on his thick neck, barefoot) blasts through the jungle, uprooting palms and roaring his slow, deep battle cry.",
+      "CAMERA_DIRECTION": "0-2s: BIRD'S-EYE VIEW (zenital) looking straight down as clones rain from the portal like green meteorites. 2-4s: FAST MONTAGE of close-ups: Limãozinho's twisting fists, Moranguinho's screaming mouth, Mangão's determined eyes. 4-7s: WIDE SHOT with CHAOTIC HANDHELD SHAKE simulating an earthquake as the jungle canopy shakes. A massive coconut frond sweeps across the foreground. 7-10s: LOW ANGLE HERO SHOT. Transition to dramatic SLOW MOTION as CocoZão leaps into the foreground, slamming his giant husk-fists into the ground to create a shockwave barrier of sand and roots.",
+      "PHYSICAL_MOVEMENT": "The clones move with stiff, mechanical synchronization, their claws extending. Moranguinho screams and covers her leaf-crown with her hands. Mangão rips a wooden plank from the deck to fashion a makeshift shield. Limãozinho spits corrosive acid (which splatters and sizzles on the ground). CocoZão swings his enormous arms, clearing five trees at once. His movements are heavy but deliberate. He shields the group with his massive body, the clones crashing against his back.",
+      "ACTION_DIRECTION": "The sound is a cacophony of synthetic drone noises, explosions, and splintering wood. When CocoZão roars, all other sounds duck. The heroes' dialogue is hurried, shouted over the chaos. Active Speaker Protocol applies for the dialogue lines, but CocoZão's roar is a non-speech sound.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "High-stress, shouted commands over battle noise. Desperate and fast.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Shouted masculine commands, screaming feminine horror, and a deep, slow, rumbling roar from CocoZão.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Screaming in terror, high-pitched. Language: Portuguese (Brazil).",
+          "TEXT": "Eles são centenas! Vão nos destruir!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "LIMÃOZINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: LIMÃOZINHO. Age: 26. Gender: Strictly Male. Fruit Type: Limão. Tone: Indignant, disgusted, aggressive. Language: Portuguese (Brazil).",
+          "TEXT": "Cítrico falso não me mete medo! Eu vou derreter esses vagabundo!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MANGÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MANGÃO. Age: 28. Gender: Strictly Male. Fruit Type: Manga. Tone: Commanding, summoning, desperate. Language: Portuguese (Brazil).",
+          "TEXT": "COCOZÃO! AGORA! A GENTE PRECISA DE VOCÊ, AMIGÃO!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "COCOZÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: COCOZÃO. Age: 32. Gender: Strictly Male. Fruit Type: Coco. Tone: Deep, slow, gentle giant roar. Language: Portuguese (Brazil).",
+          "TEXT": "Coco... defender... AMIGOS!"
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, screaming, terrified, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "LIMÃOZINHO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Gravelly Sour Voice / Lemon Character",
+          "TONE_PROFILE": "Young adult man, yelling, aggressive, defiant, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        },
+        "MANGÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Casual Young Man Voice / Mango Character",
+          "TONE_PROFILE": "Young adult man, yelling loudly, summoning, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "COCOZÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Massive / Deep Giant Voice / Coconut Character",
+          "TONE_PROFILE": "Huge gentle giant, very slow speech, pure deep bass, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 28,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 8.8,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 9.3,
+        "fits_in_scene": true,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": true,
+        "fills_scene": true
+      }
+    },
+    "SCENE_5": {
+      "SCENE_NUMBER": 5,
+      "SCENE_NAME": "Cristal de Energia Vital",
+      "SCENE_ROLE": "Midpoint Twist / High Stakes",
+      "STORY_POSITION": "meio",
+      "NARRATIVE_BEAT": "A batalha campal começa. Limãozinho derrete clones, Mangão usa cocos explosivos, e Moranguinho descobre que suas sementes podem cegá-los. Mas quando a vitória parece possível, Bananete revela um artefato terrível: um cristal verde que suga a força vital das frutas defensoras, enfraquecendo CocoZão rapidamente.",
+      "OPENING_HOOK": "O som da batalha atinge o auge e então, de repente, um apito agudo de sucção toma conta. A cor do ambiente é drenada em um efeito de gradiente radial, indo do centro (o cristal) para as bordas. O verde vibrante da pele de Limãozinho começa a acinzentar.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:40 - 00:50",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 5 — 'Cristal de Energia Vital'. Timestamp: 00:40 - 00:50. Story beat: A batalha campal começa. Limãozinho derrete clones, Mangão usa cocos explosivos, e Moranguinho descobre que suas sementes podem cegá-los. Mas quando a vitória parece possível, Bananete revela um artefato terrível: um cristal verde que suga a força vital das frutas defensoras, enfraquecendo CocoZão rapidamente.. Hook (first 2s): O som da batalha atinge o auge e então, de repente, um apito agudo de sucção toma conta. A cor do ambiente é drenada em um efeito de gradiente radial, indo do centro (o cristal) para as bordas. O verde vibrante da pele de Limãozinho começa a acinzentar.. Camera: 0-3s: DYNAMIC ACTION MONTAGE. Fast cuts (0.5s each) to the heroes' attacks under the green light. 3-4s: SUDDEN FREEZE FRAME of Limãozinho in mid-air as the energy-sucking sound begins. 4-7s: SLOW DOLLY-IN on Bananete with the crystal (Low Angle). The background loses color saturation to near black and white, while the crystal glows brighter. 7-8s: RACK FOCUS from Bananete to CocoZão, who falls to . Movement: Limãozinho falls out of the air, crashing onto the mud, clutching his chest. Moranguinho drops to her knees, dropping her remaining seeds. Mangão struggles to stay standing, using a broken tree branch. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Gostaram do meu cristal? Ele suga a vida de tudo que é... nativo. | Coco... ficando... fraco... | Não consigo... minhas forças tão indo embora... | Resiste! A gente tem que destruir esse cristal!. Speech: 10.3s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: The chaotic battlefield. Scattered piles of metallic clone debris and splintered palm trees. The lighting is harsh: green beam rays from the portal and now, an intense, sickly green spotlight emanating from a massive floating crystal held by Bananete. MORANGUINHO (OUTFIT DNA LOCKED, slightly torn hem) throws a handful of glowing golden seeds from her palm into a clone's eyes. LIMÃOZINHO (OUTFIT DNA LOCKED, scuffed and marked) is in a mid-air jump, spitting acid. MANGÃO (OUTFIT DNA LOCKED, dirty and sweating) hurls an explosive coconut. BANANETE (OUTFIT DNA LOCKED) levitates slightly, holding a jagged, pulsating Kryptonite-like emerald crystal above his head. Visible green life-force energy streams are being ripped from COCOZÃO (OUTFIT DNA LOCKED) and the others, flying into the crystal. CocoZão is hunched over, his green husk turning a sickly pale beige, the frangipani flowers wilt.",
+      "CAMERA_DIRECTION": "0-3s: DYNAMIC ACTION MONTAGE. Fast cuts (0.5s each) to the heroes' attacks under the green light. 3-4s: SUDDEN FREEZE FRAME of Limãozinho in mid-air as the energy-sucking sound begins. 4-7s: SLOW DOLLY-IN on Bananete with the crystal (Low Angle). The background loses color saturation to near black and white, while the crystal glows brighter. 7-8s: RACK FOCUS from Bananete to CocoZão, who falls to one knee. 8-10s: OVERHEAD SHOT of the life force streams converging on the crystal, leaving the rest of the image dull and lifeless.",
+      "PHYSICAL_MOVEMENT": "Limãozinho falls out of the air, crashing onto the mud, clutching his chest. Moranguinho drops to her knees, dropping her remaining seeds. Mangão struggles to stay standing, using a broken tree branch as a crutch. CocoZão lets out a deep, pained groan, his massive body losing energy, his 'crown' of fronds drooping and brown spots appearing on his husk. Bananete shakes his head in pleasure, the crystal pulsing with the stolen colorful energy of his victims.",
+      "ACTION_DIRECTION": "Lip-sync Active Speaker Protocol. The sound design features a high-pitched, continuous energy-draining whine that undercuts the dialogue. Bananete's gloating voice is amplified with a light reverb. The defenders' dialogue is strained, weak, and breathless.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Grandiose gloating, strained and pained responses. Despair and domination.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Evil, triumphant gloating from Bananete; weak, strained defiance from the severely weakened heroes.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "BANANETE",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BANANETE. Age: 22. Gender: Strictly Male. Fruit Type: Banana. Tone: Triumphant, gloating, cruel. Language: Portuguese (Brazil).",
+          "TEXT": "Gostaram do meu cristal? Ele suga a vida de tudo que é... nativo."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "COCOZÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: COCOZÃO. Age: 32. Gender: Strictly Male. Fruit Type: Coco. Tone: Deep, pained, groaning. Language: Portuguese (Brazil).",
+          "TEXT": "Coco... ficando... fraco..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Exhausted, hoarse whisper, crying. Language: Portuguese (Brazil).",
+          "TEXT": "Não consigo... minhas forças tão indo embora..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MANGÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MANGÃO. Age: 28. Gender: Strictly Male. Fruit Type: Manga. Tone: Desperate, strained, commanding. Language: Portuguese (Brazil).",
+          "TEXT": "Resiste! A gente tem que destruir esse cristal!"
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "BANANETE": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Smooth Charismatic Villain Voice / Banana Character",
+          "TONE_PROFILE": "Young adult man, gloating, evil laughter, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        },
+        "COCOZÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Massive / Deep Giant Voice / Coconut Character",
+          "TONE_PROFILE": "Huge gentle giant, pained, weak, slow speech, pure deep bass, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        },
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, exhausted, weak, despairing, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "MANGÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Casual Young Man Voice / Mango Character",
+          "TONE_PROFILE": "Young adult man, straining hard, fighting fatigue, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 31,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 9.7,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 10.3,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_6": {
+      "SCENE_NUMBER": 6,
+      "SCENE_NAME": "O Sacrifício do Gigante Gentil",
+      "SCENE_ROLE": "Climax / Heroic Sacrifice",
+      "STORY_POSITION": "fim",
+      "NARRATIVE_BEAT": "Moranguinho prova que todo mundo pode ser útil. Ela se aproxima de Bananete e finge uma rendição chorosa para baixar sua guarda. Quando o vilão se deixa levar pela própria arrogância, ela agarra o cristal e o arremessa para CocoZão. O gigante usa seu último fôlego para segurar o cristal e se lançar no portal, selando-o em uma explosão de luz branca, mas sendo puxado para a dimensão sombria.",
+      "OPENING_HOOK": "Extremo silêncio, apenas o zumbido do cristal. Close-up nos olhos corrompidos de Bananete cintilando ao ver Moranguinho se aproximar mancando, com as mãos juntas em súplica. O público prende a respiração, será que ela o traiu de novo?",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:50 - 01:00",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 6 — 'O Sacrifício do Gigante Gentil'. Timestamp: 00:50 - 01:00. Story beat: Moranguinho prova que todo mundo pode ser útil. Ela se aproxima de Bananete e finge uma rendição chorosa para baixar sua guarda. Quando o vilão se deixa levar pela própria arrogância, ela agarra o cristal e o arremessa para CocoZão. O gigante usa seu último fôlego para segurar o cristal e se lançar no portal, selando-o em uma explosão de luz branca, mas sendo puxado para a dimensão sombria.. Hook (first 2s): Extremo silêncio, apenas o zumbido do cristal. Close-up nos olhos corrompidos de Bananete cintilando ao ver Moranguinho se aproximar mancando, com as mãos juntas em súplica. O público prende a respiração, será que ela o traiu de novo?. Camera: 0-3s: SLOW-MOTION TRACKING SHOT following Moranguinho's wilted leaf-crown as she shuffles forward. EXTREME CLOSE-UP on her face showing fake tears. 3-5s: HIGH ANGLE CLOSE-UP on Bananete's hand lowering the crystal, his face softening in arrogant triumph. 5-7s: BLUR MOTION ZOOM on Moranguinho's hand snatching the crystal, followed by a FAST TRACKING SHOT of the crystal spinning through the air towa. Movement: Moranguinho's extended hand trembles in 'fear' but her eyes briefly flash with resolve. Bananete's expression shifts from gloating to a micro-expression of shock as he realizes the deception, his smoo. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Você venceu, Bananete... Eu estava cega. Me aceita de volta? | Pobre frutinha frágil... | COCOZÃO, AGORA! PEGA O CRISTAL! | Amigos... para sempre.... Speech: 7.2s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: The battlefield is silent and monochromatic (deep grey shadows), except for the green glow of the crystal and the portal. MORANGUINHO (OUTFIT DNA LOCKED, dress torn, skin less vibrant) walks slowly towards BANANETE (OUTFIT DNA LOCKED, looking invincible), her posture crumpled in fake defeat. MANGÃO (OUTFIT DNA LOCKED, on the ground, reaching out in horror) believes she is betraying them. LIMÃOZINHO (OUTFIT DNA LOCKED, barely conscious) watches with one eye open. COCOZÃO (OUTFIT DNA LOCKED, husk cracked and pale) is on his knees. Bananete lowers the crystal, opening his arms as if to embrace her. In a flash, Moranguinho snatches the crystal and turns, hurling it with all her might to CocoZão. CocoZão catches it. The crystal's energy cracks his husk violently, but he stands up, glowing internally with a blinding white light. He smiles a simple, stupid, happy grin.",
+      "CAMERA_DIRECTION": "0-3s: SLOW-MOTION TRACKING SHOT following Moranguinho's wilted leaf-crown as she shuffles forward. EXTREME CLOSE-UP on her face showing fake tears. 3-5s: HIGH ANGLE CLOSE-UP on Bananete's hand lowering the crystal, his face softening in arrogant triumph. 5-7s: BLUR MOTION ZOOM on Moranguinho's hand snatching the crystal, followed by a FAST TRACKING SHOT of the crystal spinning through the air toward CocoZão. 7-10s: PULL BACK to a WIDE SHOT. The explosion is a silent, blinding white orb of light that vaporizes the portal's green energy. An INTENSE LENS FLARE consumes the screen. The last clear image is CocoZão's smiling face in the center of the light, before fading to white.",
+      "PHYSICAL_MOVEMENT": "Moranguinho's extended hand trembles in 'fear' but her eyes briefly flash with resolve. Bananete's expression shifts from gloating to a micro-expression of shock as he realizes the deception, his smooth banana fingers grasping empty air. The transfer of the crystal is a blur of motion. CocoZão catches the crystal against his chest; the energy surge causes his entire body to crack like a shell, light spilling from the fissures. He uses his mitten-hands to push the crystal deep into his core, stands tall, and charges towards the portal, his frond-hair straightening into an energy beam. His last word is spoken slowly, with a echoing, multi-layered voice.",
+      "ACTION_DIRECTION": "Lip-sync Active Speaker Protocol. Total absence of background battle noise here replaced by a deep, resonant heartbeat and a growing high-frequency sine wave of the crystal's energy. CocoZão's final line is mixed with a massive, cinematic LFE (Low-Frequency Effects) rumble that shakes the virtual camera.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Suspenseful deception, rapid action, emotional hero moment. The pace stops entirely before exploding.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Deceptively weak and sorrowful feminine voice, arrogant villain, shocking silence, followed by a deep, echoing, loving giant voice.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Fake crying, pleading, deceptive. Language: Portuguese (Brazil).",
+          "TEXT": "Você venceu, Bananete... Eu estava cega. Me aceita de volta?"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BANANETE",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BANANETE. Age: 22. Gender: Strictly Male. Fruit Type: Banana. Tone: Smug, arrogant, whispering. Language: Portuguese (Brazil).",
+          "TEXT": "Pobre frutinha frágil..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Shouted, fierce, vengeful. Language: Portuguese (Brazil).",
+          "TEXT": "COCOZÃO, AGORA! PEGA O CRISTAL!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "COCOZÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: COCOZÃO. Age: 32. Gender: Strictly Male. Fruit Type: Coco. Tone: Deep, echoing, emotional, slow. Language: Portuguese (Brazil).",
+          "TEXT": "Amigos... para sempre..."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, deceptive and then fiercely heroic, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "BANANETE": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Smooth Charismatic Villain Voice / Banana Character",
+          "TONE_PROFILE": "Young adult man, smug, arrogant, then shocked, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        },
+        "COCOZÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Massive / Deep Giant Voice / Coconut Character",
+          "TONE_PROFILE": "Huge gentle giant, heroic, emotional, slow speech, pure deep bass, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 21,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 6.6,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 7.2,
+        "fits_in_scene": true,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_7": {
+      "SCENE_NUMBER": 7,
+      "SCENE_NAME": "A Invasão Ainda Não Acabou",
+      "SCENE_ROLE": "Cliffhanger / Luto e Promessa",
+      "STORY_POSITION": "fim",
+      "NARRATIVE_BEAT": "O silêncio da destruição. O portal está fechado, as máquinas cítricas destruídas, o corpo de Bananete desapareceu em uma névoa verde. Mangão, Moranguinho e Limãozinho sobreviveram feridos e exaustos, mas se abraçam na tristeza. Mangão beija Moranguinho, prometendo um novo começo. Mas no céu noturno, um pequeno ponto verde volta a brilhar. De dentro da névoa residual, a voz de Bananete ecoa: 'A invasão ainda não acabou.'",
+      "OPENING_HOOK": "Silêncio total por 1 segundo. O som ambiental da selva retorna lentamente (grilos, vento). A tela está branca da explosão e lentamente o fade revela os três heróis caídos no mesmo frame. Eles olham para o céu vazio.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "01:00 - 01:10",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 7 — 'A Invasão Ainda Não Acabou'. Timestamp: 01:00 - 01:10. Story beat: O silêncio da destruição. O portal está fechado, as máquinas cítricas destruídas, o corpo de Bananete desapareceu em uma névoa verde. Mangão, Moranguinho e Limãozinho sobreviveram feridos e exaustos, mas se abraçam na tristeza. Mangão beija Moranguinho, prometendo um novo começo. Mas no céu noturno, um pequeno ponto verde volta a brilhar. De dentro da névoa residual, a voz de Bananete ecoa: 'A invasão ainda não acabou.'. Hook (first 2s): Silêncio total por 1 segundo. O som ambiental da selva retorna lentamente (grilos, vento). A tela está branca da explosão e lentamente o fade revela os três heróis caídos no mesmo frame. Eles olham para o céu vazio.. Camera: 0-3s: SLOW FADE FROM WHITE to a WIDE SHOT of the destroyed crater. Static, calm, respectful shot. 3-6s: SLOW DEEP FOCUS PULL moving from the ash in the foreground to the three heroes in the mid-ground. A gentle KEN BURNS EFFECT (slow zoom in) closes the distance. 6-8s: EXTREME CLOSE-UP of Mangão's mango lips pressing against Moranguinho's strawberry cheek, her single tear of mixed relief and grief. Movement: Mangão's arm is draped protectively over Moranguinho's shoulder. His thumb rubs a comforting circle on her skin. Moranguinho's head rests on his chest, the epicenter of her earlier rage now replaced b. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Maldito... O CocoZão se foi... Se foi por nossa causa... | Eu jurei nunca mais confiar em ninguém, Mangão... | Você não precisa odiar. Só precisa confiar na fruta certa... | Aproveitem a trégua... A invasão... ainda não acabou.... Speech: 11.8s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "4K high-fidelity Disney-Pixar 3D animation style. SET: The valley, now a smoldering crater. The portal is gone, replaced by a clear, starry night sky. Broken machinery and cracked earth. Smoke and silver-white ash float down like snow. The lighting is a somber, beautiful, high-contrast cool blue moonlight, with small embers of fire providing orange rim-lights. MANGÃO (OUTFIT DNA LOCKED, singed and torn) is kneeling. MORANGUINHO (OUTFIT DNA LOCKED, her white dress now grey with soot) is clutched to his side, her leaf-crown singed but still elegant. LIMÃOZINHO (OUTFIT DNA LOCKED, his tactical vest ripped, revealing patches of his lime skin) sits against a rock, actually crying thick, acidic tears that sizzle on the ground. They all look up at the dark, empty hole in the sky. Mangão gently cups Moranguinho's chin and plants a soft kiss on her seed-speckled cheek. In the last 3 seconds, a single, menacing green light blinks in the sky, and a wisp of green smoke forms the subtle, laughing silhouette of BANANETE. The silhouette dissipates, leaving only the blinking green star.",
+      "CAMERA_DIRECTION": "0-3s: SLOW FADE FROM WHITE to a WIDE SHOT of the destroyed crater. Static, calm, respectful shot. 3-6s: SLOW DEEP FOCUS PULL moving from the ash in the foreground to the three heroes in the mid-ground. A gentle KEN BURNS EFFECT (slow zoom in) closes the distance. 6-8s: EXTREME CLOSE-UP of Mangão's mango lips pressing against Moranguinho's strawberry cheek, her single tear of mixed relief and grief rolls down and touches his skin. 8-10s: TRUCK UP (camera tilts up) to the dark sky. Focus racking from the flying embers to the infinite stars. A green dot appears, blinks, and the distorted, echo-laden laugh of Bananete plays. HARD CUT TO BLACK.",
+      "PHYSICAL_MOVEMENT": "Mangão's arm is draped protectively over Moranguinho's shoulder. His thumb rubs a comforting circle on her skin. Moranguinho's head rests on his chest, the epicenter of her earlier rage now replaced by exhausted numbness. Limãozinho slams his fist into the dirt, a fresh squirt of acidic tear leaking from his tightly shut eyes, his gravelly voice cracking. The kiss is sweet and chaste, representing hope. As the green dot blinks in the sky, all three characters freeze and look up, their expressions shifting from grief to a renewed, grim purpose.",
+      "ACTION_DIRECTION": "Lip-sync Active Speaker Protocol. The dialogue is whispered, emotionally raw, and intimate. The final line from Bananete is a non-diegetic psychic echo, heavily processed with reverb and delay.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "INDIVIDUAL_SEQUENTIAL",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Slow, mourning, peaceful peace, Shattered by a terrifying promise. The pace is very deliberate.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Cracked, gravelly male sadness, fragile, sobbing feminine loss, calm and resolute masculine hope, and a ghostly, echoing villainous whisper.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "LIMÃOZINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: LIMÃOZINHO. Age: 26. Gender: Strictly Male. Fruit Type: Limão. Tone: Crying, mourning, angry. Language: Portuguese (Brazil).",
+          "TEXT": "Maldito... O CocoZão se foi... Se foi por nossa causa..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MORANGUINHO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MORANGUINHO. Age: 24. Gender: Strictly Female. Fruit Type: Morango. Tone: Weak, crying, determined. Language: Portuguese (Brazil).",
+          "TEXT": "Eu jurei nunca mais confiar em ninguém, Mangão..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "MANGÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: MANGÃO. Age: 28. Gender: Strictly Male. Fruit Type: Manga. Tone: Gentle, reassuring, kisssing her. Language: Portuguese (Brazil).",
+          "TEXT": "Você não precisa odiar. Só precisa confiar na fruta certa..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BANANETE (V.O.)",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BANANETE. Age: 22. Gender: Strictly Male. Fruit Type: Banana. Tone: Echoing, ghostly, sinister whisper. Language: Portuguese (Brazil).",
+          "TEXT": "Aproveitem a trégua... A invasão... ainda não acabou..."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "LIMÃOZINHO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Gravelly Sour Voice / Lemon Character",
+          "TONE_PROFILE": "Young adult man, crying, mourning, hoarse, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        },
+        "MORANGUINHO": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Feminine / Sweet Melodic Voice / Strawberry Character",
+          "TONE_PROFILE": "Young adult woman, fragile, mourning, crying, whispers, completely clear feminine frequencies",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "MANGÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Casual Young Man Voice / Mango Character",
+          "TONE_PROFILE": "Young adult man, calm, gentle, talking during a kiss, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "BANANETE": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Masculine / Angry Whispery Villain Voice / Banana Character",
+          "TONE_PROFILE": "Young adult man, ghostly, echoing, sinister, laughing, absolutely no feminine frequencies",
+          "FORCE_SYNTHESIS": "Male_Adult_Tenor_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 36,
+        "line_count": 4,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 11.2,
+        "pause_seconds": 0.6,
+        "total_dialogue_seconds": 11.8,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    }
+  }
+}

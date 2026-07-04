@@ -1,0 +1,27 @@
+---
+pid: 27308
+cwd: "D:\Desenvolvimento\.projetos\gerador-roteiro"
+command: "cd \"D:\\Desenvolvimento\\.projetos\\gerador-roteiro\"; python -c @\"
+import json
+from gerar_roteiro import gerar_sinopse
+
+with open('output/20260704_152301/elenco.json', encoding='utf-8') as f:
+    elenco = json.load(f)
+
+tema = elenco.get('theme') or 'Traicao tropical na ilha'
+idioma = elenco.get('language', 'portugues do brasil')
+
+sinopse = gerar_sinopse(idioma, tema, elenco)
+print('TITLE:', sinopse.get('title'))
+print('SUMMARY:', sinopse.get('story_summary', '')[:120], '...')
+print('BEATS:', len(sinopse.get('beats', [])))
+print('ACTS:', bool(sinopse.get('act_1')), bool(sinopse.get('act_2')), bool(sinopse.get('act_3')))
+\"@"
+started_at: 2026-07-04T18:27:34.508Z
+running_for_ms: 700005   
+---
+  [2/4] Planejando sinopse (história)...
+TITLE: Traição Tropical: A Semente da Discórdia
+SUMMARY: Na ilha tropical mais sensual do oceano, MANGÃO e MORANGUINHO vivem um amor escondido e ardente, mas a felicidade azeda  ...
+BEATS: 7
+ACTS: True True True

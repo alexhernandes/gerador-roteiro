@@ -1,0 +1,79 @@
+---
+pid: 50968
+cwd: "D:\Desenvolvimento\.projetos\gerador-roteiro"
+command: "cd \"D:\\Desenvolvimento\\.projetos\\gerador-roteiro\"; python -c @\"
+import json
+from gerar_roteiro import gerar_roteiro_cenas, mostrar_resumo
+from corrigir_dialogos import corrigir_ate_validar
+from enriquecer import enriquecer_roteiro
+from salvar import salvar
+from validar import validar_tudo, imprimir_relatorio
+
+sessao = 'output/20260704_152301'
+with open(f'{sessao}/elenco.json', encoding='utf-8') as f:
+    elenco = json.load(f)
+with open(f'{sessao}/sinopse.json', encoding='utf-8') as f:
+    sinopse = json.load(f)
+
+idioma = elenco.get('language', sinopse.get('language', 'portugues do brasil'))
+tema = sinopse.get('theme', 'Traicao tropical com seres de outra dimensao')
+aspect_ratio = elenco.get('aspect_ratio', '9:16')
+
+print('Continuando sessao:', sessao)
+print('Idioma:', idioma, '| Tema:', tema)
+
+roteiro = gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse)
+salvar(sessao, 'roteiro', roteiro)
+print('roteiro inicial salvo')
+
+enriquecer = lambda r: enriquecer_roteiro(r, aspect_ratio, idioma)
+roteiro = corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer)
+salvar(sessao, 'roteiro', roteiro)
+print('roteiro corrigido salvo')
+
+relatorio = validar_tudo(elenco, roteiro, sinopse)
+imprimir_relatorio(relatorio)
+salvar(sessao, 'validacao', relatorio)
+mostrar_resumo(elenco, sinopse, roteiro)
+print('Tudo em:', sessao)
+\"@"
+started_at: 2026-07-04T18:30:24.351Z
+running_for_ms: 544994   
+---
+Continuando sessao: output/20260704_152301
+Idioma: portugues do brasil | Tema: Traição tropical com seres de outra dimensão
+  [3/4] Gerando roteiro detalhado...
+roteiro inicial salvo
+
+  !! 11 problema(s) nos diálogos. Correção 1/3...
+     - Cena 1: 13.1s de áudio (meta 7.5-9.5s em 10s)
+     - Cena 1: diálogo estoura os 10s (13.1s)
+     - Cena 2: 13.1s de áudio (meta 7.5-9.5s em 10s)
+     - Cena 2: diálogo estoura os 10s (13.1s)
+     - Cena 3: 12.2s de áudio (meta 7.5-9.5s em 10s)
+     - ... e mais 6
+  [4/4] Corrigindo e expandindo diálogos...
+
+  !! 7 problema(s) nos diálogos. Correção 2/3...
+     - Cena 1: 10.0s de áudio (meta 7.5-9.5s em 10s)
+     - Cena 2: 10.6s de áudio (meta 7.5-9.5s em 10s)
+     - Cena 2: diálogo estoura os 10s (10.6s)
+     - Cena 3: 9.7s de áudio (meta 7.5-9.5s em 10s)
+     - Cena 6: 6.2s de áudio (meta 7.5-9.5s em 10s)
+     - ... e mais 2
+  [4/4] Corrigindo e expandindo diálogos...
+Traceback (most recent call last):
+  File "<string>", line 26, in <module>
+  File "D:\Desenvolvimento\.projetos\gerador-roteiro\corrigir_dialogos.py", line 152, in corrigir_ate_validar
+    roteiro = corrigir_dialogos(roteiro, sinopse, idioma, problemas)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desenvolvimento\.projetos\gerador-roteiro\corrigir_dialogos.py", line 111, in corrigir_dialogos
+    correcao = extrair_json(resposta)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desenvolvimento\.projetos\gerador-roteiro\api.py", line 53, in extrair_json
+    texto = _limpar_texto(texto)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desenvolvimento\.projetos\gerador-roteiro\api.py", line 38, in _limpar_texto
+    texto = texto.strip()
+            ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
