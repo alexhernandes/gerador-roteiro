@@ -59,11 +59,15 @@ ROLES_TRAMA = {"hook", "setup", "conflict", "twist", "escalation", "crisis", "cl
 
 
 def _resultado(regra, ok, detalhe=""):
+    if isinstance(detalhe, re.Match):
+        detalhe = detalhe.group(0)
+    else:
+        detalhe = str(detalhe) if detalhe is not None else ""
     return {
         "id": regra["id"],
         "nome": regra["nome"],
         "severidade": regra["severidade"],
-        "ok": ok,
+        "ok": bool(ok),
         "detalhe": detalhe,
         "explicacao": regra["explicacao"],
         "exemplo": regra["exemplo"],
@@ -561,4 +565,4 @@ def imprimir_relatorio(relatorio):
     if len(problemas) > 12:
         print(f"\n  ... e mais {len(problemas) - 12} problema(s) em validacao.json")
 
-    print(f"\n  {len(problemas)} ponto(s) para revisar. Detalhes em validacao.json\n")
+    print(f"\n  {len(problemas)} ponto(s) para revisar. Detalhes em log/validacao.json\n")

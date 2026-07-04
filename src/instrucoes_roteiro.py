@@ -9,6 +9,7 @@ from dialogo import (
     MIN_SEGUNDOS_FALA,
     MAX_SEGUNDOS_FALA,
     PAUSA_PADRAO,
+    extrair_textos,
     lock_idioma_texto,
     normalizar_idioma,
     PALAVRAS_POR_SEGUNDO,
@@ -178,11 +179,14 @@ def bloco_cena(beat, cena_anterior, idioma, tema):
 
     continuidade = ""
     if cena_anterior:
+        textos = extrair_textos(cena_anterior.get("DIALOGUE_LINES", []))
+        ultima_fala = textos[-1] if textos else "N/A"
         continuidade = f"""
-CONTINUIDADE — cena anterior terminou assim:
+CONTINUIDADE OBRIGATÓRIA — use o JSON completo da cena anterior (no user prompt):
+  Cena anterior: {cena_anterior.get('SCENE_NUMBER', num - 1)} — {cena_anterior.get('SCENE_NAME', '')}
   NARRATIVE_BEAT: {cena_anterior.get('NARRATIVE_BEAT', '')}
-  Última fala: {cena_anterior.get('DIALOGUE_LINES', [{}])[-2].get('TEXT', '') if cena_anterior.get('DIALOGUE_LINES') else 'N/A'}
-Esta cena (Cena {num}) começa EXATAMENTE onde a anterior parou.
+  Última fala: {ultima_fala}
+Esta cena (Cena {num}) começa EXATAMENTE onde a anterior parou (mesmo local, mesma tensão).
 """
 
     return f"""

@@ -160,16 +160,23 @@ def gerar_cena(idioma, tema, aspect_ratio, elenco, sinopse, beat, cena_anterior=
     num = beat.get("scene_number", 1)
     elenco_json = json.dumps(elenco, ensure_ascii=False, indent=2)
     sinopse_json = json.dumps(sinopse, ensure_ascii=False, indent=2)
+    cena_anterior_json = ""
+    if cena_anterior:
+        cena_anterior_json = json.dumps(cena_anterior, ensure_ascii=False, indent=2)
 
     system = PROMPT_BASE + _bloco_idioma(idioma) + bloco_cena(beat, cena_anterior, idioma, tema) + f"""
 
 FORMATO: {aspect_ratio}, {RESOLUCAO}, cena de {DURACAO_CENA}s.
 language = "{idioma}".
 
-SINOPSE COMPLETA (enviada em TODA chamada — siga fielmente, não mude a história):
+CONTEXTO FIXO EM TODA CHAMADA:
+  1) SINOPSE COMPLETA (blueprint — não mude a história)
+  2) CENA ANTERIOR completa (quando existir — mantenha continuidade)
+
+SINOPSE:
 {sinopse_json}
 
-ELENCO (use nomes exatos em SPEAKER e VISUAL_PROMPT):
+ELENCO (nomes exatos em SPEAKER e VISUAL_PROMPT):
 {elenco_json}
 
 Campos obrigatórios desta cena:
@@ -185,10 +192,19 @@ Campos obrigatórios desta cena:
 Retorne APENAS o JSON desta cena — não gere as outras cenas.
 """
 
+    contexto_anterior = ""
+    if cena_anterior_json:
+        contexto_anterior = f"""
+CENA ANTERIOR (JSON completo — esta cena começa onde a anterior parou):
+{cena_anterior_json}
+"""
+
     user = f"""
 Gere SOMENTE a Cena {num} de {NUM_CENAS}.
 Tema: {tema}. Idioma: {idioma}.
-Use o beat {num} da sinopse e mantenha continuidade com as cenas anteriores.
+Use o beat {num} da sinopse.
+{contexto_anterior}
+Mantenha continuidade: mesmos personagens, mesmo local/tensão, consequência direta da cena anterior.
 """
 
     resposta = chamar_api(system, user, schema=CENA_RESPONSE_FORMAT)
@@ -214,8 +230,8 @@ def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=None
         cena_anterior = cena
 
         if sessao:
-            salvar(sessao, f"cena_{num:02d}", cena)
-            print(f"       -> cena_{num:02d}.json salva")
+            salvar(sessao, f"cena_{num:02d}", cena, em_log=True)
+            print(f"       -> log/cena_{num:02d}.json salva")
 
     print("       Juntando as 7 cenas em roteiro.json...")
     roteiro = juntar_cenas_em_roteiro(cenas, sinopse)
@@ -250,9 +266,10 @@ def mostrar_resumo(elenco, sinopse, roteiro):
         print(f"    Diálogo: {timing.get('word_count', '?')} palavras, ~{timing.get('total_dialogue_seconds', '?')}s")
 
 
-def _salvar_passo(sessao, nome, dados):
-    arquivo = salvar(sessao, nome, dados)
-    print(f"  -> Salvo: {arquivo}\n")
+def _salvar_passo(sessao, nome, dados, em_log=False):
+    arquivo = salvar(sessao, nome, dados, em_log=em_log)
+    pasta = "log/" if em_log else ""
+    print(f"  -> Salvo: {pasta}{nome}.json\n")
     return arquivo
 
 
@@ -277,7 +294,7 @@ def gerar_roteiro():
         _salvar_passo(sessao, "sinopse", sinopse)
 
         roteiro = gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, sessao=sessao)
-        _salvar_passo(sessao, "roteiro", roteiro)
+        _salvar_passo(sessao, "roteiro_rascunho", roteiro, em_log=True)
 
         enriquecer = lambda r: enriquecer_roteiro(r, aspect_ratio, idioma, elenco)
         roteiro = corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer)
@@ -289,7 +306,8 @@ def gerar_roteiro():
     relatorio = validar_tudo(elenco, roteiro, sinopse)
 
     imprimir_relatorio(relatorio)
-    _salvar_passo(sessao, "validacao", relatorio)
+    _salvar_passo(sessao, "validacao", relatorio, em_log=True)
 
     mostrar_resumo(elenco, sinopse, roteiro)
-    print(f"  Tudo em: {sessao}/\n")
+    print(f"  Entrega: {sessao}/ (elenco, sinopse, roteiro)")
+    print(f"  Logs:    {sessao}/log/\n")
