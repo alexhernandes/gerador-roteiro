@@ -1,0 +1,740 @@
+{
+  "title": "Roteiro Completo - A Traição na Academia das Bananas",
+  "story_summary": "Cara é uma banana jovem que acredita estar no auge da forma, até descobrir que sua namorada Bia e o fortão Tonhão estão tramando humilhá-lo na academia para viralizar. Após uma reviravolta, ele planeja uma vingança inteligente, filmando a própria armadilha deles. No confronto decisivo, a verdade vem à tona, mas a revelação final indica que a traição é ainda mais profunda, deixando um gancho para mais confusões.",
+  "language": "portugues do brasil",
+  "aspect_ratio": "9:16",
+  "resolution": "480p",
+  "scene_duration_seconds": 10,
+  "total_duration_seconds": 70,
+  "total_scenes": 7,
+  "ai_instructions": {
+    "task": "AI AGENT: Generate exactly 7 videos of 10 seconds each (70s total). Resolution: 480p. Aspect ratio: 9:16.",
+    "resolution": "480p",
+    "aspect_ratio": "9:16",
+    "duration_per_scene_seconds": 10,
+    "total_duration_seconds": 70,
+    "total_scenes": 7,
+    "audio_source": "ALL spoken audio comes ONLY from DIALOGUE_LINES > TEXT. Language: portugues do brasil. Do NOT translate or change language.",
+    "output": "7 video clips of 10s each (MP4), total 70s.",
+    "style": "Cinematic 3D animation at 480p, 9:16, Disney-Pixar style, volumetric lighting."
+  },
+  "scenes": {
+    "SCENE_1": {
+      "SCENE_NUMBER": 1,
+      "SCENE_NAME": "Chegada Triunfal e Ciúme Instantâneo",
+      "SCENE_ROLE": "Hook",
+      "STORY_POSITION": "início",
+      "NARRATIVE_BEAT": "Cara chega animado na academia para seu treino, mas vê Bia e Tonhão muito próximos, plantando a semente do ciúme.",
+      "OPENING_HOOK": "Nos primeiros 2 segundos: Close-up no rosto confiante do Cara enquanto ele abre a porta da academia, seguido imediatamente por um corte seco para Bia e Tonhão se abraçando ao fundo. O contraste entre a felicidade dele e a cena suspeita é o gancho imediato.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:00 - 00:10",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 1 — 'Chegada Triunfal e Ciúme Instantâneo'. Timestamp: 00:00 - 00:10. Story beat: Cara chega animado na academia para seu treino, mas vê Bia e Tonhão muito próximos, plantando a semente do ciúme.. Hook (first 2s): Nos primeiros 2 segundos: Close-up no rosto confiante do Cara enquanto ele abre a porta da academia, seguido imediatamente por um corte seco para Bia e Tonhão se abraçando ao fundo. O contraste entre a felicidade dele e a cena suspeita é o gancho imediato.. Camera: 0-2s: Medium close-up on Cara's confident face, dolly-in as he pushes the door open. 2-4s: Quick whip pan to a two-shot of Bia and Tonhão at the far end of the gym, her hand resting on his bicep, both laughing. 4-6s: Rack focus back to Cara, his smile instantly vanishing, replaced by a frozen, confused expression. 6-8s: Slow dolly-in on Cara's eye twitching, zooming to an extreme close-up. 8-10s: . Movement: Cara walks in with a high-energy, chest-puffed walk, then stops dead in his tracks. His leaf-hair droops slightly. His jaw tightens, and the banana skin around his knuckles subtly tightens as he clenc. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Hoje o treino é pesado! | Ninguém me segura! | Opa, a Bia já chegou? | E o Tonhão grudado nela? | Deve ser só personal de araque. | Calma, não surta.. Speech: 9.4s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: Bright, bustling gym interior with polished concrete floors, floor-to-ceiling mirrors, rows of treadmills and weight machines. Large windows let in warm morning sun, creating beautiful volumetric God rays. ACTION: CARA (Young adult male anthropomorphic banana, yellow banana skin with small natural brown spots, leaf-hair styled to the side, wearing: red dry-fit tank top, black leggings with white side detail, black sports sneakers with thick white soles and green laces, simple digital watch on left wrist) pushes open the glass gym door with a huge, confident grin. He freezes mid-step when he sees, across the room, BIA (Young adult female anthropomorphic banana, golden-yellow peel, ponytail made of braided banana peel tied with a pink ribbon, wearing: pink cropped workout top, high-waist pink leggings with mesh side detail, white sneakers with pink details, small silver hoop earring, purple silicone bracelet on right wrist) and TONHÃO (Large, muscular male adult anthropomorphic banana, dark yellow textured peel with small scars, military-style peel-shaved head, square jaw, wearing: tight black t-shirt with 'FORÇA FRUTA' logo, grey gym shorts with black stripe, high-top white chunky sneakers with red details, thick silver chain necklace, mirrored sunglasses resting on head, one weightlifting glove on right hand) standing extremely close by the squat rack, her hand touching his massive arm. LIGHTING: Warm, motivational morning light with God rays. ATMOSPHERE: Energetic, suddenly tense.",
+      "CAMERA_DIRECTION": "0-2s: Medium close-up on Cara's confident face, dolly-in as he pushes the door open. 2-4s: Quick whip pan to a two-shot of Bia and Tonhão at the far end of the gym, her hand resting on his bicep, both laughing. 4-6s: Rack focus back to Cara, his smile instantly vanishing, replaced by a frozen, confused expression. 6-8s: Slow dolly-in on Cara's eye twitching, zooming to an extreme close-up. 8-10s: Over-the-shoulder shot from Cara's perspective, the image of Bia and Tonhão slightly distorted/warped by his jealousy, the background noise fading.",
+      "PHYSICAL_MOVEMENT": "Cara walks in with a high-energy, chest-puffed walk, then stops dead in his tracks. His leaf-hair droops slightly. His jaw tightens, and the banana skin around his knuckles subtly tightens as he clenches his fist on the door handle. Bia and Tonhão's mouths move as they chat and laugh, Tonhão flexes his arm playfully.",
+      "ACTION_DIRECTION": "The shot starts with high energy and quickly shifts to tense silence, save for the distant, muffled laughter of Bia and Tonhão. Only Cara’s expression changes the mood. Active Speaker: None yet, just visual setup.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "CARA only (internal thoughts/voiceover)",
+      "AUDIO_TARGET": "Self",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Energized and confident, then suddenly suspicious and low.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Entusiasmado e confiante, mudando para desconfiado e tenso.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Hoje o treino é pesado!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Ninguém me segura!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Opa, a Bia já chegou?"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "E o Tonhão grudado nela?"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Deve ser só personal de araque."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Calma, não surta."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Jovem, confiante, depois desconfiado",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 27,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 8.4,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 9.4,
+        "fits_in_scene": true,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": true,
+        "fills_scene": true
+      }
+    },
+    "SCENE_2": {
+      "SCENE_NUMBER": 2,
+      "SCENE_NAME": "Confronto e a Aposta",
+      "SCENE_ROLE": "Conflict Introduction",
+      "STORY_POSITION": "início",
+      "NARRATIVE_BEAT": "Cara tenta confrontar Bia, mas ela o despreza e Tonhão provoca, levando a uma aposta de supino.",
+      "OPENING_HOOK": "A cena inicia com a sombra de Cara caindo sobre o casal, interrompendo o riso deles.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:10 - 00:20",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 2 — 'Confronto e a Aposta'. Timestamp: 00:10 - 00:20. Story beat: Cara tenta confrontar Bia, mas ela o despreza e Tonhão provoca, levando a uma aposta de supino.. Hook (first 2s): A cena inicia com a sombra de Cara caindo sobre o casal, interrompendo o riso deles.. Camera: 0-2s: Low-angle shot looking up at Tonhão as he laughs, making him look huge and powerful. 2-4s: Cut to a two-shot of Cara and Bia; Cara is animated, arms gesturing, Bia rolls her eyes. 4-6s: Over-the-shoulder shot from behind Tonhão, looking down at a smaller, angrier Cara. 6-8s: Quick zoom-in on their hands as they shake to seal the bet, a 'crack' sound effect plays. 8-10s: Dutch angle on Cara's. Movement: Cara points a shaking finger from Bia to Tonhão. Bia crosses her arms and turns her back halfway. Tonhão performs a slow, mocking bicep curl right in Cara's face, then gestures toward the bench press . Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Que intimidade é essa, Bia? | Ai, para de grudar. | Ele só ajeita minha postura. | Duvido levantar 50 quilos. | Aceito! Se eu fizer 5, você some. | Fechado. Perdeu, lava meu tênis.. Speech: 10.4s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: Same bright gym, now by the squat rack and bench press area. The God rays have shifted slightly. ACTION: CARA (Yellow banana, leaf-hair, red dry-fit tank top, black leggings, white/green sneakers, digital watch) strides up to BIA (Golden-yellow banana, pink-bowed ponytail peel hair, pink cropped top, high-waist pink leggings, white/pink sneakers, silver earring, purple bracelet) and TONHÃO (Dark yellow muscular banana, military peel-shaved head, black 'FORÇA FRUTA' t-shirt, grey shorts, white/red chunky sneakers, silver chain, sunglasses on head, weightlifting glove). Cara points an accusatory finger at Bia. Tonhão puffs out his massive chest and looks down at Cara with a condescending smirk, before gesturing dramatically towards the bench press. LIGHTING: A slightly more dramatic, high-contrast lighting, with a spotlight-like effect on the three characters. ATMOSPHERE: Confrontational, charged with testosterone.",
+      "CAMERA_DIRECTION": "0-2s: Low-angle shot looking up at Tonhão as he laughs, making him look huge and powerful. 2-4s: Cut to a two-shot of Cara and Bia; Cara is animated, arms gesturing, Bia rolls her eyes. 4-6s: Over-the-shoulder shot from behind Tonhão, looking down at a smaller, angrier Cara. 6-8s: Quick zoom-in on their hands as they shake to seal the bet, a 'crack' sound effect plays. 8-10s: Dutch angle on Cara's determined face, the background tilting to show his world is now off-kilter.",
+      "PHYSICAL_MOVEMENT": "Cara points a shaking finger from Bia to Tonhão. Bia crosses her arms and turns her back halfway. Tonhão performs a slow, mocking bicep curl right in Cara's face, then gestures toward the bench press with an open palm. They shake hands aggressively, Tonhão's large hand completely enveloping Cara's.",
+      "ACTION_DIRECTION": "Classic showdown energy. The camera work emphasizes the size difference. Active Speaker Protocol: Cara speaks, Bia's mouth moves in reply, Tonhão's mouth moves for his taunt. The other two remain still, reacting physically.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "SEQUENTIAL_CONVERSATION",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Fast-paced, heated argument, rapid-fire insults.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Acusador e magoado (Cara), desdenhosa e irritada (Bia), provocador e lento (Tonhão).",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Que intimidade é essa, Bia?"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Ai, para de grudar."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Ele só ajeita minha postura."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Duvido levantar 50 quilos."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Aceito! Se eu fizer 5, você some."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Fechado. Perdeu, lava meu tênis."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Jovem, magoado, desafiador",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "BIA": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Voz Doce de Banana",
+          "TONE_PROFILE": "Doce, mas irônica e irritada",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "TONHÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Grossa de Banana",
+          "TONE_PROFILE": "Profundo, zombeteiro, dominante",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 30,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 9.4,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 10.4,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_3": {
+      "SCENE_NUMBER": 3,
+      "SCENE_NAME": "A Humilhação do Supino",
+      "SCENE_ROLE": "Low Point / Humiliation",
+      "STORY_POSITION": "meio",
+      "NARRATIVE_BEAT": "Cara tenta o supino, falha miseravelmente, e Tonhão o humilha enquanto Bia ri.",
+      "OPENING_HOOK": "Plano detalhe da barra carregada com pesos, as mãos trêmulas do Cara segurando-a. O som de uma multidão abafada criando expectativa.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:20 - 00:30",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 3 — 'A Humilhação do Supino'. Timestamp: 00:20 - 00:30. Story beat: Cara tenta o supino, falha miseravelmente, e Tonhão o humilha enquanto Bia ri.. Hook (first 2s): Plano detalhe da barra carregada com pesos, as mãos trêmulas do Cara segurando-a. O som de uma multidão abafada criando expectativa.. Camera: 0-1s: Extreme close-up on Cara's strained, terrified eyes, sweat dripping into them. 1-3s: Point-of-view shot from Cara's perspective, looking up at the barbell, which looks impossibly heavy, and Tonhão's mocking face behind it. 3-5s: Slow-motion shot of the barbell descending onto Cara’s chest as his arms give way. 5-7s: A quick zoom-in on Tonhão's massive hand effortlessly grabbing the bar and l. Movement: Cara strains, his leaf-hair matted with sweat, his chest heaving. The barbell drops, making a dull thud sound. Tonhão catches it with a single, effortless motion, his bicep not even flexing. Bia point. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Força da feira, frutinha! | Socorro, tá muito pesado! | Olha a banana amassando! | Perdeu! Compra lustra-móveis. | Bia... vai rir de mim? | Juntos? Só na dieta, otário!. Speech: 8.8s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: The bench press area of the gym is now surrounded by other gym-goer fruits. ACTION: CARA (Yellow banana, leaf-hair now sweaty, red tank top, black leggings, white/green sneakers) is lying on the bench, the heavy barbell above his chest. His arms tremble violently, and his yellow skin is covered in sweat droplets. BIA (Pink top/leggings) stands behind the bench, laughing hysterically, her phone out and clearly recording. TONHÃO (Black 'FORÇA FRUTA' shirt, grey shorts) leans over Cara, his face contorted in a mocking, exaggerated laugh. He easily lifts the barbell with one hand as Cara fails. LIGHTING: Harsh, unflattering overhead gym lighting, casting deep shadows under their eyes and making the sweat glisten dramatically. A small spotlight on the barbell. ATMOSPHERE: Humiliating, intense, and claustrophobic.",
+      "CAMERA_DIRECTION": "0-1s: Extreme close-up on Cara's strained, terrified eyes, sweat dripping into them. 1-3s: Point-of-view shot from Cara's perspective, looking up at the barbell, which looks impossibly heavy, and Tonhão's mocking face behind it. 3-5s: Slow-motion shot of the barbell descending onto Cara’s chest as his arms give way. 5-7s: A quick zoom-in on Tonhão's massive hand effortlessly grabbing the bar and lifting it, saving but also humiliating Cara. 7-9s: Two-shot of Bia filming and laughing, the phone screen reflecting Cara's defeated face. 9-10s: High-angle shot looking down on Cara, small and defeated on the bench, surrounded by laughter.",
+      "PHYSICAL_MOVEMENT": "Cara strains, his leaf-hair matted with sweat, his chest heaving. The barbell drops, making a dull thud sound. Tonhão catches it with a single, effortless motion, his bicep not even flexing. Bia points at Cara, her body shaking with laughter, the phone camera light blinking. Other fruit-people in the background are also laughing or looking on with pity.",
+      "ACTION_DIRECTION": "The world closes in on Cara. Sound design becomes key: the heavy thud of the weight, the piercing sound of Bia's laughter, which should sound like the loudest thing in the room. Active Speaker Protocol: Cara grunts, Tonhão's mouth moves for his taunts, Bia's for her final, devastating line.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "SEQUENTIAL_CONVERSATION",
+      "AUDIO_TARGET": "each_other",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Desperate and strained, then sharp and mocking.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Esforçado e desesperado (Cara), debochado e teatral (Tonhão), risada cruel (Bia).",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Força da feira, frutinha!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Socorro, tá muito pesado!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Olha a banana amassando!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Perdeu! Compra lustra-móveis."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Bia... vai rir de mim?"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Juntos? Só na dieta, otário!"
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Esforçado, depois devastado",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "BIA": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Voz Doce de Banana",
+          "TONE_PROFILE": "Riso agudo e cruel",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "TONHÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Grossa de Banana",
+          "TONE_PROFILE": "Teatral, triunfante, zombeteiro",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 25,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 7.8,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 8.8,
+        "fits_in_scene": true,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": true,
+        "fills_scene": true
+      }
+    },
+    "SCENE_4": {
+      "SCENE_NUMBER": 4,
+      "SCENE_NAME": "Espionagem no Vestiário",
+      "SCENE_ROLE": "Discovery / Turning Point",
+      "STORY_POSITION": "meio",
+      "NARRATIVE_BEAT": "Escondido no vestiário, Cara ouve Bia e Tonhão confessando o plano de filmá-lo caindo na esteira para um golpe viral.",
+      "OPENING_HOOK": "Cara, com o olho colado numa fresta do armário, prende a respiração. O som dos dois entrando e rindo do 'show' dele é o que prende o espectador.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:30 - 00:40",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 4 — 'Espionagem no Vestiário'. Timestamp: 00:30 - 00:40. Story beat: Escondido no vestiário, Cara ouve Bia e Tonhão confessando o plano de filmá-lo caindo na esteira para um golpe viral.. Hook (first 2s): Cara, com o olho colado numa fresta do armário, prende a respiração. O som dos dois entrando e rindo do 'show' dele é o que prende o espectador.. Camera: 0-2s: Static, low-angle shot from inside the locker with Cara, framing Bia and Tonhão as they enter and check the room. The shot has a voyeuristic feel. 2-4s: Extreme close-up on Cara's single, unblinking eye, his pupil dilating with shock at their first line of dialogue. 4-6s: Cut to a two-shot of the conspirators as they cackle and high-five. 6-8s: Back to Cara's POV, but the camera slowly dolli. Movement: Cara stays completely still, barely breathing. His eye twitches. His fist clenches in slow motion around the banana, juice dripping. Bia and Tonhão speak casually, Tonhão flexing, Bia flipping her pon. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Amanhã a esteira vai travar. | A câmera escondida filma tudo. | A banana estatelada vai bombar! | Depois pego a senha. | Esse banana nunca desconfia. | Miseráveis... eu viro esse jogo.. Speech: 9.8s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: The men's locker room is empty, grey tiles, rows of metal lockers, one wooden bench. It's more dimly lit, with one flickering fluorescent light. ACTION: CARA (Sweaty, defeated, red tank top, black leggings) is hiding inside one of the tall, narrow metal lockers, the door cracked open just enough for one wide, angry eye to be visible. Through the crack, we see BIA (Pink top/leggings) and TONHÃO (Black shirt, grey shorts) enter, looking around to make sure they are alone. Tonhão puts a heavy arm around Bia’s shoulder. Bia claps her hands together with evil glee. LIGHTING: A single, harsh fluorescent light creates a sharp, film-noir split in the frame. One side of Cara's face is in total darkness, the other illuminated by the harsh light, showing his rage. ATMOSPHERE: Secretive, tense, and full of dawning horror, transforming into cold fury.",
+      "CAMERA_DIRECTION": "0-2s: Static, low-angle shot from inside the locker with Cara, framing Bia and Tonhão as they enter and check the room. The shot has a voyeuristic feel. 2-4s: Extreme close-up on Cara's single, unblinking eye, his pupil dilating with shock at their first line of dialogue. 4-6s: Cut to a two-shot of the conspirators as they cackle and high-five. 6-8s: Back to Cara's POV, but the camera slowly dollies in on his fist, which is shaking and crushing a banana from his bag, the mushy fruit oozing between his fingers. 8-10s: A slow push-in on Cara's face as the shadows deepen, his expression hardening from hurt to cold, calculated rage.",
+      "PHYSICAL_MOVEMENT": "Cara stays completely still, barely breathing. His eye twitches. His fist clenches in slow motion around the banana, juice dripping. Bia and Tonhão speak casually, Tonhão flexing, Bia flipping her ponytail peel-hair. They don't notice the locker door slightly ajar.",
+      "ACTION_DIRECTION": "A complete mood shift. The humiliation is replaced by a quiet, burning anger. Active Speaker Protocol: Only Bia and Tonhão's mouths move. Cara is in 'receiver mode,' his physical stillness contrasting his inner turmoil. The dialogue here is everything—it must be clean and clear.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "SEQUENTIAL_CONVERSATION + ONE INTERNAL THOUGHT",
+      "AUDIO_TARGET": "Self (for Cara's line), each_other (for Bia and Tonhão)",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Conspiratorial and slow, with a final sharp, whispered, vengeful thought.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Conspiratório e malicioso (Bia/Tonhão), sussurro frio e vingativo (Cara).",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Amanhã a esteira vai travar."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "A câmera escondida filma tudo."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "A banana estatelada vai bombar!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Depois pego a senha."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Esse banana nunca desconfia."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Miseráveis... eu viro esse jogo."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Sussurro frio, raiva contida",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "BIA": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Voz Doce de Banana",
+          "TONE_PROFILE": "Eufórica, dissimulada e malvada",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "TONHÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Grossa de Banana",
+          "TONE_PROFILE": "Conspiratório, risada maldosa",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 28,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 8.8,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 9.8,
+        "fits_in_scene": true,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": true,
+        "fills_scene": false
+      }
+    },
+    "SCENE_5": {
+      "SCENE_NUMBER": 5,
+      "SCENE_NAME": "A Contra-Armadilha do Cara",
+      "SCENE_ROLE": "Plan / Rising Action",
+      "STORY_POSITION": "meio",
+      "NARRATIVE_BEAT": "Cara bolou um contra-ataque: posiciona seu celular escondido para gravar a confissão deles durante a armação.",
+      "OPENING_HOOK": "A tela escura de um celular acende, refletindo o rosto malicioso do Cara. Ele digita 'APP ESPIÃO' e sorri.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:40 - 00:50",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 5 — 'A Contra-Armadilha do Cara'. Timestamp: 00:40 - 00:50. Story beat: Cara bolou um contra-ataque: posiciona seu celular escondido para gravar a confissão deles durante a armação.. Hook (first 2s): A tela escura de um celular acende, refletindo o rosto malicioso do Cara. Ele digita 'APP ESPIÃO' e sorri.. Camera: 0-2s: A blurry background comes into focus (rack focus), revealing the blinking red recording light on the phone in extreme close-up. 2-4s: A montage-style sequence: a quick shot of duct tape being ripped, another of the phone being planted, another of the gel being squeezed out, all set to a tense, rhythmic beat 4-6s: Low-angle shot of Cara standing up, silhouetted against the moonlit windows, lo. Movement: Cara moves with swift, deliberate actions—a man on a mission. He is no longer the bumbling, jealous boyfriend but a focused agent of his own revenge. His movements are clean, and he leaves no trace.. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Querem um palco? | Eu vou dar o espetáculo. | App espião instalado na esteira. | Agora eu finjo a queda. | E gravo a confissão todinha. | A galera vai amar a estreia.. Speech: 10.1s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: The now-empty, dimly lit gym at night. The 'CLOSED' sign is visible on the door. ACTION: CARA (Red tank top, black leggings, but now with a black beanie pulled low over his leaf-hair, and black gloves) is a shadowy figure by the treadmills. He carefully duct-tapes a smartphone with a blinking red recording light under the dashboard of a specific treadmill. He then sprinkles some slippery-looking clear gel on the belt. He looks directly at another hidden camera he's set up on a tripod and gives a slow, malicious smile. LIGHTING: Moonlight and emergency exit signs are the only light sources, creating deep blue and red shadows. The blinking red light of the recording phone is a focal point. ATMOSPHERE: A heist movie vibe—stealthy, smart, and full of triumphant, scheming energy.",
+      "CAMERA_DIRECTION": "0-2s: A blurry background comes into focus (rack focus), revealing the blinking red recording light on the phone in extreme close-up. 2-4s: A montage-style sequence: a quick shot of duct tape being ripped, another of the phone being planted, another of the gel being squeezed out, all set to a tense, rhythmic beat 4-6s: Low-angle shot of Cara standing up, silhouetted against the moonlit windows, looking like a spy. 6-8s: Cut to a computer screen showing four different camera angles he has set up around the gym. 8-10s: Medium close-up on Cara, who runs his gloved thumb across his banana peel, wiping away the last bit of gel, and gives a perfect 'chef's kiss' gesture.",
+      "PHYSICAL_MOVEMENT": "Cara moves with swift, deliberate actions—a man on a mission. He is no longer the bumbling, jealous boyfriend but a focused agent of his own revenge. His movements are clean, and he leaves no trace.",
+      "ACTION_DIRECTION": "This is the hero's planning montage. It should feel cool, slick, and satisfying. Active Speaker: Only Cara, delivering tight, cool voice-over lines. The music and sound effects are crucial here—a low, pulsating beat with sounds of tape ripping and a final 'ding'.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "CARA (Voiceover/Monologue)",
+      "AUDIO_TARGET": "Self",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Cool, confident, and methodical, like a spy narrating a heist.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Suave, confiante e metódico, estilo espião narrando um plano.",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Querem um palco?"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Eu vou dar o espetáculo."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "App espião instalado na esteira."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Agora eu finjo a queda."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "E gravo a confissão todinha."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "A galera vai amar a estreia."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Suave, cerebral, mestre do plano",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 29,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 9.1,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 10.1,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_6": {
+      "SCENE_NUMBER": 6,
+      "SCENE_NAME": "A Exposição Pública",
+      "SCENE_ROLE": "Climax / Public Reveal",
+      "STORY_POSITION": "fim",
+      "NARRATIVE_BEAT": "Na hora combinada, Cara finge um tombo na esteira e, quando o casal comemora, ele revela o vídeo da confissão para toda a academia.",
+      "OPENING_HOOK": "Um cronômetro de celular atinge 00:00 no momento exato em que Cara 'escorrega' na esteira. O som de um apito de juiz.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "00:50 - 01:00",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 6 — 'A Exposição Pública'. Timestamp: 00:50 - 01:00. Story beat: Na hora combinada, Cara finge um tombo na esteira e, quando o casal comemora, ele revela o vídeo da confissão para toda a academia.. Hook (first 2s): Um cronômetro de celular atinge 00:00 no momento exato em que Cara 'escorrega' na esteira. O som de um apito de juiz.. Camera: 0-1.5s: A slow-motion, cinematic shot of Cara 'falling,' arms flailing gracefully, his body twisting in the air. 1.5-3s: Quick cut to Bia and Tonhão's victorious, ugly celebration; the camera shakes with their laughter. 3-5s: A beautiful hero shot of Cara landing perfectly on his feet. He turns, and the camera whip-pans to follow his pointed finger toward the TV. 5-7s: The camera pushes in on the . Movement: Cara executes a theatrical, fake-fall, rolling perfectly onto his back. He then kips-up to his feet with a smug grin, wiping dust off his shoulder. Bia's cruel laughter dies in her throat, her jaw dro. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Lá vai o campeão! Ops, escorreguei! | Filmou, Tonhão? Vai ser hit! | O hit agora é esse áudio! | 'Esteira programada, câmera escondida' | Isso é montagem, banana podre! | Todo mundo ouviu a tramoia!. Speech: 10.7s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: The gym is packed with all the fruit-people from earlier, gathered around the treadmill like an arena. ACTION: CARA (Red tank top, black leggings) 'falls' dramatically off the treadmill, landing in a very practiced, theatrical tuck-and-roll. BIA and TONHÃO immediately burst into loud, obnoxious celebration, pointing and high-fiving. But Cara pops up instantly, completely unharmed, and pulls out his phone. He plugs it into the gym's large wall-mounted TV screen. The screen flickers to life, showing the locker room video from Scene 4 with the audio crystal clear: 'programada pra travar e câmera escondida.' The crowd gasps and turns on Bia and Tonhão, whose smiles have vanished. LIGHTING: A bright, almost courtroom-drama spotlight effect as the video plays on the big screen, contrasting with the dark, shocked faces of the villains. ATMOSPHERE: A massive, public, and utterly humiliating take-down. Triumphant and chaotic.",
+      "CAMERA_DIRECTION": "0-1.5s: A slow-motion, cinematic shot of Cara 'falling,' arms flailing gracefully, his body twisting in the air. 1.5-3s: Quick cut to Bia and Tonhão's victorious, ugly celebration; the camera shakes with their laughter. 3-5s: A beautiful hero shot of Cara landing perfectly on his feet. He turns, and the camera whip-pans to follow his pointed finger toward the TV. 5-7s: The camera pushes in on the TV screen, and the audio switch happens, the video playing back the confession. 7-8.5s: Sweeping pan across the shocked faces of the gym crowd, all turning to look at the now-petrified Bia and Tonhão. 8.5-10s: A triumphant, low-angle two-shot of Cara holding up his phone like a champion's trophy, with the angry mob behind him.",
+      "PHYSICAL_MOVEMENT": "Cara executes a theatrical, fake-fall, rolling perfectly onto his back. He then kips-up to his feet with a smug grin, wiping dust off his shoulder. Bia's cruel laughter dies in her throat, her jaw dropping. Tonhão's face transitions from triumph to confusion, to pure, unadulterated rage. He takes a menacing step forward but is blocked by other gym-goers.",
+      "ACTION_DIRECTION": "High-energy takedown scene. The public humiliation is the payoff. The dialogue audio from the video should briefly overpower the live dialogue to ensure the audience hears the confession. Active Speaker Protocol: Cara is loud, clear, and triumphant. Bia and Tonhão are flustered and defensive, their voices cracking.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "SEQUENTIAL_CONVERSATION + OVERLAPPING AUDIO FROM PHONE",
+      "AUDIO_TARGET": "each_other, public address",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Fast, chaotic, with sharp interjections. The playback audio creates a layered soundscape.",
+        "SPEECH_PAUSE_SECONDS": 0.2
+      },
+      "DELIVERY_STYLE": "Teatral e triunfante (Cara), eufórica e depois em pânico (Bia), confuso e agressivo (Tonhão).",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Lá vai o campeão! Ops, escorreguei!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Filmou, Tonhão? Vai ser hit!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "O hit agora é esse áudio!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "'Esteira programada, câmera escondida'"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Isso é montagem, banana podre!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Todo mundo ouviu a tramoia!"
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Teatral, vitorioso, confrontador",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "BIA": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Voz Doce de Banana",
+          "TONE_PROFILE": "Eufórica, depois em negação histérica",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "TONHÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Grossa de Banana",
+          "TONE_PROFILE": "Agressivo, em pânico, em negação",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 31,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 9.7,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 10.7,
+        "fits_in_scene": false,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": false
+      }
+    },
+    "SCENE_7": {
+      "SCENE_NUMBER": 7,
+      "SCENE_NAME": "O Verdadeiro Chefe",
+      "SCENE_ROLE": "Cliffhanger / Twist Reveal",
+      "STORY_POSITION": "fim",
+      "NARRATIVE_BEAT": "Encurralados, Bia sussurra algo sobre o 'chefe', e uma figura misteriosa surge na porta da academia, congelando a cena com um sorriso ameaçador.",
+      "OPENING_HOOK": "A alegria no rosto do Cara morre quando Bia, encurralada, ri fracamente e aponta para a porta. O vento lá fora faz as portas de vidro rangerem.",
+      "DURATION_SECONDS": 10,
+      "TIMESTAMP": "01:00 - 01:10",
+      "AI_VIDEO_TASK": "AI AGENT: Create a 10-second 480p 9:16 VIDEO for SCENE 7 — 'O Verdadeiro Chefe'. Timestamp: 01:00 - 01:10. Story beat: Encurralados, Bia sussurra algo sobre o 'chefe', e uma figura misteriosa surge na porta da academia, congelando a cena com um sorriso ameaçador.. Hook (first 2s): A alegria no rosto do Cara morre quando Bia, encurralada, ri fracamente e aponta para a porta. O vento lá fora faz as portas de vidro rangerem.. Camera: 0-1.5s: Over-the-shoulder shot from behind the crowd, focusing on the trapped, pathetic Bia and Tonhão. 1.5-3s: A quick zoom-in on Bia's lips as she whispers about the 'chefe'. 3-6s: A slow, dramatic horizontal pan following the gaze of every character turning towards the door. The sound of a heartbeat becomes the only audio. 6-8s: The camera pushes in on the fogged-up glass, the massive, dark sil. Movement: Bia shrinks back, pointing weakly. Tonhão's whole body quivers, and he holds his hands up in supplication. The crowd’s angry murmuring turns into quiet, fearful murmurs. Cara takes a half-step back, h. Audio language: portugues do brasil. Spoken lines (DIALOGUE_LINES > TEXT only): Você falhou, Tonhão... | O chefe não vai perdoar. | Cala a boca, sua inútil! | Quem é você?! | Vocês precisam de uma reciclagem... | ...definitiva.. Speech: 7.9s / 10s. Duration MUST be exactly 10 seconds.",
+      "VISUAL_PROMPT": "Cinematic 4K 3D animation, Disney-Pixar style. SET: The gym entrance. The angry crowd of fruit-people has cornered BIA and Tonhão against the glass entrance doors. It's dark outside. ACTION: BIA (Pink top/leggings) is crying and pointing a shaking finger outside. TONHÃO (Black shirt, grey shorts) is sweating profusely and trembling, his macho act completely gone. The glass doors behind them suddenly fog up, and a massive, dark, hooded FIGURE appears. It's another banana, but huge. We only see its silhouette and one glowing, green pear-eye. CARA (Red tank top) is in the foreground, his trophy phone now limp at his side, his face pale with a mix of shock and fear. LIGHTING: A dramatic shift to near-darkness. The only light is a cold, blue-green glow emanating from outside the door, backlighting the massive HOODED FIGURE and casting a long, terrifying shadow that falls over everyone in the gym. ATMOSPHERE: A sudden, chilling horror movie cliffhanger. All comedy is gone.",
+      "CAMERA_DIRECTION": "0-1.5s: Over-the-shoulder shot from behind the crowd, focusing on the trapped, pathetic Bia and Tonhão. 1.5-3s: A quick zoom-in on Bia's lips as she whispers about the 'chefe'. 3-6s: A slow, dramatic horizontal pan following the gaze of every character turning towards the door. The sound of a heartbeat becomes the only audio. 6-8s: The camera pushes in on the fogged-up glass, the massive, dark silhouette growing sharper. 8-10s: An extreme close-up on the HOODED FIGURE's one visible, green, glowing pear-eye. The shot freezes, except for the eerie green light pulsing.",
+      "PHYSICAL_MOVEMENT": "Bia shrinks back, pointing weakly. Tonhão's whole body quivers, and he holds his hands up in supplication. The crowd’s angry murmuring turns into quiet, fearful murmurs. Cara takes a half-step back, his cockiness completely evaporating. The HOODED FIGURE is unnervingly still, just breathing, fogging the glass.",
+      "ACTION_DIRECTION": "A complete tonal shift from comedy to a sudden, serious thriller cliffhanger. The villain's reveal is silent and menacing. The Active Speaker Protocol breaks slightly: Bia's line is a terrified, broken whisper. The HOODED FIGURE's line is a deep, distorted boom that cuts through everything.",
+      "HAS_DIALOGUE": true,
+      "AUDIO_SPEAKER": "SEQUENTIAL_CONVERSATION",
+      "AUDIO_TARGET": "each_other, the room",
+      "AUDIO_TIMING_CONTROLS": {
+        "OVERALL_PACE": "Anxious and fast, then suddenly quiet, ending with a deep, slow, menacing drawl outside.",
+        "SPEECH_PAUSE_SECONDS": 0.3
+      },
+      "DELIVERY_STYLE": "Aterrorizada (Bia), em pânico (Tonhão), temeroso (Cara), distorcido e ameaçador (Chefe).",
+      "DIALOGUE_LINES": [
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Você falhou, Tonhão..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "BIA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: BIA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "O chefe não vai perdoar."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "TONHÃO",
+          "VOICE_IDENTITY_LOCK": "Voice Model: TONHAO_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Cala a boca, sua inútil!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CARA",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CARA_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Quem é você?!"
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CHEFE",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CHEFE_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "Vocês precisam de uma reciclagem..."
+        },
+        {
+          "PAUSE": 0.2
+        },
+        {
+          "SPEAKER": "CHEFE",
+          "VOICE_IDENTITY_LOCK": "Voice Model: CHEFE_BANANA... Language: Portuguese (Brazil).",
+          "TEXT": "...definitiva."
+        }
+      ],
+      "VOICE_OVERRIDE_METADATA": {
+        "CARA": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Jovem de Banana",
+          "TONE_PROFILE": "Temeroso, voz trêmula",
+          "FORCE_SYNTHESIS": "Male_Adult_Baritone_BR"
+        },
+        "BIA": {
+          "VOICE_GENDER": "Strictly Female",
+          "VOCAL_WEIGHT": "Voz Doce de Banana",
+          "TONE_PROFILE": "Sussurro aterrorizado",
+          "FORCE_SYNTHESIS": "Female_Adult_Soprano_BR"
+        },
+        "TONHÃO": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Grossa de Banana",
+          "TONE_PROFILE": "Latido em pânico, voz falhando",
+          "FORCE_SYNTHESIS": "Male_Adult_Bass_BR"
+        },
+        "CHEFE": {
+          "VOICE_GENDER": "Strictly Male",
+          "VOCAL_WEIGHT": "Voz Monstro/Mafioso de Banana",
+          "TONE_PROFILE": "Profundo, distorcido, ameaça gélida",
+          "FORCE_SYNTHESIS": "Male_Giant_Bass_Deep_Distortion_BR"
+        }
+      },
+      "DIALOGUE_TIMING": {
+        "source": "DIALOGUE_LINES > TEXT",
+        "word_count": 22,
+        "line_count": 6,
+        "words_per_second": 3.2,
+        "estimated_speech_seconds": 6.9,
+        "pause_seconds": 1.0,
+        "total_dialogue_seconds": 7.9,
+        "fits_in_scene": true,
+        "min_words_recommended": 24,
+        "max_words_recommended": 30,
+        "min_lines_recommended": 4,
+        "has_enough_dialogue": false,
+        "fills_scene": true
+      }
+    }
+  }
+}

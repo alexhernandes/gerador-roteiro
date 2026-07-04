@@ -12,7 +12,7 @@ from config import MODEL
 from corrigir_dialogos import corrigir_ate_validar
 from dialogo import lock_idioma_texto
 from entrada import perguntar
-from enriquecer import enriquecer_elenco, enriquecer_roteiro
+from enriquecer import enriquecer_elenco, enriquecer_sinopse, enriquecer_roteiro
 from instrucoes_roteiro import bloco_sinopse, bloco_roteiro, bloco_dialogo_denso
 from salvar import criar_sessao, salvar
 from schema import (
@@ -127,7 +127,7 @@ Começo, meio e fim claros. Reviravoltas. 4-6 falas planejadas por cena no dialo
             "Tente rodar de novo."
         )
 
-    return sinopse
+    return enriquecer_sinopse(sinopse, idioma)
 
 
 def gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse, reforco=False):
@@ -178,7 +178,7 @@ Cada cena com câmera detalhada e diálogos que avançam a trama.
     if not roteiro.get("story_summary") and sinopse.get("story_summary"):
         roteiro["story_summary"] = sinopse["story_summary"]
 
-    return enriquecer_roteiro(roteiro, aspect_ratio, idioma)
+    return enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco)
 
 
 def mostrar_resumo(elenco, sinopse, roteiro):
@@ -238,7 +238,7 @@ def gerar_roteiro():
         roteiro = gerar_roteiro_cenas(idioma, tema, aspect_ratio, elenco, sinopse)
         _salvar_passo(sessao, "roteiro", roteiro)
 
-        enriquecer = lambda r: enriquecer_roteiro(r, aspect_ratio, idioma)
+        enriquecer = lambda r: enriquecer_roteiro(r, aspect_ratio, idioma, elenco)
         roteiro = corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer)
         _salvar_passo(sessao, "roteiro", roteiro)
     except Exception as erro:

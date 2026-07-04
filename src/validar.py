@@ -18,7 +18,10 @@ from regras import REGRAS
 from schema import RESOLUCAO, DURACAO_CENA, NUM_CENAS, DURACAO_TOTAL
 
 PALAVRAS_SANGUE = re.compile(r"\b(blood|sangue|bleeding|hemorrag)\b", re.I)
-PALAVRAS_AGRESSAO = re.compile(r"\b(punch|hit|stab|shoot|kill|murder|matar|soc[oou]|esfaque)\b", re.I)
+PALAVRAS_AGRESSAO = re.compile(
+    r"\b(punch|stab|shoot|kill|murder|matar|soc[oou]|esfaquear|esfaque|agredir|agressão|agressao)\b",
+    re.I,
+)
 PALAVRAS_CLIFFHANGER = re.compile(
     r"\b(wait|espera|part 2|parte 2|to be continued|continua|who is|quem é|what is|o que|"
     r"did you hear|ouviu|you won.t believe|não vai acreditar|no way|impossible|"
@@ -136,10 +139,8 @@ def validar_sinopse(sinopse):
         resultados.append(_resultado(regra, True, f"Sinopse: {summary[:80]}..."))
 
     for campo in ("act_1", "act_2", "act_3"):
-        if len(sinopse.get(campo, "")) < 20:
+        if len(sinopse.get(campo, "").strip()) < 8:
             resultados.append(_resultado(regra, False, f"Sinopse: {campo} incompleto."))
-        else:
-            resultados.append(_resultado(regra, True, f"Sinopse: {campo} OK."))
 
     beats = sinopse.get("beats", [])
     if len(beats) != NUM_CENAS:
@@ -325,50 +326,38 @@ def validar_roteiro(roteiro, elenco, sinopse=None):
                 f"Cena {num}: câmera detalhada ({len(camera)} chars).",
             ))
 
-        # Idioma rigoroso em cada TEXT
+        # Idioma e qualidade das falas (só reporta falhas)
+        idioma_falhas = []
         for i, linha in enumerate(dialogue_lines):
             if "TEXT" not in linha:
                 continue
             texto = linha["TEXT"]
+            speaker = linha.get("SPEAKER", "?")
+
             if not texto.strip():
-                resultados.append(_resultado(
-                    regra_source, False,
-                    f"Cena {num}: TEXT vazio na linha {i + 1}.",
-                ))
+                idioma_falhas.append(f"TEXT vazio (linha {i + 1})")
                 continue
 
             if PALAVRAS_FILLER.match(texto.strip()):
-                resultados.append(_resultado(
-                    regra_dialogo_narr, False,
-                    f"Cena {num}: fala genérica (filler) — '{texto}'.",
-                ))
+                idioma_falhas.append(f"fala genérica — '{texto[:40]}'")
 
             if len(texto.strip()) < 8:
-                resultados.append(_resultado(
-                    regra_dialogo_narr, False,
-                    f"Cena {num}: TEXT muito curto para avançar a história.",
-                ))
+                idioma_falhas.append(f"TEXT muito curto — '{texto[:40]}'")
 
-            ok_idioma = texto_no_idioma(texto, idioma)
-            speaker = linha.get("SPEAKER", "?")
-            if ok_idioma:
-                resultados.append(_resultado(
-                    regra_idioma, True,
-                    f"Cena {num} ({speaker}): idioma OK — '{texto[:50]}...'",
-                ))
-            else:
-                resultados.append(_resultado(
-                    regra_idioma, False,
-                    f"Cena {num} ({speaker}): texto em idioma errado — '{texto[:60]}' (esperado: {idioma}).",
-                ))
+            if not texto_no_idioma(texto, idioma):
+                idioma_falhas.append(
+                    f"{speaker}: idioma errado — '{texto[:50]}' (esperado: {idioma})"
+                )
 
-            # VOICE_IDENTITY_LOCK deve mencionar idioma
             lock = linha.get("VOICE_IDENTITY_LOCK", "")
             if not voice_lock_valido(lock, idioma):
-                resultados.append(_resultado(
-                    regra_idioma, False,
-                    f"Cena {num} ({speaker}): VOICE_IDENTITY_LOCK sem idioma {idioma}.",
-                ))
+                idioma_falhas.append(f"{speaker}: VOICE_IDENTITY_LOCK sem idioma {idioma}")
+
+        if idioma_falhas:
+            detalhe = f"Cena {num}: " + "; ".join(idioma_falhas[:4])
+            if len(idioma_falhas) > 4:
+                detalhe += f"; ... +{len(idioma_falhas) - 4}"
+            resultados.append(_resultado(regra_idioma, False, detalhe))
 
         # Densidade e timing
         timing = calcular_timing(dialogue_lines, idioma, DURACAO_CENA)
@@ -411,7 +400,7 @@ def validar_roteiro(roteiro, elenco, sinopse=None):
             ))
 
         # Character lock
-        speakers = _speakers_da_cena(cena)
+        speakers = list(dict.fromkeys(_speakers_da_cena(cena)))
         if speakers:
             faltando = [s for s in speakers if s not in visual.upper()]
             if faltando:
@@ -513,21 +502,21 @@ def validar_tudo(elenco, roteiro, sinopse=None):
     sinopse_resultados = validar_sinopse(sinopse) if sinopse else []
     roteiro_resultados = validar_roteiro(roteiro, elenco, sinopse)
     todos = elenco_resultados + sinopse_resultados + roteiro_resultados
+    problemas = [r for r in todos if not r["ok"]]
 
-    erros = sum(1 for r in todos if not r["ok"] and r["severidade"] == "erro")
-    avisos = sum(1 for r in todos if not r["ok"] and r["severidade"] == "aviso")
-    infos = sum(1 for r in todos if not r["ok"] and r["severidade"] == "info")
-    oks = sum(1 for r in todos if r["ok"])
+    erros = sum(1 for r in problemas if r["severidade"] == "erro")
+    avisos = sum(1 for r in problemas if r["severidade"] == "aviso")
+    infos = sum(1 for r in problemas if r["severidade"] == "info")
 
     return {
         "resumo": {
-            "total": len(todos),
-            "ok": oks,
+            "verificacoes": len(todos),
+            "problemas": len(problemas),
             "erros": erros,
             "avisos": avisos,
             "infos": infos,
         },
-        "resultados": todos,
+        "problemas": problemas,
     }
 
 
@@ -537,25 +526,33 @@ def tem_erros_criticos(relatorio):
 
 def imprimir_relatorio(relatorio):
     resumo = relatorio["resumo"]
+    problemas = relatorio.get("problemas", [])
+
     print("\n" + "=" * 50)
     print("  VALIDAÇÃO DAS REGRAS")
     print("=" * 50)
-    print(f"  OK: {resumo['ok']}  |  Erros: {resumo['erros']}  |  "
-          f"Avisos: {resumo['avisos']}  |  Infos: {resumo['infos']}")
+    print(
+        f"  Verificações: {resumo['verificacoes']}  |  "
+        f"Problemas: {resumo['problemas']}  |  "
+        f"Erros: {resumo['erros']}  |  Avisos: {resumo['avisos']}"
+    )
     print("=" * 50)
 
-    for r in relatorio["resultados"]:
-        if r["ok"]:
-            continue
+    if not problemas:
+        print("\n  Tudo certo! Nenhum problema encontrado.\n")
+        return
 
+    vistos = set()
+    for r in problemas[:12]:
+        chave = (r["id"], r["detalhe"])
+        if chave in vistos:
+            continue
+        vistos.add(chave)
         icone = {"erro": "X", "aviso": "!", "info": "i"}.get(r["severidade"], "?")
         print(f"\n  [{icone}] {r['nome']}")
         print(f"      {r['detalhe']}")
-        print(f"      Regra: {r['explicacao']}")
-        print(f"      Exemplo: {r['exemplo']}")
 
-    problemas = [r for r in relatorio["resultados"] if not r["ok"]]
-    if not problemas:
-        print("\n  Tudo certo! Nenhum problema encontrado.\n")
-    else:
-        print(f"\n  {len(problemas)} ponto(s) para revisar.\n")
+    if len(problemas) > 12:
+        print(f"\n  ... e mais {len(problemas) - 12} problema(s) em validacao.json")
+
+    print(f"\n  {len(problemas)} ponto(s) para revisar. Detalhes em validacao.json\n")

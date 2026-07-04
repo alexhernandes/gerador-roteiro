@@ -7,8 +7,10 @@ import json
 
 from api import chamar_api, extrair_json
 from dialogo import (
+    ajustar_timing_roteiro,
     analisar_dialogos_roteiro,
     lock_idioma_texto,
+    metas_timing_roteiro,
     normalizar_idioma,
     PALAVRAS_POR_SEGUNDO,
     MIN_FALAS_POR_CENA,
@@ -17,6 +19,7 @@ from dialogo import (
     MAX_SEGUNDOS_FALA,
     PAUSA_PADRAO,
 )
+from relatorio import imprimir_problemas
 from schema import CORRECAO_DIALOGOS_RESPONSE_FORMAT, DURACAO_CENA
 
 
@@ -52,6 +55,33 @@ EXEMPLO (4 falas curtas alternadas, ~9s, preenche cena de 10s):
 """
 
 
+def _extrair_dialogos(roteiro):
+    cenas = {}
+    for chave, cena in roteiro.get("scenes", {}).items():
+        cenas[chave] = {
+            "SCENE_NUMBER": cena.get("SCENE_NUMBER"),
+            "NARRATIVE_BEAT": cena.get("NARRATIVE_BEAT"),
+            "DIALOGUE_LINES": cena.get("DIALOGUE_LINES", []),
+            "DELIVERY_STYLE": cena.get("DELIVERY_STYLE", ""),
+            "VOICE_OVERRIDE_METADATA": cena.get("VOICE_OVERRIDE_METADATA", {}),
+        }
+    return {"scenes": cenas}
+
+
+def _extrair_sinopse_dialogos(sinopse):
+    return {
+        "story_summary": sinopse.get("story_summary", ""),
+        "beats": [
+            {
+                "scene_number": b.get("scene_number"),
+                "narrative_beat": b.get("narrative_beat"),
+                "dialogue_intent": b.get("dialogue_intent"),
+            }
+            for b in sinopse.get("beats", [])
+        ],
+    }
+
+
 def corrigir_dialogos(roteiro, sinopse, idioma, problemas=None):
     codigo = normalizar_idioma(idioma)
     wps = PALAVRAS_POR_SEGUNDO.get(codigo, 3.2)
@@ -63,8 +93,8 @@ def corrigir_dialogos(roteiro, sinopse, idioma, problemas=None):
     if problemas:
         problemas_txt = "PROBLEMAS A CORRIGIR:\n" + "\n".join(f"- {p}" for p in problemas)
 
-    roteiro_json = json.dumps(roteiro, ensure_ascii=False, indent=2)
-    sinopse_json = json.dumps(sinopse, ensure_ascii=False, indent=2)
+    roteiro_json = json.dumps(_extrair_dialogos(roteiro), ensure_ascii=False, indent=2)
+    sinopse_json = json.dumps(_extrair_sinopse_dialogos(sinopse), ensure_ascii=False, indent=2)
 
     system = f"""
 Você é um roteirista especialista em diálogos para vídeos virais de 10 segundos.
@@ -93,8 +123,13 @@ Retorne SCENE_NUMBER, DIALOGUE_LINES, DELIVERY_STYLE, VOICE_OVERRIDE_METADATA po
 {_exemplo_dialogo(idioma)}
 """
 
+    metas = metas_timing_roteiro(roteiro, idioma)
+
     user = f"""
 {problemas_txt}
+
+METAS DE TIMING POR CENA (obrigatório respeitar):
+{metas}
 
 SINOPSE:
 {sinopse_json}
@@ -103,7 +138,8 @@ ROTEIRO ATUAL (reescreva só os diálogos):
 {roteiro_json}
 
 Reescreva DIALOGUE_LINES das 7 cenas em {idioma}.
-Muitas falas curtas. Preencha {MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_FALA}s de áudio por cena.
+Muitas falas curtas (4-12 palavras). Preencha {MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_FALA}s de áudio por cena.
+NUNCA ultrapasse {MAX_SEGUNDOS_FALA}s nem fique abaixo de {MIN_SEGUNDOS_FALA}s.
 """
 
     print("  [4/4] Corrigindo e expandindo diálogos...")
@@ -152,13 +188,23 @@ def corrigir_ate_validar(roteiro, sinopse, idioma, enriquecer_fn, max_tentativas
             print("  -> Diálogos OK.\n")
             return roteiro
 
-        print(f"\n  !! {len(problemas)} problema(s) nos diálogos. Correção {tentativa}/{max_tentativas}...")
-        for p in problemas[:5]:
-            print(f"     - {p}")
-        if len(problemas) > 5:
-            print(f"     - ... e mais {len(problemas) - 5}")
+        imprimir_problemas(
+            f"Diálogos com problemas — correção {tentativa}/{max_tentativas}",
+            problemas,
+        )
 
         roteiro = corrigir_dialogos(roteiro, sinopse, idioma, problemas)
         roteiro = enriquecer_fn(roteiro)
+
+    problemas = analisar_dialogos_roteiro(roteiro, idioma)
+    if problemas:
+        print("  -> Ajuste local de timing nos diálogos...")
+        roteiro = enriquecer_fn(ajustar_timing_roteiro(roteiro, idioma))
+
+    restantes = analisar_dialogos_roteiro(roteiro, idioma)
+    if restantes:
+        imprimir_problemas("Alguns diálogos ainda fora da meta", restantes)
+    else:
+        print("  -> Diálogos OK.\n")
 
     return roteiro

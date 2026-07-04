@@ -83,6 +83,7 @@ if %errorlevel% neq 0 (
 echo.
 
 REM --- 4. Iniciar app ---
+set "PYTHONPATH=%~dp0src"
 %PY% main.py
 
 if %errorlevel% neq 0 (

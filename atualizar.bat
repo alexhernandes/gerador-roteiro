@@ -1,17 +1,21 @@
 @echo off
+setlocal EnableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
 
 set "REPO_URL=https://github.com/alexhernandes/gerador-roteiro.git"
 set "BRANCH=main"
+set "TMP_CLONE=%TEMP%\gerador-roteiro-update"
+set "ERRO=0"
 
 echo.
 echo ========================================
-echo   ATUALIZAR REPOSITORIO (GIT PUSH)
+echo   ATUALIZAR SISTEMA (BAIXAR DO GITHUB)
 echo ========================================
 echo.
 echo Repositorio: %REPO_URL%
 echo Branch: %BRANCH%
+echo Pasta local: %~dp0
 echo.
 
 REM --- 1. Verificar Git ---
@@ -23,66 +27,93 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM --- 2. Inicializar repo se necessario ---
+REM --- 2. Preservar .env local ---
+if exist ".env" (
+    copy /Y ".env" ".env.local.bak" >nul
+    echo .env local preservado.
+)
+
+REM --- 3. Atualizar arquivos ---
 if not exist ".git" (
-    echo Inicializando repositorio Git...
-    git init
-    git branch -M %BRANCH%
-)
-
-REM --- 3. Configurar remote origin ---
-git remote get-url origin >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Configurando remote origin...
-    git remote add origin %REPO_URL%
-) else (
-    git remote set-url origin %REPO_URL%
-)
-
-REM --- 4. Status atual ---
-echo Alteracoes pendentes:
-echo.
-git status --short
-echo.
-
-REM --- 5. Mensagem do commit ---
-set "MSG="
-set /p MSG=Mensagem do commit (Enter = atualizacao automatica): 
-if "%MSG%"=="" set "MSG=Atualizacao %date% %time%"
-
-REM --- 6. Commit ---
-git add -A
-git diff --cached --quiet
-if %errorlevel%==0 (
-    echo Nenhuma alteracao para commitar.
-) else (
+    echo Repositorio Git nao encontrado. Clonando do GitHub...
     echo.
-    echo Commit: %MSG%
-    git commit -m "%MSG%"
+
+    if exist "%TMP_CLONE%" rmdir /S /Q "%TMP_CLONE%"
+
+    git clone --branch %BRANCH% --single-branch %REPO_URL% "%TMP_CLONE%"
     if %errorlevel% neq 0 (
-        echo Erro ao criar commit.
-        pause
-        exit /b 1
+        echo.
+        echo Clone falhou. Verifique conexao e URL do repositorio.
+        set "ERRO=1"
+        goto :fim
     )
+
+    echo.
+    echo Copiando arquivos para a pasta local...
+    robocopy "%TMP_CLONE%" "%~dp0" /E /XD .git output terminals __pycache__ /XF .env .env.local.bak /NFL /NDL /NJH /NJS /nc /ns /np
+    if %errorlevel% GEQ 8 (
+        echo Erro ao copiar arquivos.
+        set "ERRO=1"
+        goto :fim
+    )
+
+    rmdir /S /Q "%TMP_CLONE%"
+
+    git init >nul
+    git remote add origin %REPO_URL% 2>nul
+    git fetch origin %BRANCH% >nul 2>&1
+    git checkout -B %BRANCH% >nul 2>&1
+    git branch --set-upstream-to=origin/%BRANCH% %BRANCH% >nul 2>&1
+
+    echo Clone concluido.
+) else (
+    echo Baixando ultima versao do GitHub...
+    echo.
+
+    git remote get-url origin >nul 2>&1
+    if %errorlevel% neq 0 (
+        git remote add origin %REPO_URL%
+    ) else (
+        git remote set-url origin %REPO_URL%
+    )
+
+    git fetch origin %BRANCH%
+    if %errorlevel% neq 0 (
+        echo.
+        echo Falha ao buscar atualizacoes do GitHub.
+        set "ERRO=1"
+        goto :fim
+    )
+
+    git reset --hard origin/%BRANCH%
+    if %errorlevel% neq 0 (
+        echo.
+        echo Falha ao aplicar atualizacoes locais.
+        set "ERRO=1"
+        goto :fim
+    )
+
+    echo Arquivos atualizados para a versao do GitHub.
 )
 
-REM --- 7. Push ---
+:fim
+if exist ".env.local.bak" (
+    copy /Y ".env.local.bak" ".env" >nul
+    del ".env.local.bak" >nul
+    echo .env local restaurado.
+)
+
 echo.
-echo Enviando para GitHub...
-git push -u origin %BRANCH%
-if %errorlevel% neq 0 (
-    echo.
-    echo Push falhou. Verifique:
-    echo   - Conexao com a internet
-    echo   - Login no GitHub (git credential manager ou token)
-    echo   - Permissao de escrita no repositorio
-    echo.
+if "!ERRO!"=="1" (
+    echo Atualizacao falhou.
     pause
     exit /b 1
 )
 
+echo Sistema atualizado com sucesso!
+echo Fonte: %REPO_URL%
 echo.
-echo Repositorio atualizado com sucesso!
-echo %REPO_URL%
+echo Dica: sua pasta output/ e o arquivo .env nao foram sobrescritos.
 echo.
 pause
+exit /b 0

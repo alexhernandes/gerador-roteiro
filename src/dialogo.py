@@ -165,6 +165,116 @@ def calcular_timing(dialogue_lines, idioma, duracao_cena=DURACAO_CENA):
     }
 
 
+def _segundos_das_falas(falas, wps):
+    palavras = sum(len(f["TEXT"].split()) for f in falas)
+    pausas = max(0, len(falas) - 1) * PAUSA_PADRAO
+    return palavras / wps + pausas
+
+
+def _montar_linhas_com_pausas(falas):
+    linhas = []
+    for indice, fala in enumerate(falas):
+        linhas.append(fala)
+        if indice < len(falas) - 1:
+            linhas.append({"PAUSE": PAUSA_PADRAO})
+    return linhas
+
+
+_REACOES = {
+    "pt": ["Sério isso?", "Não acredito!", "Que absurdo!", "Impossível!", "Meu Deus!"],
+    "en": ["No way!", "Seriously?", "Unbelievable!", "What?!", "Oh my!"],
+    "es": ["¿En serio?", "¡No lo creo!", "¡Qué absurdo!", "¡Imposible!", "¡Dios mío!"],
+}
+
+_EXTENSOES = {
+    "pt": " demais!",
+    "en": " too much!",
+    "es": " demasiado!",
+}
+
+
+def ajustar_timing_cena(cena, idioma):
+    """Ajusta falas localmente para caber em 7.5-9.5s sem nova chamada à API."""
+    falas = [dict(linha) for linha in cena.get("DIALOGUE_LINES", []) if "TEXT" in linha]
+    if not falas:
+        return cena
+
+    codigo = normalizar_idioma(idioma)
+    wps = PALAVRAS_POR_SEGUNDO.get(codigo, 3.2)
+    lock = lock_idioma_texto(idioma)
+    reacoes = _REACOES.get(codigo, _REACOES["pt"])
+
+    for fala in falas:
+        speaker = fala.get("SPEAKER", "SPEAKER")
+        if not voice_lock_valido(fala.get("VOICE_IDENTITY_LOCK", ""), idioma):
+            fala["VOICE_IDENTITY_LOCK"] = f"{speaker} voice. {lock}."
+
+    def segundos():
+        return _segundos_das_falas(falas, wps)
+
+    while segundos() > MAX_SEGUNDOS_FALA and len(falas) > MIN_FALAS_POR_CENA:
+        falas.pop()
+
+    tentativas = 0
+    while segundos() > MAX_SEGUNDOS_FALA and tentativas < 20:
+        tentativas += 1
+        indice = max(range(len(falas)), key=lambda i: len(falas[i]["TEXT"].split()))
+        palavras = falas[indice]["TEXT"].split()
+        if len(palavras) > 2:
+            falas[indice]["TEXT"] = " ".join(palavras[:-1])
+        elif len(falas) > MIN_FALAS_POR_CENA:
+            falas.pop(indice)
+        else:
+            falas[indice]["TEXT"] = " ".join(palavras[:2])
+            break
+
+    indice_reacao = 0
+    while segundos() < MIN_SEGUNDOS_FALA and len(falas) < MAX_FALAS_POR_CENA:
+        speaker = falas[-1].get("SPEAKER", "PERSONAGEM")
+        falas.append({
+            "SPEAKER": speaker,
+            "VOICE_IDENTITY_LOCK": f"{speaker} voice. {lock}.",
+            "TEXT": reacoes[indice_reacao % len(reacoes)],
+        })
+        indice_reacao += 1
+
+    tentativas = 0
+    while segundos() < MIN_SEGUNDOS_FALA and tentativas < 10:
+        tentativas += 1
+        indice = min(range(len(falas)), key=lambda i: len(falas[i]["TEXT"].split()))
+        falas[indice]["TEXT"] = (
+            falas[indice]["TEXT"].rstrip("!.?") + _EXTENSOES.get(codigo, "!")
+        )
+        if len(falas[indice]["TEXT"].split()) > 12:
+            break
+
+    cena["DIALOGUE_LINES"] = _montar_linhas_com_pausas(falas)
+    return cena
+
+
+def ajustar_timing_roteiro(roteiro, idioma):
+    for cena in roteiro.get("scenes", {}).values():
+        ajustar_timing_cena(cena, idioma)
+    return roteiro
+
+
+def metas_timing_roteiro(roteiro, idioma):
+    """Texto com meta de palavras/segundos por cena para a correção por API."""
+    linhas = []
+    cenas = roteiro.get("scenes", {})
+    for chave in sorted(cenas, key=lambda k: cenas[k].get("SCENE_NUMBER", 0)):
+        cena = cenas[chave]
+        num = cena.get("SCENE_NUMBER", chave)
+        timing = calcular_timing(cena.get("DIALOGUE_LINES", []), idioma)
+        linhas.append(
+            f"Cena {num}: {timing['line_count']} falas, {timing['word_count']} palavras, "
+            f"{timing['total_dialogue_seconds']}s → meta {timing['min_words_recommended']}-"
+            f"{timing['max_words_recommended']} palavras ({MIN_SEGUNDOS_FALA}-"
+            f"{MAX_SEGUNDOS_FALA}s)"
+        )
+    return "\n".join(linhas)
+
+
 def analisar_dialogos_roteiro(roteiro, idioma):
     """Retorna lista de problemas por cena."""
     problemas = []
@@ -176,21 +286,23 @@ def analisar_dialogos_roteiro(roteiro, idioma):
         lines = cena.get("DIALOGUE_LINES", [])
         timing = calcular_timing(lines, idioma)
 
+        timing_problema = None
         if timing["line_count"] < MIN_FALAS_POR_CENA:
-            problemas.append(
-                f"Cena {num}: só {timing['line_count']} falas (mínimo {MIN_FALAS_POR_CENA})"
+            timing_problema = (
+                f"só {timing['line_count']} falas (mínimo {MIN_FALAS_POR_CENA})"
+            )
+        elif timing["total_dialogue_seconds"] > DURACAO_CENA:
+            timing_problema = (
+                f"{timing['total_dialogue_seconds']}s estoura {DURACAO_CENA}s"
+            )
+        elif not timing["fills_scene"]:
+            timing_problema = (
+                f"{timing['total_dialogue_seconds']}s fora da meta "
+                f"{MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_FALA}s"
             )
 
-        if not timing["fills_scene"]:
-            problemas.append(
-                f"Cena {num}: {timing['total_dialogue_seconds']}s de áudio "
-                f"(meta {MIN_SEGUNDOS_FALA}-{MAX_SEGUNDOS_FALA}s em {DURACAO_CENA}s)"
-            )
-
-        if timing["total_dialogue_seconds"] > DURACAO_CENA:
-            problemas.append(
-                f"Cena {num}: diálogo estoura os {DURACAO_CENA}s ({timing['total_dialogue_seconds']}s)"
-            )
+        if timing_problema:
+            problemas.append(f"Cena {num}: {timing_problema}")
 
         for linha in lines:
             if "TEXT" not in linha:

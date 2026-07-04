@@ -4,6 +4,7 @@ timing de diálogo calculado e metadados corretos.
 """
 
 from dialogo import calcular_timing, normalizar_idioma
+from polir import polir_roteiro
 from schema import RESOLUCAO, DURACAO_CENA, NUM_CENAS, DURACAO_TOTAL
 
 
@@ -44,7 +45,28 @@ def enriquecer_elenco(elenco, aspect_ratio, idioma):
     return elenco
 
 
-def enriquecer_roteiro(roteiro, aspect_ratio, idioma):
+def enriquecer_sinopse(sinopse, idioma):
+    sinopse["ai_instructions"] = {
+        "task": (
+            "REFERENCE ONLY — AI AGENT: Do NOT generate images, videos or audio from this file. "
+            "This is a story blueprint for consultation during script review and production planning."
+        ),
+        "purpose": (
+            "Planning document with story_summary, acts and beats. "
+            "Use it to understand the narrative arc — not as a generation source."
+        ),
+        "use_instead": {
+            "character_images": "elenco.json → ai_image_task (one reference image per cast member)",
+            "scene_videos": "roteiro.json → AI_VIDEO_TASK (one 10s video per scene)",
+            "spoken_audio": "roteiro.json → DIALOGUE_LINES > TEXT only",
+        },
+        "language": idioma,
+        "do_not_generate": True,
+    }
+    return sinopse
+
+
+def enriquecer_roteiro(roteiro, aspect_ratio, idioma, elenco=None):
     roteiro["aspect_ratio"] = aspect_ratio
     roteiro["resolution"] = RESOLUCAO
     roteiro["language"] = idioma
@@ -72,6 +94,19 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma):
         "style": (
             f"Cinematic 3D animation at {RESOLUCAO}, {aspect_ratio}, "
             "Disney-Pixar style, volumetric lighting."
+        ),
+        "note": (
+            "sinopse.json is REFERENCE ONLY (do not generate media from it). "
+            "Use this roteiro.json and elenco.json as the production sources."
+        ),
+        "post_generation_qa": (
+            "AFTER generating ALL scene videos, AI AGENT MUST run a final dialogue audio review: "
+            "(1) Listen to every spoken line in each clip. "
+            "(2) Verify each word matches DIALOGUE_LINES > TEXT exactly — same language, "
+            "no missing words, no wrong words, no invented lines. "
+            "(3) Confirm every line is clearly audible (intelligible, correct volume, no mumbling, "
+            "no overlapping speech, lip-sync aligned with the active speaker). "
+            "(4) Re-render any scene that fails before final delivery."
         ),
     }
 
@@ -108,7 +143,11 @@ def enriquecer_roteiro(roteiro, aspect_ratio, idioma):
             f"Audio language: {idioma}. "
             f"Spoken lines (DIALOGUE_LINES > TEXT only): {dialogo_texto[:300]}. "
             f"Speech: {timing['total_dialogue_seconds']}s / {DURACAO_CENA}s. "
-            f"Duration MUST be exactly {DURACAO_CENA} seconds."
+            f"Duration MUST be exactly {DURACAO_CENA} seconds. "
+            f"After ALL scenes are generated: run final audio QA per ai_instructions.post_generation_qa."
         )
+
+    if elenco:
+        roteiro = polir_roteiro(roteiro, elenco, idioma)
 
     return roteiro

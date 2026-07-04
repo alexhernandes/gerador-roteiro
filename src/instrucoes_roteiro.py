@@ -118,6 +118,7 @@ def bloco_sinopse(idioma, tema):
     return bloco_narrativa(tema) + f"""
 
 Você está criando a SINOPSE — o plano da história ANTES do roteiro detalhado.
+Este arquivo é só para consulta/planejamento; agentes de produção NÃO geram mídia a partir dele.
 Idioma dos diálogos: {idioma}.
 
 Para cada uma das {NUM_CENAS} cenas, defina:
