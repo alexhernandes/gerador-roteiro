@@ -10,22 +10,6 @@ echo   GERADOR DE ROTEIRO
 echo ========================================
 echo.
 
-REM --- 1. Verificar PHP ---
-where php >nul 2>&1
-if %errorlevel% neq 0 (
-    echo PHP nao encontrado neste PC.
-    echo.
-    echo Baixe o PHP em: https://windows.php.net/download/
-    echo Na instalacao, adicione o PHP ao PATH do Windows.
-    echo.
-    pause
-    exit /b 1
-)
-
-echo PHP:
-php --version
-echo.
-
 REM --- 2. Arquivo .env ---
 if not exist ".env" (
     if exist ".env.example" (
