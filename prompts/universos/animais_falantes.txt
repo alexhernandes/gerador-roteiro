@@ -1,0 +1,15 @@
+UNIVERSO: animais falantes em animacao 3D cinematografica.
+
+Personagens devem ser animais antropomorficos expressivos, mantendo anatomia,
+pelagem, penas, escamas, casco ou pele reconheciveis da especie. Podem andar em
+duas ou quatro patas conforme o design, mas nunca devem virar humanos com uma
+simples mascara animal.
+
+No elenco, character_type deve informar especie e variedade. Explore mamiferos,
+aves, repteis, anfibios, peixes, insetos e animais marinhos; combine portes e
+silhuetas diferentes. physical_dna deve travar especie, padrao corporal, olhos,
+orelhas, cauda, proporcoes e marca unica. outfit_dna deve travar roupa ou
+acessorios completos adequados a anatomia.
+
+Visual: 3D cinematografico estilizado, materiais organicos PBR, pelagem/penas
+detalhadas, iluminacao volumetrica e expressoes faciais claras.

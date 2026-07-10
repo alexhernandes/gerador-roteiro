@@ -1,11 +1,13 @@
-UNIVERSO: frutinhas antropomorficas em animacao 3D cinematografica.
+UNIVERSO: frutas, legumes, sementes e alimentos naturais antropomorficos em animacao 3D.
 
 Personagens devem ser frutas, legumes ou alimentos naturais antropomorficos.
 O corpo inteiro deve manter textura organica do alimento: casca, sementes, folha,
 brilho, rugosidade e cor coerente. Nunca use pele humana.
 
-No elenco, character_type deve indicar a fruta/alimento de cada personagem
-(ex.: banana, morango, uva, abacaxi). physical_dna deve travar corpo, textura,
-folhas/coroa, proporcoes e marcas visuais. outfit_dna deve travar roupa completa.
+No elenco, character_type deve indicar a especie exata. Explore especies menos
+obvias, variedades regionais, formatos e maturacoes; nao use automaticamente o
+quarteto banana/morango/uva/abacaxi. Cada elenco deve ter especies e silhuetas
+distintas. physical_dna trava corpo, textura, folhas/coroa, proporcoes e marcas
+visuais. outfit_dna trava roupa completa.
 
 Visual: Disney-Pixar 3D, PBR, iluminacao volumetrica, expressivo e viral.

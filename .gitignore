@@ -3,3 +3,5 @@ output/
 terminals/
 __pycache__/
 *.pyc
+app/__pycache__/
+tests/__pycache__/

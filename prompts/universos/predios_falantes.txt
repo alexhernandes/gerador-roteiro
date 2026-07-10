@@ -1,11 +1,13 @@
 UNIVERSO: predios falantes e objetos arquitetonicos vivos.
 
-Personagens devem ser edificios, casas, torres, lojas, pontes ou monumentos
+Personagens devem ser edificios, casas, torres, lojas, estacoes, galpoes,
+farol, teatro, biblioteca, fabrica, ponte ou monumento
 com personalidade. O rosto pode aparecer em janelas, fachadas, letreiros ou
 formas arquitetonicas. Nao crie humanos como personagens principais.
 
 No elenco, character_type deve indicar o tipo de construcao
-(ex.: predio art-deco, casa pequena, arranha-ceu de vidro). physical_dna deve
+(tipo, epoca e linguagem arquitetonica). Varie escala, uso, idade e material;
+nao use automaticamente o mesmo arranha-ceu de vidro. physical_dna deve
 travar fachada, materiais, janelas, portas, rachaduras, letreiros e escala.
 outfit_dna deve ser usado como "facade_accessory_dna": toldos, placas, luzes,
 antenas, plantas, grafites e objetos fixos.
